@@ -13,11 +13,11 @@ export class StudentService{
     constructor(private http: HttpClient, private router: Router) {}
 
     registerStudent(firstName:string,lastName:string,grade:string):void{
-        this.http.post(`${environment.local_host}/students/register`,{firstName,lastName, grade}).subscribe(result=>console.log(result))
+        this.http.post(`${environment.url}/students/register`,{firstName,lastName, grade}).subscribe(result=>console.log(result))
     }
 
     getAllStudents(){
-       return this.http.get<{success:boolean, data:Student[]}>(`${environment.local_host}/students/all`).pipe(map(result=>{
+       return this.http.get<{success:boolean, data:Student[]}>(`${environment.url}/students/all`).pipe(map(result=>{
             if(result.success){
                 return result.data;
             }

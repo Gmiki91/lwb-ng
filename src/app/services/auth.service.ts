@@ -14,7 +14,7 @@ export class AuthService {
     constructor(private http: HttpClient, private router: Router) { }
 
     signUp(user: User) {
-        this.http.post<{ success: boolean, data: User }>(`${environment.local_host}/users/signup`, user).subscribe(result => {
+        this.http.post<{ success: boolean, data: User }>(`${environment.url}/users/signup`, user).subscribe(result => {
             if (result.success) {
                 localStorage.setItem("type", "" + user.type);
                 localStorage.setItem("username",  user.name);
@@ -25,7 +25,7 @@ export class AuthService {
         })
     }
     logIn(email: string, password: string) {
-        this.http.post<{ success: boolean, data: User }>(`${environment.local_host}/users/login`, { email, password }).subscribe(result => {
+        this.http.post<{ success: boolean, data: User }>(`${environment.url}/users/login`, { email, password }).subscribe(result => {
             if (result.success) {
                 localStorage.setItem("type", "" + result.data.type);
                 localStorage.setItem("username",  result.data.name);
