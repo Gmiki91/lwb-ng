@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from '../models/user.model';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -35,8 +35,10 @@ export class AuthComponent implements OnInit {
     return  !this.passwordMissmatch;
   }
   onLogIn(form: NgForm): void {
+    const {  email, password } = form.controls;
+
     if (form.valid) {
-      console.log(form);
+      this.authService.logIn(email.value, password.value);
     }
   }
 

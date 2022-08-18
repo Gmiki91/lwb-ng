@@ -3,8 +3,8 @@
         <h1>Log in</h1>
         <form #loginForm="ngForm" (ngSubmit)="onLogIn(loginForm)">
             <mat-form-field>
-                <mat-label>Username/email</mat-label>
-                <input matInput ngModel type="text" name="username" required/>
+                <mat-label>Email</mat-label>
+                <input matInput ngModel type="email" name="email" required/>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Password</mat-label>
@@ -16,6 +16,7 @@
             <button [matTooltip]="!loginForm.valid ? 'All fields must be filled' : ''" 
                     [ngClass]="loginForm.valid ? 'form-button' : 'inactive-button'" 
                     mat-stroked-button 
+                    class="btn"
                     type="submit()">
                     Log me in
             </button>
@@ -23,8 +24,8 @@
         <br>
         <br>
         <br>
-        <button mat-stroked-button class="social-signin facebook">Log in with facebook</button>
-        <button mat-stroked-button class="social-signin google">Log in with Google+</button>
+        <button mat-stroked-button class="btn social-signin facebook">Log in with facebook</button>
+        <button mat-stroked-button class="btn social-signin google">Log in with Google+</button>
     </div>
 
     <div class="right">
@@ -60,6 +61,7 @@
             <button [matTooltip]="!signUpForm.valid ? 'All fields must be filled' : ''" 
                     [ngClass]="signUpForm.valid && !passwordMissmatch ? 'form-button' : 'inactive-button'" 
                     mat-stroked-button 
+                    class="btn"
                     type="submit()">
                     Sign me up
             </button>

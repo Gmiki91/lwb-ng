@@ -39,28 +39,12 @@
     border-radius: 0 2px 2px 0;
   }
   
-  button {
-    width: 220px;
-    color:white;
-    margin:2px 0px;
-  }
-  
   button.social-signin.facebook {
     background: #32508E;
   }
   
   button.social-signin.google {
     background: #DD4B39;
-  }
-
-  button.form-button{
-    background:#2196f3;
-  }
-
-  button.inactive-button{
-    background-color: #cccccc;
-    color: #666666;
-
   }
 
   @media (max-width: 800px){

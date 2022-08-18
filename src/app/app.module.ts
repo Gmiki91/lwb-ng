@@ -12,11 +12,19 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
+import { HomeComponent } from './home/home.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+import { ReportComponent } from './report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AuthComponent
+    AuthComponent,
+    HomeComponent,
+    RegisterFormComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatInputModule,
     MatTooltipModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

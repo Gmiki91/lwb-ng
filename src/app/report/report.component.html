@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="table">
+        <div class="row header">
+            <div class="cell">
+                Name
+            </div>
+            <div class="cell">
+                Grade
+            </div>
+        </div>
+
+        <div class="row" *ngFor="let student of students$|async; index as i">
+            <div class="cell" data-title="Name">
+                {{student.lastName}} {{student.firstName}}
+            </div>
+            <div class="cell" data-title="Grade">
+                {{student.grade}}
+            </div>
+
+        </div>
+    </div>
+</div>
