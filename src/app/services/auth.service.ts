@@ -25,14 +25,23 @@ export class AuthService {
         })
     }
     logIn(email: string, password: string) {
-        this.http.post<{ success: boolean, data: User }>(`${environment.url}/users/login`, { email, password }).subscribe(result => {
-            if (result.success) {
-                localStorage.setItem("type", "" + result.data.type);
-                localStorage.setItem("username",  result.data.name);
-                this.user.next(result.data);
-                this.router.navigate(['/']);
-            }
-        })
+        this.http.post<{ success: boolean, data: User }>(`${environment.url}/users/login`, { email, password }).subscribe(
+            {
+                next: result => {
+                    if (result.success) {
+                        localStorage.setItem("type", "" + result.data.type);
+                        localStorage.setItem("username", result.data.name);
+                        this.user.next(result.data);
+                        this.router.navigate(['/']);
+                    } else {
+                        console.log(result);
+                    }
+                },
+                error: repsonse => {
+
+                    alert(repsonse.error.message)
+                }
+            });
     }
 
     getCurrentUser() {
