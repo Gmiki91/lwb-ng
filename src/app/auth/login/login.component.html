@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="box">
+            <h1>Log in</h1>
+            <form #loginForm="ngForm" (ngSubmit)="onLogIn(loginForm)">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput ngModel type="email" name="email" required />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password" required />
+                    <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                        {{showPassword ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
+                </mat-form-field>
+                <button [matTooltip]="!loginForm.valid ? 'All fields must be filled' : ''"
+                    [ngClass]="loginForm.valid ? 'form-button' : 'inactive-button'" mat-stroked-button class="btn"
+                    type="submit()">
+                    Log me in
+                </button>
+            </form>
+            <a routerLink="/signup">Create user</a>
+        </div>
+</div>

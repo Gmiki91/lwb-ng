@@ -1,30 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
-import { AuthComponent } from './auth/auth.component';
-import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatIconModule} from '@angular/material/icon';
+import { LoginComponent } from './auth/login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
-import { RegisterFormComponent } from './register-form/register-form.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatMenuModule} from '@angular/material/menu';
-import { ReportComponent } from './report/report.component';
+import { RegisterComponent } from './forms/register/register.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { SignupComponent } from './auth/signup/signup.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { GradeBookComponent } from './grade-book/grade-book.component';
+import { AuthenticationInterceptor } from './auth/authentication.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MarkComponent } from './forms/mark/mark.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    AuthComponent,
+    LoginComponent,
     HomeComponent,
-    RegisterFormComponent,
-    ReportComponent
+    RegisterComponent,
+    SignupComponent,
+    GradeBookComponent,
+    MarkComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +47,15 @@ import { ReportComponent } from './report/report.component';
     MatTooltipModule,
     MatIconModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatExpansionModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

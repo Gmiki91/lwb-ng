@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <th>NAMES/DATE</th>
+        <th *ngFor="let month of months">{{month.name}}</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let student of data$|async">
+        <th>{{student.fullNameC}}</th>
+        <td *ngFor="let month of months">
+            <span *ngFor="let result of ratedInMonth(month.value,student.results)" (click)="editMark(student._id,result)">
+                {{result.mark}}</span>
+        </td>
+        <td (click)="addMark(student._id)">+</td>
+    </tr>
+</table>

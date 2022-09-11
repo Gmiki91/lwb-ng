@@ -1,0 +1,40 @@
+<div class="container">
+    <form class="content" #registerForm="ngForm" (ngSubmit)="submit()">
+        <mat-form-field>
+            <mat-label>Child full name - cyrillic</mat-label>
+            <input matInput ngModel type="text" name="fullNameC" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Child full name - latin</mat-label>
+            <input matInput ngModel type="text" name="fullNameL" required />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput ngModel name="dob" [matDatepicker]="picker" disabled>
+            <mat-label>Date of birth</mat-label>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Class</mat-label>
+            <mat-select ngModel name="grade" required>
+                <mat-option *ngFor="let class of classes" [value]="class">
+                    {{class}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Ukrainian school</mat-label>
+            <input matInput ngModel type="text" name="ukraineSchool" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Health concerns</mat-label>
+            <input matInput ngModel type="text" name="healthIssues" required />
+        </mat-form-field>
+            <mat-checkbox  matInput ngModel name="vegetarian" [checked]="false">Vegetarian</mat-checkbox>
+        
+        <button [matTooltip]="!registerForm.valid ? 'All fields must be filled' : ''"
+            [ngClass]="registerForm.valid ? 'form-button' : 'inactive-button'" mat-stroked-button class="btn">
+            Register
+        </button>
+    </form>
+</div>

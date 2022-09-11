@@ -1,47 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { User } from '../models/user.model';
-import { AuthService } from '../services/auth.service';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['../auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class SignupComponent implements OnInit {
+  @ViewChild('signUpForm') form!: NgForm;
   showPassword: boolean = false;
   passwordMissmatch:boolean = false;
-  @ViewChild('signUpForm') form!: NgForm;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
   onSignUp(): void {
-    const { username, email, password, type } = this.form.controls;
+    const { fullName, email, password, phone,address } = this.form.controls;
     const match = this.passwordsMatch();
     if (this.form.valid && match) {
       const user: User = {
-        name: username.value,
+        fullName:fullName.value,
         password: password.value,
         email: email.value,
-        type: type.value
+        phone:phone.value,
+        address:address.value
       }
       this.authService.signUp(user)
     }
   }
-
   passwordsMatch():boolean{
     this.passwordMissmatch = this.form.controls['password'].value!==this.form.controls['password2'].value;
     return  !this.passwordMissmatch;
   }
-  onLogIn(form: NgForm): void {
-    const {  email, password } = form.controls;
-
-    if (form.valid) {
-      this.authService.logIn(email.value, password.value);
-    }
-  }
-
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }

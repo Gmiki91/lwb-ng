@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url:'https://f5aztfr90g.execute-api.eu-central-1.amazonaws.com/dev/api',
-  local_host:'http://localhost:3000/api',
+  // url:'http://localhost:3000/api',
 
 };
 

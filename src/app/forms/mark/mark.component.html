@@ -1,0 +1,25 @@
+<div class="container">
+    <div mat-dialog-content class="content">
+        <mat-form-field>
+            <mat-label>Mark</mat-label>
+            <input matInput [(ngModel)]="data.mark" type="number" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Note</mat-label>
+            <input matInput [(ngModel)]="data.note" type="text" />
+        </mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="data.type" required>
+            <mat-option *ngFor="let markType of types" [value]="markType">
+                {{markType}}
+            </mat-option>
+        </mat-select>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.date" [matDatepicker]="picker">
+            <mat-label>Date</mat-label>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <button (click)="submit()">Submit</button>
+    </div>
+</div>

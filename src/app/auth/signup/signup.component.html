@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="box">
+        <h1>Sign up</h1>
+        <form #signUpForm="ngForm" (ngSubmit)="onSignUp()">
+            <mat-form-field>
+                <mat-label>Full name</mat-label>
+                <input matInput ngModel type="text" name="fullName" required />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput ngModel type="email" name="email" required />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput ngModel type="text" name="address" required />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Phone number</mat-label>
+                <input matInput ngModel type="text" name="phone" required />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password"
+                    (blur)='passwordsMatch()' required />
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                    {{showPassword ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Confirm password</mat-label>
+                <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password2"
+                    (blur)='passwordsMatch()' required />
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                    {{showPassword ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+                <mat-hint class="red" *ngIf="passwordMissmatch">Passwords do not match</mat-hint>
+            </mat-form-field>
+            <button [matTooltip]="!signUpForm.valid ? 'All fields must be filled out' : ''"
+                [ngClass]="signUpForm.valid && !passwordMissmatch ? 'form-button' : 'inactive-button'"
+                mat-stroked-button class="btn" type="submit()">
+                Sign me up
+            </button>
+        </form>
+    </div>
+</div>

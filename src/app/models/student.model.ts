@@ -1,5 +1,23 @@
 export type Student ={
-    firstName:string;
-    lastName:string;
-    grade:number;
+    _id?:string
+    fullNameC:string;
+    fullNameL:string;
+    dob:Date;
+    currentGrade:number;
+    ukraineSchool:string;
+    healthIssues:string[];
+    vegetarian:boolean;
+    registeredAt:number;
+    notes?:string;
+}
+export type Result={
+    date:number
+    mark:number
+    note:string
+    type:string
+}
+export type StudentResult={
+    _id:string;
+    fullNameC:string;
+    results:Result[];
 }

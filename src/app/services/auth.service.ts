@@ -13,32 +13,29 @@ export class AuthService {
     user = new BehaviorSubject<User>({} as User);
     constructor(private http: HttpClient, private router: Router) { }
 
-    signUp(user: User) {
-        this.http.post<{ success: boolean, data: User }>(`${environment.url}/users/signup`, user).subscribe(result => {
-            if (result.success) {
-                localStorage.setItem("type", "" + user.type);
-                localStorage.setItem("username",  user.name);
-                this.user.next(result.data);
+    signUp(user:User) {
+        this.http.post<{ status: string, token:string,user: User }>(`${environment.url}/users/signup`, user).subscribe(result => {
+            if (result.status==='success') {
+                this.user.next(result.user);
+                localStorage.setItem('access_token', result.token);
                 this.router.navigate(['/']);
             }
 
         })
     }
     logIn(email: string, password: string) {
-        this.http.post<{ success: boolean, data: User }>(`${environment.url}/users/login`, { email, password }).subscribe(
+        this.http.post<{ status: string, token:string,user: User }>(`${environment.url}/users/login`, { email, password }).subscribe(
             {
                 next: result => {
-                    if (result.success) {
-                        localStorage.setItem("type", "" + result.data.type);
-                        localStorage.setItem("username", result.data.name);
-                        this.user.next(result.data);
+                    if (result.status==='success') {
+                        this.user.next(result.user);
+                        localStorage.setItem('access_token', result.token);
                         this.router.navigate(['/']);
                     } else {
                         console.log(result);
                     }
                 },
                 error: repsonse => {
-
                     alert(repsonse.error.message)
                 }
             });
