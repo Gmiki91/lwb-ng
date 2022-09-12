@@ -1,23 +1,16 @@
 <div class="container">
     <mat-slide-toggle [(ngModel)]="isChecked">{{isChecked ? 'Szülő':'Tanár'}}</mat-slide-toggle>
     <div *ngIf="!isChecked">
-        <h1>Osztályok, adatok</h1>
+        <h1>Osztályok</h1>
         <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
             <mat-expansion-panel-header>
             <mat-panel-title>{{classroom.grade}}</mat-panel-title>
         </mat-expansion-panel-header>
-            <span *ngFor="let student of students$|async">
-                <span *ngIf="classroom.grade.includes(student.currentGrade)">
-                {{student.fullNameC}}
-                </span>
-            </span>
-        </mat-expansion-panel>
-        <h1>Napló</h1>
-        <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
-            <mat-expansion-panel-header>
-            <mat-panel-title>{{classroom.grade}}</mat-panel-title>
-        </mat-expansion-panel-header>
+        <div>
+            <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Névsor</a>
+            <mat-divider></mat-divider>
             <span style="padding:0.5rem; cursor:pointer" *ngFor="let subject of classroom.subjects" (click)="openGradeBook(classroom.grade,subject)">{{subject}}</span>
+        </div>
         </mat-expansion-panel>
     </div>
     <div *ngIf="isChecked">

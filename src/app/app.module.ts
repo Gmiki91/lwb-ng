@@ -25,6 +25,9 @@ import { GradeBookComponent } from './grade-book/grade-book.component';
 import { AuthenticationInterceptor } from './auth/authentication.interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MarkComponent } from './forms/mark/mark.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { ClassBookComponent } from './class-book/class-book.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,8 @@ import { MarkComponent } from './forms/mark/mark.component';
     RegisterComponent,
     SignupComponent,
     GradeBookComponent,
-    MarkComponent
+    MarkComponent,
+    ClassBookComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { MarkComponent } from './forms/mark/mark.component';
     MatSlideToggleModule,
     MatExpansionModule,
     MatDialogModule,
+    MatDividerModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },],
   bootstrap: [AppComponent]

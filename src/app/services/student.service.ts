@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, map } from "rxjs";
@@ -22,8 +22,17 @@ export class StudentService {
         })
     }
 
-    getAllStudents() {
-        return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/`).pipe(map(result => {
+    // getAllStudents() {
+    //     return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/`).pipe(map(result => {
+    //         if (result.status === 'success') {
+    //             return result.students;
+    //         }
+    //         return [];
+    //     }))
+    // }
+
+    getStudentsOfClass(classes:number[]) {
+        return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/${classes.join(',')}`).pipe(map(result => {
             if (result.status === 'success') {
                 return result.students;
             }

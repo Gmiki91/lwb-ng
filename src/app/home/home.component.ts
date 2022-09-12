@@ -16,12 +16,10 @@ type Classrom = {
 export class HomeComponent implements OnInit {
   isChecked: boolean = false;
   classRooms: Classrom[];
-  students$?:Observable<Student[]>
   children$?:Observable<Student[]>
   constructor(
     private studentService: StudentService,
     private router:Router) {
-    this.students$ = this.studentService.getAllStudents();
     this.children$ = this.studentService.getChildren();
     this.classRooms = [
       { grade: [1, 2], subjects: ["Biology", "Math"] },
