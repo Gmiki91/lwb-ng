@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MarkComponent } from './forms/mark/mark.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { ClassBookComponent } from './class-book/class-book.component';
+import { StudentComponent } from './forms/student/student.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ClassBookComponent } from './class-book/class-book.component';
     SignupComponent,
     GradeBookComponent,
     MarkComponent,
-    ClassBookComponent
+    ClassBookComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,

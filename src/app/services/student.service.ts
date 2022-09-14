@@ -10,7 +10,7 @@ import { Student, StudentResult, Result } from "../models/student.model";
 })
 
 export class StudentService {
-    studentResult = new BehaviorSubject<StudentResult[]>([])
+    studentResult = new BehaviorSubject<StudentResult[]>([]);
     constructor(private http: HttpClient, private router: Router) { }
 
     registerStudent(student: Student): void {
@@ -34,7 +34,7 @@ export class StudentService {
     getStudentsOfClass(classes:number[]) {
         return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/${classes.join(',')}`).pipe(map(result => {
             if (result.status === 'success') {
-                return result.students;
+                return result.students.map(student =>{return {...student, attendance:false}});
             }
             return [];
         }))

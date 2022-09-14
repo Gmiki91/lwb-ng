@@ -1,4 +1,6 @@
-<div *ngFor ="let student of students$|async">
-    <span>{{student.fullNameC}} </span>
-    <mat-checkbox> Ma jelen</mat-checkbox>
+<div class="container">
+    <div *ngFor="let student of students">
+        <span class="clickable" (click)="openStudentData(student)">{{student.fullNameC}} </span>
+        <mat-checkbox [checked]="student.attendance"> Hiányzik</mat-checkbox>
+    </div>
 </div>

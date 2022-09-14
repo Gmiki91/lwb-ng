@@ -7,9 +7,9 @@
     <tr *ngFor="let student of data$|async">
         <th>{{student.fullNameC}}</th>
         <td *ngFor="let month of months">
-            <span *ngFor="let result of ratedInMonth(month.value,student.results)" (click)="editMark(student._id,result)">
+            <span class="clickable" *ngFor="let result of ratedInMonth(month.value,student.results)" (click)="editMark(student._id,result)">
                 {{result.mark}}</span>
         </td>
-        <td (click)="addMark(student._id)">+</td>
+        <td class="clickable" (click)="addMark(student._id)">+</td>
     </tr>
 </table>
