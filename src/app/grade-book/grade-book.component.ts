@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MarkComponent } from '../forms/mark/mark.component';
 import { Result, StudentResult } from '../models/student.model';
 import { StudentService } from '../services/student.service';
+import {ClassRooms} from '../models/constants'
 @Component({
   selector: 'app-grade-book',
   templateUrl: './grade-book.component.html',
   styleUrls: ['./grade-book.component.scss']
 })
 export class GradeBookComponent implements OnInit {
-
   months = [
     { name: 'September', value: 9 },
     { name: 'October', value: 10 },
@@ -23,22 +23,21 @@ export class GradeBookComponent implements OnInit {
     { name: 'April', value: 4 },
     { name: 'May', value: 5 },
     { name: 'June', value: 6 }
-  ]
+  ];
   data$?: Observable<StudentResult[]>;
   subject!: string;
-  grade!: number[];
-  constructor(private router: Router, private studentService: StudentService, private dialog: MatDialog) {
-    let nav = this.router.getCurrentNavigation();
-    if (nav?.extras.state) {
-      this.grade = nav.extras.state['grade'];
-      this.subject = nav.extras.state['subject'];
-      this.studentService.requestStudentResults(this.grade, this.subject)
-    } else {
-      this.router.navigate(['/']);
-    }
+  grade!: number;
+  subjects!:string[];
+  constructor(private studentService: StudentService, private dialog: MatDialog, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.grade = params['grade'];
+      this.subjects = ClassRooms
+      .filter(classroom=>classroom.grade === +this.grade)
+      .map(classroom => classroom.subjects)[0];
+    });
     this.data$ = this.studentService.getStudentResults();
   }
 

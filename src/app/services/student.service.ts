@@ -50,7 +50,7 @@ export class StudentService {
     }
 
 
-    requestStudentResults(grade: number[], subject: string) {
+    requestStudentResults(grade: number, subject: string) {
         this.http.post<{ status: string, data: StudentResult[] }>(`${environment.url}/students/results`, { grade, subject }).subscribe(result => {
             if (result.status === 'success') 
                 this.studentResult.next(result.data);
@@ -59,7 +59,7 @@ export class StudentService {
         })
     }
 
-    giveStudentResult(studentId:string,result: Result,grade: number[],subject: string) {
+    giveStudentResult(studentId:string,result: Result,grade: number,subject: string) {
         this.http.put<{ status: string}>(`${environment.url}/students/results`, { studentId,result,grade,subject }).subscribe(result => {
             if (result.status === 'success') 
                this.requestStudentResults(grade,subject)
@@ -68,7 +68,7 @@ export class StudentService {
         })
     }
 
-    updateStudentResult(studentId:string,result: Result,grade: number[],subject: string) {
+    updateStudentResult(studentId:string,result: Result,grade: number,subject: string) {
         this.http.patch<{ status: string}>(`${environment.url}/students/results`, { studentId,result,grade,subject }).subscribe(result => {
             if (result.status === 'success') 
                this.requestStudentResults(grade,subject)

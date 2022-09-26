@@ -8,8 +8,9 @@
         </mat-expansion-panel-header>
         <div>
             <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Névsor</a>
+            <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">Napló</a>
+            <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Jelenléti ív</a>
             <mat-divider></mat-divider>
-            <span style="padding:0.5rem; cursor:pointer" *ngFor="let subject of classroom.subjects" (click)="openGradeBook(classroom.grade,subject)">{{subject}}</span>
         </div>
         </mat-expansion-panel>
     </div>
