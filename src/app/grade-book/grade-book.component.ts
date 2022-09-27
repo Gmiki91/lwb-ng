@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { MarkComponent } from '../forms/mark/mark.component';
 import { Result, StudentResult } from '../models/student.model';
 import { StudentService } from '../services/student.service';
-import {ClassRooms} from '../models/constants'
+import { ClassRooms } from '../models/constants'
 @Component({
   selector: 'app-grade-book',
   templateUrl: './grade-book.component.html',
@@ -25,9 +25,9 @@ export class GradeBookComponent implements OnInit {
     { name: 'June', value: 6 }
   ];
   data$?: Observable<StudentResult[]>;
-  subject!: string;
+  subject?: string;
   grade!: number;
-  subjects!:string[];
+  subjects!: string[];
   constructor(private studentService: StudentService, private dialog: MatDialog, private route: ActivatedRoute) {
   }
 
@@ -35,10 +35,18 @@ export class GradeBookComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.grade = params['grade'];
       this.subjects = ClassRooms
-      .filter(classroom=>classroom.grade === +this.grade)
-      .map(classroom => classroom.subjects)[0];
+        .filter(classroom => classroom.grade === +this.grade)
+        .map(classroom => classroom.subjects)[0];
     });
     this.data$ = this.studentService.getStudentResults();
+  }
+
+  changedSubject(subject: string) {
+    if (subject !== this.subject){
+      this.subject = subject;
+      this.studentService.requestStudentResults(this.grade,this.subject);
+    }
+
   }
 
   ratedInMonth(monthIndex: number, results: Result[]): Result[] {
@@ -52,18 +60,19 @@ export class GradeBookComponent implements OnInit {
   addMark(id: string) {
     const dialogRef = this.dialog.open(MarkComponent, { data: {} as Result });
     dialogRef.afterClosed().subscribe((result: Result) => {
-      if (result !== undefined) {
+      if (result !== undefined && this.subject) {
         this.studentService.giveStudentResult(id, result, this.grade, this.subject);
       }
     });
   }
-    editMark(id:string,result:Result){
-      const dialogRef = this.dialog.open(MarkComponent, { data:result});
-      dialogRef.afterClosed().subscribe((result: Result) => {
-        if (result !== undefined) {
-         
-          this.studentService.updateStudentResult(id, result, this.grade, this.subject);
-        }
-      });
+
+  editMark(id: string, result: Result) {
+    const dialogRef = this.dialog.open(MarkComponent, { data: result });
+    dialogRef.afterClosed().subscribe((result: Result) => {
+      if (result !== undefined && this.subject) {
+
+        this.studentService.updateStudentResult(id, result, this.grade, this.subject);
+      }
+    });
   }
 }

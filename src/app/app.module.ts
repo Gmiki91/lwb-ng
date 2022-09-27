@@ -28,6 +28,7 @@ import { MarkComponent } from './forms/mark/mark.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { ClassBookComponent } from './class-book/class-book.component';
 import { StudentComponent } from './forms/student/student.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { StudentComponent } from './forms/student/student.component';
     MatSlideToggleModule,
     MatExpansionModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonToggleModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },],
   bootstrap: [AppComponent]

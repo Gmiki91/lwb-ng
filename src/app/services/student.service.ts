@@ -31,8 +31,8 @@ export class StudentService {
     //     }))
     // }
 
-    getStudentsOfClass(classes:number[]) {
-        return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/${classes.join(',')}`).pipe(map(result => {
+    getStudentsOfClass(classes:number) {
+        return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/${classes}`).pipe(map(result => {
             if (result.status === 'success') {
                 return result.students.map(student =>{return {...student, attendance:false}});
             }

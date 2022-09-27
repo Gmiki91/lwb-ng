@@ -9,14 +9,14 @@ import {MarkTypes} from '../../models/constants';
 })
 export class MarkComponent implements OnInit {
   types = MarkTypes;
-  constructor(private dialogRef: MatDialogRef<MarkComponent>, 
-    @Inject(MAT_DIALOG_DATA) public data: Result) {
+  data:Result = {} as Result; 
+  constructor() {
      }
 
   ngOnInit(): void {
   }
 
   submit() {
-    this.dialogRef.close(this.data);
+   
   }
 }
