@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MarkComponent } from '../forms/mark/mark.component';
 import { Result, StudentResult } from '../models/student.model';
 import { StudentService } from '../services/student.service';
 import { ClassRooms } from '../models/constants'
+type StudentMark = {
+  id: string,
+  mark: number
+}
 @Component({
   selector: 'app-grade-book',
   templateUrl: './grade-book.component.html',
@@ -24,11 +26,14 @@ export class GradeBookComponent implements OnInit {
     { name: 'May', value: 5 },
     { name: 'June', value: 6 }
   ];
+  studentMarks: StudentMark[] = [];
   data$?: Observable<StudentResult[]>;
-  subject?: string;
+  resultData: Result = {} as Result;
+  subject!: string;
   grade!: number;
   subjects!: string[];
-  constructor(private studentService: StudentService, private dialog: MatDialog, private route: ActivatedRoute) {
+  editingId: string | undefined;
+  constructor(private studentService: StudentService,private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -42,13 +47,39 @@ export class GradeBookComponent implements OnInit {
   }
 
   changedSubject(subject: string) {
-    if (subject !== this.subject){
+    if (subject !== this.subject) {
       this.subject = subject;
-      this.studentService.requestStudentResults(this.grade,this.subject);
+      this.studentService.requestStudentResults(this.grade, this.subject);
     }
-
   }
 
+  changeMark(id: string, mark: number): void {
+    let found = false;
+    this.studentMarks.forEach(studentMark => {
+      if (studentMark.id === id) {
+        studentMark.mark = mark;
+        found = true;
+      }
+    })
+    if (!found)
+      this.studentMarks.push({ id, mark })
+  }
+
+  save(result: Result | null): void {
+    if (result){
+      if (this.editingId) {   
+        //submitted editing
+        this.studentService.updateStudentResult(this.editingId, result, this.grade, this.subject);
+        this.editingId = undefined;
+      } else {
+        // submitted new result
+        this.studentService.giveStudentsResult(this.studentMarks, result, this.grade, this.subject);
+      }
+    }else{
+      //cancelled editing
+      this.editingId=undefined;
+    }
+  }
   ratedInMonth(monthIndex: number, results: Result[]): Result[] {
     const resultsInMonth = results.filter(result => {
       const month = new Date(result.date).getMonth() + 1;
@@ -57,22 +88,8 @@ export class GradeBookComponent implements OnInit {
     return resultsInMonth;
   }
 
-  addMark(id: string) {
-    const dialogRef = this.dialog.open(MarkComponent, { data: {} as Result });
-    dialogRef.afterClosed().subscribe((result: Result) => {
-      if (result !== undefined && this.subject) {
-        this.studentService.giveStudentResult(id, result, this.grade, this.subject);
-      }
-    });
-  }
-
   editMark(id: string, result: Result) {
-    const dialogRef = this.dialog.open(MarkComponent, { data: result });
-    dialogRef.afterClosed().subscribe((result: Result) => {
-      if (result !== undefined && this.subject) {
-
-        this.studentService.updateStudentResult(id, result, this.grade, this.subject);
-      }
-    });
+    this.resultData = result;
+    this.editingId = id;
   }
 }

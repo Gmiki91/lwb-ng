@@ -3,13 +3,12 @@
     </mat-button-toggle>
 </mat-button-toggle-group>
 <div *ngIf="subject">
-    <app-mark></app-mark>
-    <table>
-        
+    <app-mark [data]="resultData" (save)="save($event)"></app-mark>
+    <table *ngIf="!editingId">
         <tr>
             <th>NAMES/DATE</th>
             <th *ngFor="let month of months">{{month.name}}</th>
-            <th></th>
+            <th>Grades</th>
         </tr>
         <tr *ngFor="let student of data$|async">
             <th>{{student.fullNameC}}</th>
@@ -18,7 +17,12 @@
                     (click)="editMark(student._id,result)">
                     {{result.mark}}</span>
             </td>
-            <td class="clickable" (click)="addMark(student._id)">+</td>
+            <td>
+                <mat-radio-group (change)="changeMark(student._id,$event.value)">
+                    <mat-radio-button *ngFor="let number of [1,2,3,4,5]" [labelPosition]="'before'"
+                     [value]="number">{{number}}</mat-radio-button>
+                </mat-radio-group>
+            </td>
         </tr>
     </table>
 </div>

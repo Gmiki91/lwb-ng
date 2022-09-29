@@ -1,14 +1,10 @@
     <div class="content_row">
         <mat-form-field>
-            <mat-label>Mark</mat-label>
-            <input matInput [(ngModel)]="data.mark" type="number" required />
-        </mat-form-field>
-        <mat-form-field>
             <mat-label>Note</mat-label>
             <input matInput [(ngModel)]="data.note" type="text" />
         </mat-form-field>
         <mat-label>Type</mat-label>
-        <mat-select [(ngModel)]="data.type" required>
+        <mat-select [(ngModel)]="data.type">
             <mat-option *ngFor="let markType of types" [value]="markType">
                 {{markType}}
             </mat-option>
@@ -19,5 +15,13 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker disabled="false"></mat-datepicker>
         </mat-form-field>
+        <div *ngIf="data.mark">
+            <mat-label>Mark</mat-label>
+            <mat-radio-group style="display:flex; flex-direction:row" [(ngModel)]="data.mark">
+                <mat-radio-button *ngFor="let number of [1,2,3,4,5]" [labelPosition]="'before'"  [value]="number" checked="number==data.mark">{{number}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
         <button (click)="submit()">Submit</button>
+        <!-- we are in editing mode if mark is present-->
+        <button *ngIf="this.data.mark" (click)="cancel()">Cancel</button>
     </div>

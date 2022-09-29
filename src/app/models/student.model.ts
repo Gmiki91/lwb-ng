@@ -12,10 +12,10 @@ export type Student ={
     attendance?:boolean;
 }
 export type Result={
-    date:number
-    mark:number
-    note:string
-    type:string
+    date:number;
+    mark:number;
+    note:string;
+    type:string;
 }
 export type StudentResult={
     _id:string;
