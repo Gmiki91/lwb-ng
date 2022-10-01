@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
         vegetarian: vegetarian.value ==='' ? false : vegetarian.value,
         ukraineSchool: ukraineSchool.value,
         registeredAt: Date.now(),
+        missedClassAt:[]
       }
       this.studentService.registerStudent(student);
     }

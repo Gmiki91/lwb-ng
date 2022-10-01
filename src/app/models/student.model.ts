@@ -9,7 +9,7 @@ export type Student ={
     vegetarian:boolean;
     registeredAt:number;
     notes?:string;
-    attendance?:boolean;
+    missedClassAt:number[];
 }
 export type Result={
     date:number;

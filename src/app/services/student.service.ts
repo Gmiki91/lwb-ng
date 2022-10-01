@@ -49,6 +49,14 @@ export class StudentService {
         }))
     }
 
+    updateStudents(students:Student[]){
+        this.http.put<{ status: string}>(`${environment.url}/students`, { students }).subscribe(result => {
+            if (result.status === 'success') 
+               alert("save success");
+            else
+                alert("error")
+        })
+    }
 
     requestStudentResults(grade: number, subject: string) {
         this.http.post<{ status: string, data: StudentResult[] }>(`${environment.url}/students/results`, { grade, subject }).subscribe(result => {
@@ -69,7 +77,6 @@ export class StudentService {
     }
 
     updateStudentResult(studentId:string,result: Result,grade: number,subject: string) {
-        console.log(studentId,result,grade,subject)
         this.http.patch<{ status: string}>(`${environment.url}/students/results`, { studentId,result,grade,subject }).subscribe(result => {
             if (result.status === 'success') 
                this.requestStudentResults(grade,subject)

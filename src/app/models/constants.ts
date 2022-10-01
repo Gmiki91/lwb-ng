@@ -10,3 +10,7 @@ export const ClassRooms = [
     { grade:8, subjects: ["English", "Math"] },
     { grade:9, subjects: ["English", "Math"] },
   ];
+  export const DayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  export const MonthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
