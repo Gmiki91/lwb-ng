@@ -1,0 +1,10 @@
+<div style="display:flex; flex-direction:column" *ngFor="let page of student.gradeBook">
+    <h2>{{page.subject}} - class {{page.grade}}</h2>
+    <div *ngFor="let entry of page.results">
+        <span>{{dateOf(entry.date)}}</span>
+        <span>{{entry.note}}</span>
+        <span>{{entry.type}}</span>
+        <span>{{entry.mark}}</span>
+        <br>
+    </div>
+</div>

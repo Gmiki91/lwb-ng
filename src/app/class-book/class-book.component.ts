@@ -2,10 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { StudentComponent } from '../forms/student/student.component';
-import { DayNames, MonthNames } from '../models/constants';
-import { Student } from '../models/student.model';
-import { StudentService } from '../services/student.service';
+import { DayNames, MonthNames } from '../shared/models/constants';
+import { Student } from '../shared/models/student.model';
+import { StudentService } from '../shared/services/student.service';
 import { startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
 
 @Component({
@@ -24,6 +23,7 @@ export class ClassBookComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.date.setHours(8,0,0,0);
     this.initDates(this.date);
     this.route.queryParams.subscribe(params => {
       this.subscription = this.studentService.getStudentsOfClass(params['grade'])
@@ -33,17 +33,6 @@ export class ClassBookComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  openStudentData(student: Student): void {
-
-    const dialogRef = this.dialog.open(StudentComponent, { data: student });
-    // dialogRef.afterClosed().subscribe((result: Result) => {
-    //   if (result !== undefined) {
-    //     this.studentService.giveStudentResult(id, result, this.grade, this.subject);
-    //   }
-    // });
-
   }
 
   changeWeek(value: number) {
@@ -101,9 +90,9 @@ export class ClassBookComponent implements OnInit, OnDestroy {
   }
 
   private getDate(index: number): Date {
-    index += 1;
-    const i = index as 0 | 1 | 2 | 3 | 4;
-    return startOfWeek(this.date, { weekStartsOn: i });
+    const result = new Date(this.date);
+    result.setDate(result.getDate()+index)
+    return result;
   }
   private initDates(date: Date): void {
     this.year = date.getFullYear();

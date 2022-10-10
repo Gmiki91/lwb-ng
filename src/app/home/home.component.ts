@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Student } from '../models/student.model';
-import { ClassRooms } from '../models/constants';
-import { StudentService } from '../services/student.service';
+import { Student } from '../shared/models/student.model';
+import { ClassRooms } from '../shared/models/constants';
+import { StudentService } from '../shared/services/student.service';
 type Subject = "English" | "Math" | "Biology" | "History" | "Chemistry" | "Literature";
 @Component({
   selector: 'app-home',

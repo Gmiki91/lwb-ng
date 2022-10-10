@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, Input, ViewChild } from '@angular/core';
-import { Result } from 'src/app/models/student.model';
+import { Result } from 'src/app/shared/models/student.model';
 import { MarkTypes } from '../../models/constants';
 @Component({
   selector: 'app-mark',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Result, StudentResult } from '../models/student.model';
-import { StudentService } from '../services/student.service';
-import { ClassRooms } from '../models/constants'
+import { Result, StudentResult } from '../shared/models/student.model';
+import { StudentService } from '../shared/services/student.service';
+import { ClassRooms } from '../shared/models/constants'
 type StudentMark = {
   id: string,
   mark: number
@@ -33,7 +33,7 @@ export class GradeBookComponent implements OnInit {
   grade!: number;
   subjects!: string[];
   editingId: string | undefined;
-  constructor(private studentService: StudentService,private route: ActivatedRoute) {
+  constructor(private studentService: StudentService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -66,8 +66,8 @@ export class GradeBookComponent implements OnInit {
   }
 
   save(result: Result | null): void {
-    if (result){
-      if (this.editingId) {   
+    if (result) {
+      if (this.editingId) {
         //submitted editing
         this.studentService.updateStudentResult(this.editingId, result, this.grade, this.subject);
         this.editingId = undefined;
@@ -75,17 +75,21 @@ export class GradeBookComponent implements OnInit {
         // submitted new result
         this.studentService.giveStudentsResult(this.studentMarks, result, this.grade, this.subject);
       }
-    }else{
+    } else {
       //cancelled editing
-      this.editingId=undefined;
+      this.editingId = undefined;
     }
   }
   ratedInMonth(monthIndex: number, results: Result[]): Result[] {
-    const resultsInMonth = results.filter(result => {
-      const month = new Date(result.date).getMonth() + 1;
-      return month === monthIndex;
-    });
-    return resultsInMonth;
+    if (results) {
+      let resultsInMonth = results.filter(result => {
+        const month = new Date(result.date).getMonth() + 1;
+        return month === monthIndex;
+      });
+      resultsInMonth.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      return resultsInMonth;
+    }
+    return [];
   }
 
   editMark(id: string, result: Result) {

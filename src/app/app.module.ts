@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './forms/register/register.component';
+import { RegisterComponent } from './shared/forms/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -24,12 +24,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { GradeBookComponent } from './grade-book/grade-book.component';
 import { AuthenticationInterceptor } from './auth/authentication.interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MarkComponent } from './forms/mark/mark.component';
+import { MarkComponent } from './shared/forms/mark/mark.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { ClassBookComponent } from './class-book/class-book.component';
-import { StudentComponent } from './forms/student/student.component';
+import { StudentComponent } from './data-book/student-data/student.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-
+import { DataBookComponent } from './data-book/data-book.component';
+import { AttendanceComponent } from './data-book/attendance/attendance.component';
+import { GradesComponent } from './data-book/grades/grades.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,10 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     GradeBookComponent,
     MarkComponent,
     ClassBookComponent,
-    StudentComponent
+    StudentComponent,
+    DataBookComponent,
+    AttendanceComponent,
+    GradesComponent
   ],
   imports: [
     BrowserModule,

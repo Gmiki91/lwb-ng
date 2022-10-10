@@ -1,0 +1,6 @@
+<div *ngFor="let student of students$|async">
+    <span>{{student.fullNameC}}</span>
+    <span class="clickable" (click)="openData(student)">Adatok</span>
+    <span class="clickable" (click)="openGrades(student)">Napló</span>
+    <span class="clickable" (click)="openAttendance(student)">Jelenlét</span>
+</div>

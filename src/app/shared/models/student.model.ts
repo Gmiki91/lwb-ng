@@ -10,6 +10,7 @@ export type Student ={
     registeredAt:number;
     notes?:string;
     missedClassAt:number[];
+    gradeBook?:GradeBook[];
 }
 export type Result={
     date:number;
@@ -20,5 +21,10 @@ export type Result={
 export type StudentResult={
     _id:string;
     fullNameC:string;
+    results:Result[];
+}
+type GradeBook ={
+    grade:number;
+    subject:string;
     results:Result[];
 }
