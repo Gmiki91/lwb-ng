@@ -17,15 +17,14 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
   onSignUp(): void {
-    const { fullName, email, password, phone,address } = this.form.controls;
+    const { fullName, email, password} = this.form.controls;
     const match = this.passwordsMatch();
     if (this.form.valid && match) {
       const user: User = {
         fullName:fullName.value,
         password: password.value,
         email: email.value,
-        phone:phone.value,
-        address:address.value
+        type:'0'
       }
       this.authService.signUp(user)
     }

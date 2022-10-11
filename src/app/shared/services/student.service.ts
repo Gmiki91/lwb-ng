@@ -58,6 +58,15 @@ export class StudentService {
         })
     }
 
+    updateFoodOrders(student:Student){
+        this.http.put<{ status: string}>(`${environment.url}/students/food`, { student }).subscribe(result => {
+            if (result.status === 'success') 
+               alert("save success");
+            else
+                alert("error");
+        })
+    }
+
     requestStudentResults(grade: number, subject: string) {
         this.http.post<{ status: string, data: StudentResult[] }>(`${environment.url}/students/results`, { grade, subject }).subscribe(result => {
             if (result.status === 'success') 

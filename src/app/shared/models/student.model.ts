@@ -10,6 +10,7 @@ export type Student ={
     registeredAt:number;
     notes?:string;
     missedClassAt:number[];
+    foodOrderedFor:Date[];
     gradeBook?:GradeBook[];
 }
 export type Result={

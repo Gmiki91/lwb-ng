@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Student } from '../shared/models/student.model';
 import { ClassRooms } from '../shared/models/constants';
-import { StudentService } from '../shared/services/student.service';
 type Subject = "English" | "Math" | "Biology" | "History" | "Chemistry" | "Literature";
 @Component({
   selector: 'app-home',
@@ -12,14 +9,11 @@ type Subject = "English" | "Math" | "Biology" | "History" | "Chemistry" | "Liter
 })
 export class HomeComponent implements OnInit {
   classRooms = ClassRooms;
-  isChecked: boolean = false;
-  children$?: Observable<Student[]>;
-  constructor(
-    private studentService: StudentService,
-    private router: Router) {
-    this.children$ = this.studentService.getChildren();
-  }
+  type:'0'|'1'|'2' = '0';
+  constructor(private router: Router) {}
   ngOnInit(): void {
+    this.type = localStorage.getItem('type') as '1'|'2'|'0';
+    console.log(this.type);
   }
 
   openGradeBook(grade: number[], subject: Subject): void {

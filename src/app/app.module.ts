@@ -32,6 +32,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { DataBookComponent } from './data-book/data-book.component';
 import { AttendanceComponent } from './data-book/attendance/attendance.component';
 import { GradesComponent } from './data-book/grades/grades.component';
+import { FoodOrderComponent } from './data-book/food-order/food-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { GradesComponent } from './data-book/grades/grades.component';
     StudentComponent,
     DataBookComponent,
     AttendanceComponent,
-    GradesComponent
+    GradesComponent,
+    FoodOrderComponent
   ],
   imports: [
     BrowserModule,

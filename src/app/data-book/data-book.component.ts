@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -15,12 +15,17 @@ import { GradesComponent } from './grades/grades.component';
 })
 export class DataBookComponent implements OnInit {
   students$!: Observable<Student[]>;
+  @Input() parentMode:boolean = false;
   constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.students$ = this.studentService.getStudentsOfClass(params['grade'])
-    });
+    if (this.parentMode) {
+      this.students$ = this.studentService.getChildren();
+    } else {
+      this.route.queryParams.subscribe(params => {
+        this.students$ = this.studentService.getStudentsOfClass(params['grade'])
+      });
+    }
   }
   openData(student: Student): void {
     const dialogRef = this.dialog.open(StudentComponent, { data: student });
@@ -31,4 +36,5 @@ export class DataBookComponent implements OnInit {
   openGrades(student: Student): void {
     const dialogRef = this.dialog.open(GradesComponent, { data: student });
   }
+
 }

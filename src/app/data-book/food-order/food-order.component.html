@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <th>Food order</th>
+        <td *ngFor="let day of days, let i = index">
+            <div style="display:flex; flex-direction:column">
+                <span>{{daysOfWeek[i]}}</span>
+                <span>{{day}}</span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!-- placeholder -->
+        </td>
+        <td style="text-align:center" *ngFor="let day of days, let i = index">
+            <mat-checkbox [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
+        </td>
+    </tr>
+</table>
+<button (click)="updateFoodOrder()">Update food order</button>

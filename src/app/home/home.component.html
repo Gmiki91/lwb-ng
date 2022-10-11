@@ -1,6 +1,5 @@
 <div class="container">
-    <mat-slide-toggle [(ngModel)]="isChecked">{{isChecked ? 'Szülő':'Tanár'}}</mat-slide-toggle>
-    <div *ngIf="!isChecked">
+    <div *ngIf="type === '1'">
         <h1>Osztályok</h1>
         <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
             <mat-expansion-panel-header>
@@ -14,8 +13,8 @@
         </div>
         </mat-expansion-panel>
     </div>
-    <div *ngIf="isChecked">
-        <span *ngFor="let student of children$|async">{{student.fullNameC}}</span>
+    <div *ngIf="type === '0'">
+        <app-data-book [parentMode]="true"></app-data-book>
     </div>
     <a routerLink="register">Register new kid</a>
 </div>

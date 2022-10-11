@@ -2,7 +2,6 @@ export type User = {
     fullName:string,
     password:string, 
     email:string,
-    phone:string,
-    address:string
+    type:'0'|'1'|'2'
 }
 

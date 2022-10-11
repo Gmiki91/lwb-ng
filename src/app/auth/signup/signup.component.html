@@ -11,14 +11,6 @@
                 <input matInput ngModel type="email" name="email" required />
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Address</mat-label>
-                <input matInput ngModel type="text" name="address" required />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Phone number</mat-label>
-                <input matInput ngModel type="text" name="phone" required />
-            </mat-form-field>
-            <mat-form-field>
                 <mat-label>Password</mat-label>
                 <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password"
                     (blur)='passwordsMatch()' required />
