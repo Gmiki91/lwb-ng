@@ -14,69 +14,53 @@ export class FoodOrderComponent implements OnInit {
   @Input() student!: Student;
   days = DayNames;
   dates!: Date[];
-  showNextWeek = false;
   daysOfWeek: string[] = [];
-  checkedDays: Date[] = [];
+  checkedDays: number[] = [];
 
-  constructor(private studentService:StudentService) { }
+  constructor(private studentService: StudentService) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    this.checkedDays = this.student.foodOrderedFor;
     let today = new Date();
-    today.setHours(8,0,0,0);
-    if (isWeekend(today) || isFriday(today)) {
-      this.showNextWeek = true;
-      today = nextMonday(today);
-      this.dates = eachDayOfInterval({
-        start: startOfWeek(today, { weekStartsOn: 1 }),
-        end: endOfWeek(today, { weekStartsOn: 1 })
-      })
-    } else {
-      this.showNextWeek = false;
-      this.dates = eachDayOfInterval({
-        start: startOfWeek(today, { weekStartsOn: 1 }),
-        end: endOfWeek(today, { weekStartsOn: 1 })
-      })
-    }
+    if (isWeekend(today) || isFriday(today)) today = nextMonday(today);
+    this.dates = eachDayOfInterval({
+      start: startOfWeek(today, { weekStartsOn: 1 }),
+      end: endOfWeek(today, { weekStartsOn: 1 })
+    })
+
     this.daysOfWeek = this.dates.map(date => `${MonthNames[date.getMonth()]} - ${date.getDate()}`)
   }
 
   onChange(i: number, checked: boolean) {
-    const result = this._correctDate(i);
+    const result = this.dates[i].getTime();
     if (checked) {
       this.checkedDays.push(result)
+      this.checkedDays = [...new Set(this.checkedDays)]
     } else {
-      const index = this.dates.indexOf(result);
+      const index = this.checkedDays.indexOf(result);
       this.checkedDays.splice(index, 1);
     }
   }
 
-  checkIfOrdered(i:number):boolean{
-    let res=false;
-    const result = this._correctDate(i);
-    result.setHours(0,0,0,0);
-    this.student.foodOrderedFor.forEach(el=>{
-      const date2=new Date(el)
-      date2.setHours(0,0,0,0);
-      res= result.getTime() === date2.getTime();
+  checkIfOrdered(i: number): boolean {
+    let res = false;
+    const date = this.dates[i].getTime();
+    this.student.foodOrderedFor.forEach(el => {
+      if (el === date) res = true;
     })
-    console.log(res);
     return res;
   }
 
-  updateFoodOrder():void{
-    this.student.foodOrderedFor.push(...this.checkedDays);
-    console.log(this.checkedDays)
-    this.student.foodOrderedFor = [...new Set(this.student.foodOrderedFor)];
-    console.log(this.student.foodOrderedFor)
-    this.studentService.updateFoodOrders(this.student);
+  disableCheckbox(i: number): boolean {
+    const selectedDay = this.dates[i].getTime();
+    const currentDay = Date.now();
+    // 1 nappal előre kell rendelni
+    return selectedDay - currentDay < 24 * 60 * 60 * 1000
   }
 
-  private _correctDate(i:number):Date{
-    let today = this.showNextWeek ? nextMonday(new Date()) : new Date();
-    const result = startOfWeek(today, { weekStartsOn: 1 });
-    result.setDate(result.getDate() + i);
-    result.setHours(8,0,0,0);
-    return result;
+  updateFoodOrder(): void {
+    this.student.foodOrderedFor = this.checkedDays;
+    this.studentService.updateFoodOrders(this.student);
   }
 
 }

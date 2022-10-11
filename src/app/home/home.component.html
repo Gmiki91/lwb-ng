@@ -3,18 +3,20 @@
         <h1>Osztályok</h1>
         <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
             <mat-expansion-panel-header>
-            <mat-panel-title>{{classroom.grade}}</mat-panel-title>
-        </mat-expansion-panel-header>
-        <div>
-            <a routerLink="/data-book" [queryParams]="{grade:classroom.grade}">Névsor</a>
-            <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">Napló</a>
-            <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Jelenléti ív</a>
-            <mat-divider></mat-divider>
-        </div>
+                <mat-panel-title>{{classroom.grade}}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <a routerLink="/data-book" [queryParams]="{grade:classroom.grade}">Névsor</a>
+                <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">Napló</a>
+                <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Jelenléti ív</a>
+                <mat-divider></mat-divider>
+            </div>
         </mat-expansion-panel>
     </div>
-    <div *ngIf="type === '0'">
-        <app-data-book [parentMode]="true"></app-data-book>
+    <app-data-book *ngIf="type === '0'" [parentMode]="true"></app-data-book>
+    <div *ngIf="type==='2'">
+        <h2>Rendelés</h2>
+       
     </div>
     <a routerLink="register">Register new kid</a>
 </div>

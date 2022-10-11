@@ -13,7 +13,7 @@
             <!-- placeholder -->
         </td>
         <td style="text-align:center" *ngFor="let day of days, let i = index">
-            <mat-checkbox [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
+            <mat-checkbox [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
         </td>
     </tr>
 </table>
