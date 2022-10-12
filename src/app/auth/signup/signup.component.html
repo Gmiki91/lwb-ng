@@ -3,10 +3,6 @@
         <h1>Sign up</h1>
         <form #signUpForm="ngForm" (ngSubmit)="onSignUp()">
             <mat-form-field>
-                <mat-label>Full name</mat-label>
-                <input matInput ngModel type="text" name="fullName" required />
-            </mat-form-field>
-            <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input matInput ngModel type="email" name="email" required />
             </mat-form-field>

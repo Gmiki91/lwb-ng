@@ -27,11 +27,23 @@
             <input matInput ngModel type="text" name="ukraineSchool" required />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Health concerns</mat-label>
-            <input matInput ngModel type="text" name="healthIssues" required />
+            <mat-label>Name of Parent/Guardian</mat-label>
+            <input matInput ngModel type="text" name="parentName" required />
         </mat-form-field>
-            <mat-checkbox  matInput ngModel name="vegetarian" [checked]="false">Vegetarian</mat-checkbox>
-        
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput ngModel type="text" name="address" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone number</mat-label>
+            <input matInput ngModel type="text" name="phoneNumber" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Health concerns, allergies</mat-label>
+            <input matInput ngModel type="text" name="healthIssues" />
+        </mat-form-field>
+        <mat-checkbox matInput ngModel name="vegetarian" [checked]="false">Vegetarian</mat-checkbox>
+        <mat-checkbox matInput ngModel name="homeGoing" [checked]="false">May go home alone</mat-checkbox>
         <button [matTooltip]="!registerForm.valid ? 'All fields must be filled' : ''"
             [ngClass]="registerForm.valid ? 'form-button' : 'inactive-button'" mat-stroked-button class="btn">
             Register

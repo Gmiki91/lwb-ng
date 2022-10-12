@@ -9,7 +9,6 @@
                 <a routerLink="/data-book" [queryParams]="{grade:classroom.grade}">Névsor</a>
                 <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">Napló</a>
                 <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Jelenléti ív</a>
-                <mat-divider></mat-divider>
             </div>
         </mat-expansion-panel>
     </div>
@@ -19,4 +18,5 @@
        
     </div>
     <a routerLink="register">Register new kid</a>
+    <button (click)="logout()">Log out</button>
 </div>

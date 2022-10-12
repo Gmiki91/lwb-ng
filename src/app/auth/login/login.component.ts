@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
@@ -11,9 +12,12 @@ export class LoginComponent implements OnInit {
   showPassword: boolean = false;
 
   
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('access_token')) {
+      this.router.navigate(['/']);
+    }
   }
  
  

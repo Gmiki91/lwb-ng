@@ -4,9 +4,13 @@ export type Student ={
     fullNameL:string;
     dob:Date;
     currentGrade:number;
+    parentName:string;
+    address:string;
+    phoneNumber:string;
     ukraineSchool:string;
     healthIssues:string[];
     vegetarian:boolean;
+    homeGoing:boolean;
     registeredAt:number;
     notes?:string;
     missedClassAt:number[];

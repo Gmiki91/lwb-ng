@@ -11,10 +11,10 @@ import { DataBookComponent } from './data-book/data-book.component';
 const routes: Routes = [
   {component:SignupComponent, path: 'signup'},
   {component:LoginComponent, path: 'login'},
-  {component:RegisterComponent, path: 'register'},
-  {component:GradeBookComponent, path: 'grade-book'},
-  {component:ClassBookComponent, path: 'class-book'},
-  {component:DataBookComponent, path: 'data-book'},
+  {component:RegisterComponent, path: 'register',canActivate:[AuthGuard]},
+  {component:GradeBookComponent, path: 'grade-book',canActivate:[AuthGuard]},
+  {component:ClassBookComponent, path: 'class-book',canActivate:[AuthGuard]},
+  {component:DataBookComponent, path: 'data-book',canActivate:[AuthGuard]},
   {component:HomeComponent, path: '',canActivate:[AuthGuard]},
 ];
 
