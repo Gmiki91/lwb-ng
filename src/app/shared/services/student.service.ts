@@ -67,6 +67,12 @@ export class StudentService {
         })
     }
 
+    getAllFoodOrders(){
+        this.http.get<{ status: string, orders:{date:number,value:number} }>(`${environment.url}/food`).subscribe(result => {
+            console.log(result);
+        })
+    }
+
     requestStudentResults(grade: number, subject: string) {
         this.http.post<{ status: string, data: StudentResult[] }>(`${environment.url}/students/results`, { grade, subject }).subscribe(result => {
             if (result.status === 'success') 
