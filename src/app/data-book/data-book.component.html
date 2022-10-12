@@ -6,6 +6,6 @@
         <span class="clickable" (click)="openGrades(student)">Napló</span>
         <span class="clickable" (click)="openAttendance(student)">Jelenlét</span>
     </div>
-    <app-food-order [student]="student"></app-food-order>
+    <app-food-order *ngIf="parentMode" [student]="student"></app-food-order>
     <mat-divider></mat-divider>
 </div>
