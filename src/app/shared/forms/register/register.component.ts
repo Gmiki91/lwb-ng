@@ -10,7 +10,7 @@ import { StudentService } from '../../services/student.service';
 })
 export class RegisterComponent implements OnInit {
 
-  classes: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  classes: number[] = [ 2, 3, 4, 5, 6, 7, 8, 9];
   @ViewChild('registerForm') form?: NgForm;
   constructor(private studentService: StudentService) { }
 

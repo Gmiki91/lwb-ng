@@ -10,10 +10,10 @@
     </tr>
     <tr>
         <td>
-            <button (click)="updateFoodOrder()">Update order</button>
+            <button mat-stroked-button color="primary" (click)="updateFoodOrder()">Update order</button>
         </td>
         <td style="text-align:center" *ngFor="let day of days, let i = index">
-            <mat-checkbox [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
+            <mat-checkbox  [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
         </td>
        
     </tr>

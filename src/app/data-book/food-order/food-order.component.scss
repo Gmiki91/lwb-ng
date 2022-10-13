@@ -11,9 +11,12 @@
      &__upper {
         border-width: 1px;
         border-style: solid solid none solid;
+        border-radius: 5px  5px  0px  0px;  
+        
     }
     &__lower {
         border-width: 1px;
         border-style: none solid solid solid;
+        border-radius: 0px  0px  5px  5px;   
     }
 }
