@@ -1,0 +1,16 @@
+.content{
+    display:flex;
+    flex-direction: row;
+    margin:5px;
+}
+.mark_container{
+    text-align:center;
+   
+  }
+  .radio_group{
+    display:flex; flex-direction:row
+  }
+:host ::ng-deep .mat-radio-label-content {
+    padding-right:5px;
+    padding-left:1px;
+}

@@ -1,11 +1,11 @@
 <div class="container">
     <div *ngIf="type === '1'">
-        <h1>Osztályok</h1>
+        <h1 style="text-align:center">Osztályok</h1>
         <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
             <mat-expansion-panel-header>
                 <mat-panel-title>{{classroom.grade}}</mat-panel-title>
             </mat-expansion-panel-header>
-            <div>
+            <div class="links">
                 <a routerLink="/data-book" [queryParams]="{grade:classroom.grade}">Névsor</a>
                 <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">Napló</a>
                 <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Jelenléti ív</a>

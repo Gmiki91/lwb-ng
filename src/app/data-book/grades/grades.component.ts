@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 @Component({
   selector: 'app-grades',
   templateUrl: './grades.component.html',
-  styleUrls: ['../data-book.component.scss'],
+  styleUrls: ['./grades.component.scss','../data-book.component.scss'],
 })
 export class GradesComponent implements OnInit {
 

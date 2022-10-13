@@ -7,7 +7,7 @@ import { StudentService } from 'src/app/shared/services/student.service';
 @Component({
   selector: 'app-food-order',
   templateUrl: './food-order.component.html',
-  styleUrls: ['../data-book.component.scss'],
+  styleUrls: ['./food-order.component.scss'],
 })
 
 export class FoodOrderComponent implements OnInit {

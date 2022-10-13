@@ -1,0 +1,29 @@
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-top:10%;
+}
+.subject-btn{
+    margin-right:5px;
+}
+table,tr,th,td{
+    border:1px solid
+}
+th,td{ 
+    width:100px;
+}
+.marks{
+    width:180px;
+}
+:host ::ng-deep .mat-radio-label-content {
+      padding-right:5px;
+      padding-left:1px;
+  }
+  .inactive{
+    color:grey;
+  }
+  .red{
+    color:red
+  }

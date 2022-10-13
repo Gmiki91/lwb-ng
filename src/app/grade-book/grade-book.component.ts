@@ -33,6 +33,7 @@ export class GradeBookComponent implements OnInit {
   grade!: number;
   subjects!: string[];
   editingId: string | undefined;
+  redMark:Result|undefined;
   constructor(private studentService: StudentService, private route: ActivatedRoute) {
   }
 
@@ -71,6 +72,7 @@ export class GradeBookComponent implements OnInit {
         //submitted editing
         this.studentService.updateStudentResult(this.editingId, result, this.grade, this.subject);
         this.editingId = undefined;
+        this.redMark = result;
       } else {
         // submitted new result
         this.studentService.giveStudentsResult(this.studentMarks, result, this.grade, this.subject);
@@ -78,6 +80,7 @@ export class GradeBookComponent implements OnInit {
     } else {
       //cancelled editing
       this.editingId = undefined;
+      this.redMark = undefined;
     }
   }
   ratedInMonth(monthIndex: number, results: Result[]): Result[] {
@@ -95,5 +98,6 @@ export class GradeBookComponent implements OnInit {
   editMark(id: string, result: Result) {
     this.resultData = result;
     this.editingId = id;
+    this.redMark = result;
   }
 }

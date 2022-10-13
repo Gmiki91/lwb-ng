@@ -4,7 +4,7 @@ import { MarkTypes } from '../../models/constants';
 @Component({
   selector: 'app-mark',
   templateUrl: './mark.component.html',
-  styleUrls: ['../form.scss']
+  styleUrls: ['../form.scss','./mark.component.scss']
 })
 export class MarkComponent implements OnInit {
   @Output() save: EventEmitter<Result|null> = new EventEmitter();

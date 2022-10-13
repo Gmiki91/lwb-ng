@@ -1,11 +1,16 @@
-<div *ngFor="let student of students$|async">
-
-    <div style="display: flex">
-    <span>{{student.fullNameC}}</span>
-        <span class="clickable" (click)="openData(student)">Adatok</span>
-        <span class="clickable" (click)="openGrades(student)">Napló</span>
-        <span class="clickable" (click)="openAttendance(student)">Jelenlét</span>
+<div class="container">
+    <div *ngIf="loading">
+        <span>hi</span>
+        <mat-spinner ></mat-spinner>
     </div>
-    <app-food-order *ngIf="parentMode" [student]="student"></app-food-order>
-    <mat-divider></mat-divider>
+    <div *ngFor="let student of students$|async">
+        <div class="list">
+            <div class="name">{{student.fullNameC}}</div>
+            <div class="clickable" (click)="openData(student)">Adatok</div>
+            <div class="clickable" (click)="openGrades(student)">Napló</div>
+            <div class="clickable" (click)="openAttendance(student)">Jelenlét</div>
+        </div>
+        <app-food-order *ngIf="parentMode" [student]="student"></app-food-order>
+        <mat-divider></mat-divider>
+    </div>
 </div>

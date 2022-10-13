@@ -33,6 +33,8 @@ import { DataBookComponent } from './data-book/data-book.component';
 import { AttendanceComponent } from './data-book/attendance/attendance.component';
 import { GradesComponent } from './data-book/grades/grades.component';
 import { FoodOrderComponent } from './data-book/food-order/food-order.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +71,8 @@ import { FoodOrderComponent } from './data-book/food-order/food-order.component'
     MatExpansionModule,
     MatDialogModule,
     MatDividerModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },],
   bootstrap: [AppComponent]

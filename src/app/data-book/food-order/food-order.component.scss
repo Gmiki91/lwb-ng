@@ -1,0 +1,19 @@
+.food_table>* {
+    text-align: center;
+}
+
+.top {
+    display: flex;
+    flex-direction:column;
+    >*{
+        padding:0px 5px 0px 5px
+    }
+     &__upper {
+        border-width: 1px;
+        border-style: solid solid none solid;
+    }
+    &__lower {
+        border-width: 1px;
+        border-style: none solid solid solid;
+    }
+}

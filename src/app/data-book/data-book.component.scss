@@ -1,1 +1,25 @@
-span{ padding:5px}
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top:10%;
+    .list{
+        display: grid; 
+        grid-template-columns: 100px 100px 100px 100px; 
+        grid-template-rows: 50px;
+        gap: 10px 5px; 
+        align-items: center;
+
+        .name{
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    .content{
+        display:flex;
+        flex-direction: column;
+    }
+}
+
+    

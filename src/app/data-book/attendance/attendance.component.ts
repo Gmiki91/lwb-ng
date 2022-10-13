@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { format } from 'date-fns';
 import { Student } from 'src/app/shared/models/student.model';
 
 @Component({
@@ -8,15 +9,14 @@ import { Student } from 'src/app/shared/models/student.model';
   styleUrls: ['../data-book.component.scss'],
 })
 export class AttendanceComponent implements OnInit {
-
-  missedClasses: Date[]=[];
- 
+  missedClasses: string[]=[];
   constructor(private dialogRef: MatDialogRef<AttendanceComponent>,
     @Inject(MAT_DIALOG_DATA) public student: Student) {
   }
 
   ngOnInit(): void {
-    this.missedClasses = this.student.missedClassAt.map(missedClass=> new Date(missedClass));
-    
+    this.missedClasses = this.student.missedClassAt
+    .map(missedClass=> new Date(missedClass))
+    .map(missedClass=>format(new Date(missedClass),'yyyy/MM/dd'))
   }
 }

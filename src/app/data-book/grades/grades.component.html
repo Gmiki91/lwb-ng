@@ -1,10 +1,18 @@
-<div style="display:flex; flex-direction:column" *ngFor="let page of student.gradeBook">
+<div class="container" *ngFor="let page of student.gradeBook">
     <h2>{{page.subject}} - class {{page.grade}}</h2>
-    <div *ngFor="let entry of page.results">
-        <span>{{dateOf(entry.date)}}</span>
-        <span>{{entry.note}}</span>
-        <span>{{entry.type}}</span>
-        <span>{{entry.mark}}</span>
-        <br>
-    </div>
+    <table class="content">
+        <tr>
+            <th>Date</th>
+            <th>Note</th>
+            <th>Type</th>
+            <th>Mark</th>
+        </tr>
+        <tr *ngFor="let entry of page.results">
+            <td>{{dateOf(entry.date)}}</td>
+            <td>{{entry.note}}</td>
+            <td>{{entry.type}}</td>
+            <td>{{entry.mark}}</td>
+        </tr>
+    </table>
 </div>
+

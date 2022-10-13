@@ -17,7 +17,6 @@ export class AuthService {
         this.http.post<{ status: string, token:string,user: User }>(`${environment.url}/users/signup`, user).subscribe(result => {
             if (result.status==='success') {
                 this.user.next(result.user);
-                console.log(result.user)
                 localStorage.setItem('type',result.user.type);
                 localStorage.setItem('access_token', result.token);
                 this.router.navigate(['/']);
