@@ -1,0 +1,15 @@
+{
+    "classes": "Osztályok",
+    "logout":"Kijelentkezés",
+    "roster":"Névsor",
+    "diary":"Napló",
+    "attendance":"Jelenléti",
+    "data":"Adatok",
+    "class":"Osztály",
+    "missed":"Hiányzások",
+    "name":"Név",
+    "dob":"Születési év",
+    "address":"Cím",
+    "pg_name":"Szülő/Gondviselő neve",
+    "phone":"Telefonszám"
+  }

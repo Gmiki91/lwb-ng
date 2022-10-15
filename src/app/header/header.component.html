@@ -1,3 +1,11 @@
 <div class="container">
-    <button mat-stroked-button (click)="logout()">Log out</button>
+  <ng-container *transloco="let t">
+    <button mat-stroked-button (click)="logout()">{{t('logout')}}</button>
+  </ng-container>
+  <select (change)="changeSiteLanguage($event)">
+    <option *ngFor="let language of languageList" [value]="language.code">
+      <img class="icon" src="../assets/{{language.code}}.png" />
+      {{language.label}}
+    </option>
+  </select>
 </div>

@@ -1,14 +1,16 @@
 <div class="container">
-    <h1 *ngIf="grade">{{grade}}. class</h1>
+    <ng-container *transloco="let t">
+    <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>
     <div class="content" *ngFor="let student of students$|async">
         <div class="list">
             <div class="name">{{student.fullNameC}}</div>
-            <button mat-stroked-button class="clickable" (click)="openData(student)">Adatok</button>
-            <button mat-stroked-button class="clickable" (click)="openGrades(student)">Napló</button>
-            <button mat-stroked-button class="clickable" (click)="openAttendance(student)">Jelenlét</button>
+            <button mat-stroked-button class="clickable" (click)="openData(student)">{{t('data')}}</button>
+            <button mat-stroked-button class="clickable" (click)="openGrades(student)">{{t('roster')}}</button>
+            <button mat-stroked-button class="clickable" (click)="openAttendance(student)">{{t('attendance')}}</button>
         </div>
         <app-food-order *ngIf="parentMode" [student]="student"></app-food-order>
         <mat-divider></mat-divider>
     </div>
+</ng-container>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

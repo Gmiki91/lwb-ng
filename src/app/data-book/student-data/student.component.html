@@ -1,10 +1,12 @@
 <div class="container">
     <div class="content">
-        <span>name: {{student.fullNameL}}</span>
-        <span>dob: {{formattedDate}}</span>
-        <span>address: {{student.address}}</span>
-        <span>parent/guardian name: {{student.address}}</span>
-        <span>phone: {{student.address}}</span>
-        <span>grade: {{student.currentGrade}}</span>
+        <ng-container *transloco="let t">
+            <span>{{t('name')}}: {{student.fullNameL}}</span>
+            <span>{{t('dob')}}: {{formattedDate}}</span>
+            <span>{{t('address')}}: {{student.address}}</span>
+            <span>{{t('parent/guardian name')}}: {{student.address}}</span>
+            <span>{{t('phone')}}: {{student.address}}</span>
+            <span>{{t('class')}}: {{student.currentGrade}}</span>
+        </ng-container>
     </div>
 </div>

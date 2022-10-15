@@ -1,0 +1,15 @@
+{
+    "classes": "Classes",
+    "logout":"Log out",
+    "roster":"List",
+    "diary":"Grade book",
+    "attendance":"Attendance",
+    "data":"Data",
+    "class":"Class",
+    "missed":"Missed days",
+    "name":"Name",
+    "dob":"Date of birth",
+    "address":"Address",
+    "pg_name":"Parent/Guardian name",
+    "phone":"Phone number"
+  }

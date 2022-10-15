@@ -1,33 +1,46 @@
-.container{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    margin-top:1%;
-}
-.subject-btn{
-    margin-right:5px;
-}
-table,tr,th,td{
-    border:1px solid
-}
-th,td{ 
-    width:120px;
-    height:50px;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
 }
 
-.marks{
-    width:180px;
+.subject-btn {
+    margin-right: 5px;
 }
+
+table,
+tr,
+th,
+td {
+    border: 1px solid
+}
+
+th,
+td {
+    width: 120px;
+    height: 50px;
+}
+
+.marks {
+    width: 180px;
+}
+
 :host ::ng-deep .mat-radio-label-content {
-      padding-right:5px;
-      padding-left:1px;
-  }
-  .red{
-    color:red
-  }
-  .inactive>*{
+    padding-right: 5px;
+    padding-left: 1px;
+}
+
+.red {
+    color: red
+}
+
+.inactive>* {
     pointer-events: none;
     opacity: 0.5;
-  }
- 
+}
+
+.pr-3{
+    padding-right:3px;
+}

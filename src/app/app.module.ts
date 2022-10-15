@@ -37,6 +37,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HeaderComponent } from './header/header.component';
+import { TranslocoRootModule } from './transloco-root.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { HeaderComponent } from './header/header.component';
     MatDividerModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    TranslocoRootModule
     
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },],

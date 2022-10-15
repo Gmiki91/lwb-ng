@@ -1,21 +1,22 @@
+<ng-container *transloco="let t">
 <div class="container">
     <div *ngIf="type === '1'">
-        <h1 style="text-align:center">Osztályok</h1>
-        <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
-            <mat-expansion-panel-header>
-                <mat-panel-title>{{classroom.grade}}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="links">
-                <a routerLink="/data-book" [queryParams]="{grade:classroom.grade}">Névsor</a>
-                <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">Napló</a>
-                <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">Jelenléti ív</a>
-            </div>
-        </mat-expansion-panel>
+            <h1 style="text-align:center">{{t('classes')}}</h1>
+            <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>{{classroom.grade}}</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="links">
+                    <a routerLink="/data-book" [queryParams]="{grade:classroom.grade}">{{t('roster')}}</a>
+                    <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">{{t('diary')}}</a>
+                    <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">{{t('attendance')}}</a>
+                </div>
+            </mat-expansion-panel>
+        </div>
+        <app-data-book *ngIf="type === '0'" [parentMode]="true"></app-data-book>
+        <div *ngIf="type==='2'">
+            <!--???-->
+        </div>
+        <a mat-stroked-button routerLink="register">Register new kid</a>
     </div>
-    <app-data-book *ngIf="type === '0'" [parentMode]="true"></app-data-book>
-    <div *ngIf="type==='2'">
-        <h2>Rendelés</h2>
-       
-    </div>
-    <a mat-stroked-button routerLink="register">Register new kid</a>
-</div>
+</ng-container>

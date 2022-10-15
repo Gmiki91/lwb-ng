@@ -1,4 +1,6 @@
-<h2>Missed days</h2>
+<ng-container *transloco="let t">
+<h2>{{t('missed')}}</h2>
+</ng-container>
 <div class="container" *ngFor="let item of missedClasses">
    <span>{{item}}</span>
 </div>
