@@ -16,23 +16,26 @@ export class ClassBookComponent implements OnInit, OnDestroy {
   days = DayNames;
   date = new Date();
   subscription: Subscription = Subscription.EMPTY;
+  sub2: Subscription = Subscription.EMPTY;
   students?: Student[];
   year!: number;
   daysOfWeek!: string[];
   studentsToUpdate: Student[] = [];
+  loading = true;
   constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.date.setHours(8,0,0,0);
+    this.date.setHours(8, 0, 0, 0);
     this.initDates(this.date);
     this.route.queryParams.subscribe(params => {
       this.subscription = this.studentService.getStudentsOfClass(params['grade'])
-        .subscribe(students => this.students = students);
+        .subscribe(students => { this.students = students; this.loading = false; });
     });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
   changeWeek(value: number) {
@@ -86,12 +89,22 @@ export class ClassBookComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    this.studentService.updateStudents(this.studentsToUpdate);
+    this.loading=true;
+    this.sub2 = this.studentService.updateStudents(this.studentsToUpdate).subscribe(success => {
+      this.loading=false;
+      if (success) {
+        alert("Saved");
+      } else {
+        alert("something went wrong");
+      }
+    });
+    
+    
   }
 
   private getDate(index: number): Date {
     const result = new Date(this.date);
-    result.setDate(result.getDate()+index)
+    result.setDate(result.getDate() + index)
     return result;
   }
   private initDates(date: Date): void {

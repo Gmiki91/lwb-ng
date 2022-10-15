@@ -6,28 +6,35 @@
     </mat-button-toggle-group>
     <div *ngIf="subject">
         <app-mark [data]="resultData" (save)="save($event)"></app-mark>
-        <table [ngClass]="editingId? 'inactive':''" >
+        <table [ngClass]="editingId? 'inactive':''">
             <tr>
                 <th>NAMES/DATE</th>
                 <th *ngFor="let month of months">{{month.name}}</th>
                 <th>Grades</th>
             </tr>
-            <tr *ngFor="let student of data$|async">
-                <th>{{student.fullNameC}}</th>
-                <td *ngFor="let month of months">
-                    <span [ngClass]="['clickable',redMark===result ? 'red' : '' ]" *ngFor="let result of ratedInMonth(month.value,student.results)"
-                        (click)="editMark(student._id,result)"
-                        >
-                        {{result.mark}}</span>
-                </td>
-                <td class="marks">
-                    <mat-radio-group (change)="changeMark(student._id,$event.value)">
-                        <mat-radio-button [disabled]="editingId!==undefined" *ngFor="let number of [1,2,3,4,5]" [value]="number">
-                            <span class="wrap-mat-radio-label">{{number}}</span>
-                        </mat-radio-button>
-                    </mat-radio-group>
-                </td>
-            </tr>
+            <ng-container *ngIf="data$|async as data">
+                <ng-container *ngIf="!loading">
+                    <tr *ngFor="let student of data">
+                        <th>{{student.fullNameC}}</th>
+                        <td *ngFor="let month of months">
+                            <span [ngClass]="['clickable',redMark===result ? 'red' : '' ]"
+                                *ngFor="let result of ratedInMonth(month.value,student.results)"
+                                (click)="editMark(student._id,result)">{{result.mark}}</span>
+                        </td>
+                        <td class="marks">
+                            <mat-radio-group (change)="changeMark(student._id,$event.value)">
+                                <mat-radio-button [disabled]="editingId!==undefined" *ngFor="let number of [1,2,3,4,5]"
+                                    [value]="number">
+                                    <span class="wrap-mat-radio-label">{{number}}</span>
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
         </table>
+        <div class="spinner-wrapper">
+            <mat-spinner mode="indeterminate" *ngIf="loading"></mat-spinner>
+        </div>
     </div>
 </div>

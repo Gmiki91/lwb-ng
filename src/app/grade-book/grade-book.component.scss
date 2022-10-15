@@ -3,7 +3,7 @@
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    margin-top:10%;
+    margin-top:5%;
 }
 .subject-btn{
     margin-right:5px;
@@ -13,6 +13,11 @@ table,tr,th,td{
 }
 th,td{ 
     width:100px;
+}
+.spinner-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 .marks{
     width:180px;

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, map } from "rxjs";
+import { Subject, map, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Student, StudentResult, Result } from "../models/student.model";
 
@@ -10,12 +10,12 @@ import { Student, StudentResult, Result } from "../models/student.model";
 })
 
 export class StudentService {
-    studentResult = new BehaviorSubject<StudentResult[]>([]);
+    studentResult = new Subject<StudentResult[]>;
     constructor(private http: HttpClient, private router: Router) { }
 
     registerStudent(student: Student): void {
         this.http.post<{ status: string }>(`${environment.url}/students/`, student).subscribe(result => {
-            if (result.status === 'success') 
+            if (result.status === 'success')
                 this.router.navigate(['']);
             else
                 alert("error")
@@ -31,16 +31,16 @@ export class StudentService {
     //     }))
     // }
 
-    getStudentsOfClass(classes:number) {
-        return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/${classes}`).pipe(map(result => {
+    getStudentsOfClass(classes: number) {
+        return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students/${classes}`).pipe(map(result => {
             if (result.status === 'success') {
-                return result.students.map(student =>{return {...student, attendance:false}});
+                return result.students.map(student => { return { ...student, attendance: false } });
             }
             return [];
         }))
     }
 
-    getChildren(){
+    getChildren() {
         return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students`).pipe(map(result => {
             if (result.status === 'success') {
                 return result.students;
@@ -49,25 +49,24 @@ export class StudentService {
         }))
     }
 
-    updateStudents(students:Student[]){
-        this.http.put<{ status: string}>(`${environment.url}/students`, { students }).subscribe(result => {
-            if (result.status === 'success') 
-               alert("save success");
-            else
-                alert("error")
-        })
+    updateStudents(students: Student[]): Observable<boolean> {
+        return this.http.put<{ status: string }>(`${environment.url}/students`, { students }).pipe(map(result => {
+            if (result.status === 'success')
+                return true;
+            return false;
+        }))
     }
 
-    updateFoodOrders(student:Student){
-        this.http.put<{ status: string}>(`${environment.url}/students/food`, { student }).subscribe(result => {
-            if (result.status === 'success') 
-               alert("save success");
+    updateFoodOrders(student: Student) {
+        this.http.put<{ status: string }>(`${environment.url}/students/food`, { student }).subscribe(result => {
+            if (result.status === 'success')
+                alert("save success");
             else
                 alert("error");
         })
     }
 
-    getAllFoodOrders(){
+    getAllFoodOrders() {
         // this.http.get<{ status: string, orders:{date:number,value:number} }>(`${environment.url}/food`).subscribe(result => {
         //     console.log(result);
         // })
@@ -75,31 +74,31 @@ export class StudentService {
 
     requestStudentResults(grade: number, subject: string) {
         this.http.post<{ status: string, data: StudentResult[] }>(`${environment.url}/students/results`, { grade, subject }).subscribe(result => {
-            if (result.status === 'success') 
+            if (result.status === 'success')
                 this.studentResult.next(result.data);
             else
                 alert("error")
         })
     }
 
-    giveStudentsResult(studentMarks:{id:string,mark:number}[],result: Result,grade: number,subject: string) {
-        this.http.put<{ status: string}>(`${environment.url}/students/results`, { studentMarks,result,grade,subject }).subscribe(result => {
-            if (result.status === 'success') 
-               this.requestStudentResults(grade,subject)
+    giveStudentsResult(studentMarks: { id: string, mark: number }[], result: Result, grade: number, subject: string) {
+        this.http.put<{ status: string }>(`${environment.url}/students/results`, { studentMarks, result, grade, subject }).subscribe(result => {
+            if (result.status === 'success')
+                this.requestStudentResults(grade, subject)
             else
                 alert("error")
         })
     }
 
-    updateStudentResult(studentId:string,result: Result,grade: number,subject: string) {
-        this.http.patch<{ status: string}>(`${environment.url}/students/results`, { studentId,result,grade,subject }).subscribe(result => {
-            if (result.status === 'success') 
-               this.requestStudentResults(grade,subject)
+    updateStudentResult(studentId: string, result: Result, grade: number, subject: string) {
+        this.http.patch<{ status: string }>(`${environment.url}/students/results`, { studentId, result, grade, subject }).subscribe(result => {
+            if (result.status === 'success')
+                this.requestStudentResults(grade, subject)
             else
                 alert("error")
         })
     }
-    
+
     getStudentResults() {
         return this.studentResult.asObservable();
     }

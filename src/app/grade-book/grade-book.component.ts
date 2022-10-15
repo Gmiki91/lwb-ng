@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable,tap } from 'rxjs';
 import { Result, StudentResult } from '../shared/models/student.model';
 import { StudentService } from '../shared/services/student.service';
 import { ClassRooms } from '../shared/models/constants'
@@ -34,6 +34,7 @@ export class GradeBookComponent implements OnInit {
   subjects!: string[];
   editingId: string | undefined;
   redMark:Result|undefined;
+  loading=true;
   constructor(private studentService: StudentService, private route: ActivatedRoute) {
   }
 
@@ -44,13 +45,16 @@ export class GradeBookComponent implements OnInit {
         .filter(classroom => classroom.grade === +this.grade)
         .map(classroom => classroom.subjects)[0];
     });
-    this.data$ = this.studentService.getStudentResults();
+    this.data$ = this.studentService.getStudentResults().pipe(
+      tap(() =>this.loading=false)
+    )
   }
 
   changedSubject(subject: string) {
     if (subject !== this.subject) {
       this.subject = subject;
       this.studentService.requestStudentResults(this.grade, this.subject);
+      this.loading=true;
     }
   }
 

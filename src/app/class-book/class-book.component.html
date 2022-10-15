@@ -1,50 +1,60 @@
 <div class="container">
-    <span style="display:flex;justify-content:center">{{year}}</span>
-    <table>
-        <tr>
-            <th></th>
-            <th style="display:flex; flex-direction:column">
-                <span class="clickable" (click)="changeMonth(-1)" matTooltip="previous month" matTooltipPosition="before">
-                    << </span>
-                <span class="clickable" (click)="changeWeek(-1)"  matTooltip="previous week" matTooltipPosition="before">
-                    < </span>
-            </th>
-            <th *ngFor="let day of days, let i = index">
-                <div style="display:flex; flex-direction:column">
-                    <span>{{daysOfWeek[i]}}</span>
-                    <span>{{day}}</span>
-                </div>
-            </th>
-            <th style="display:flex; flex-direction:column">
-                <span class="clickable" (click)="changeMonth(1)" matTooltip="next month" matTooltipPosition="after">>></span>
-                <span class="clickable" (click)="changeWeek(1)" matTooltip="next week" matTooltipPosition="after">></span>
-            </th>
-        </tr>
+    <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loading">
+        <span style="display:flex;justify-content:center">{{year}}</span>
 
-        <tr *ngFor="let student of students">
-            <td>{{student.fullNameC}}</td>
-            <td>
-                <!-- placeholder for arrow -->
-            </td>
-            <td *ngFor="let day of days, let i=index">
-                <mat-button-toggle-group (change)="setPresence(student,$event.value,i)"
-                    [value]="isStudentPresent(student,i)">
-                    <mat-button-toggle value="present">jelen
-                    </mat-button-toggle>
-                    <mat-button-toggle value="absent">nem jelen
-                    </mat-button-toggle>
-                </mat-button-toggle-group>
-            </td>
-        </tr>
-        <tr>
-            <td>Létszám</td>
-            <td>
-                <!-- placeholder for arrow -->
-            </td>
-            <td *ngFor="let day of days, let i=index">{{sumOfPresentStudents(i)}}</td>
-        </tr>
-    </table>
-    <div>
-        <button mat-stroked-button (click)="save()">Save </button>
+        <table>
+            <tr>
+                <th></th>
+                <th style="display:flex; flex-direction:column">
+                    <span class="clickable" (click)="changeMonth(-1)" matTooltip="previous month"
+                        matTooltipPosition="before">
+                        << </span>
+                            <span class="clickable" (click)="changeWeek(-1)" matTooltip="previous week"
+                                matTooltipPosition="before">
+                                < </span>
+                </th>
+                <th *ngFor="let day of days, let i = index">
+                    <div style="display:flex; flex-direction:column">
+                        <span>{{daysOfWeek[i]}}</span>
+                        <span>{{day}}</span>
+                    </div>
+                </th>
+                <th style="display:flex; flex-direction:column">
+                    <span class="clickable" (click)="changeMonth(1)" matTooltip="next month"
+                        matTooltipPosition="after">>></span>
+                    <span class="clickable" (click)="changeWeek(1)" matTooltip="next week"
+                        matTooltipPosition="after">></span>
+                </th>
+            </tr>
+
+            <tr *ngFor="let student of students">
+                <td>{{student.fullNameC}}</td>
+                <td>
+                    <!-- placeholder for arrow -->
+                </td>
+                <td *ngFor="let day of days, let i=index">
+                    <mat-button-toggle-group (change)="setPresence(student,$event.value,i)"
+                        [value]="isStudentPresent(student,i)">
+                        <mat-button-toggle value="present">jelen
+                        </mat-button-toggle>
+                        <mat-button-toggle value="absent">nem jelen
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </td>
+            </tr>
+            <tr>
+                <td>Létszám</td>
+                <td>
+                    <!-- placeholder for arrow -->
+                </td>
+                <td *ngFor="let day of days, let i=index">{{sumOfPresentStudents(i)}}</td>
+            </tr>
+        </table>
+        <div>
+            <button mat-stroked-button (click)="save()">Save </button>
+        </div>
     </div>
 </div>

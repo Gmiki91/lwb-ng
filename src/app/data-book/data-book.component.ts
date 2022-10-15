@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { StudentComponent } from './student-data/student.component';
 import { Student } from '../shared/models/student.model';
 import { StudentService } from '../shared/services/student.service';
@@ -15,24 +15,23 @@ import { GradesComponent } from './grades/grades.component';
 })
 export class DataBookComponent implements OnInit, OnDestroy {
   students$!: Observable<Student[]>;
-  loading:boolean = true;
-  @Input() parentMode:boolean = false;
+  loading: boolean = true;
+  @Input() parentMode: boolean = false;
   constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.parentMode) {
       this.students$ = this.studentService.getChildren();
-      this.loading=false;
+      this.loading = false;
     } else {
       this.route.queryParams.subscribe(params => {
-        this.students$ = this.studentService.getStudentsOfClass(params['grade'])
-        this.loading=false;
+        this.students$ = this.studentService.getStudentsOfClass(params['grade']).pipe(tap(() => this.loading = false))
       });
     }
   }
-  
-  ngOnDestroy():void{
-    this.loading=true;
+
+  ngOnDestroy(): void {
+    this.loading = true;
   }
 
   openData(student: Student): void {
