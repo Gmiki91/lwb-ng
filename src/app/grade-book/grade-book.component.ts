@@ -76,6 +76,7 @@ export class GradeBookComponent implements OnInit {
       } else {
         // submitted new result
         this.studentService.giveStudentsResult(this.studentMarks, result, this.grade, this.subject);
+        this.studentMarks = [];
       }
     } else {
       //cancelled editing
