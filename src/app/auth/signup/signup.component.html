@@ -1,13 +1,14 @@
 <div [ngClass]="['container', loading? 'inactive' : '' ]">
     <div class="box">
-        <h1>Sign up</h1>
+        <ng-container *transloco="let t">
+        <h1>{{t('signup')}}</h1>
         <form #signUpForm="ngForm" (ngSubmit)="onSignUp()">
             <mat-form-field>
-                <mat-label>Email</mat-label>
+                <mat-label>{{t('email')}}</mat-label>
                 <input matInput ngModel type="email" name="email" required />
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Password</mat-label>
+                <mat-label>{{t('password')}}</mat-label>
                 <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password"
                     (blur)='passwordsMatch()' required />
                 <mat-icon matSuffix (click)="togglePasswordVisibility()">
@@ -15,7 +16,7 @@
                 </mat-icon>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Confirm password</mat-label>
+                <mat-label>{{t('confirm_password')}}</mat-label>
                 <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password2"
                     (blur)='passwordsMatch()' required />
                 <mat-icon matSuffix (click)="togglePasswordVisibility()">
@@ -26,9 +27,10 @@
             <button [matTooltip]="!signUpForm.valid ? 'All fields must be filled out' : ''"
                 [ngClass]="signUpForm.valid && !passwordMissmatch ? 'form-button' : 'inactive-button'"
                 mat-stroked-button class="btn" type="submit()">
-                Sign me up
+                {{t('signup')}}
             </button>
         </form>
+        </ng-container>
     </div>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

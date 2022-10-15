@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable,tap } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { Result, StudentResult } from '../shared/models/student.model';
 import { StudentService } from '../shared/services/student.service';
 import { ClassRooms } from '../shared/models/constants'
+import { TranslocoService } from '@ngneat/transloco';
 type StudentMark = {
   id: string,
   mark: number
@@ -15,17 +16,18 @@ type StudentMark = {
 })
 export class GradeBookComponent implements OnInit {
   months = [
-    { name: 'September', value: 9 },
-    { name: 'October', value: 10 },
-    { name: 'November', value: 11 },
-    { name: 'December', value: 12 },
-    { name: 'January', value: 1 },
-    { name: 'February', value: 2 },
-    { name: 'March', value: 3 },
-    { name: 'April', value: 4 },
-    { name: 'May', value: 5 },
-    { name: 'June', value: 6 }
+    { name: 'September', nameHu: 'Szeptember', nameUk: 'Вересень', value: 9 },
+    { name: 'October', nameHu: 'Október', nameUk: 'Жовтень', value: 10 },
+    { name: 'November', nameHu: 'November', nameUk: 'Листопад', value: 11 },
+    { name: 'December', nameHu: 'December', nameUk: 'Грудень', value: 12 },
+    { name: 'January', nameHu: 'Január', nameUk: 'Січень', value: 1 },
+    { name: 'February', nameHu: 'Február', nameUk: 'Лютий', value: 2 },
+    { name: 'March', nameHu: 'Március', nameUk: 'Березень', value: 3 },
+    { name: 'April', nameHu: 'Április', nameUk: 'Квітень', value: 4 },
+    { name: 'May', nameHu: 'Május', nameUk: 'Травень', value: 5 },
+    { name: 'June', nameHu: 'Június', nameUk: 'Червень', value: 6 }
   ];
+
   studentMarks: StudentMark[] = [];
   data$?: Observable<StudentResult[]>;
   resultData: Result = {} as Result;
@@ -33,12 +35,17 @@ export class GradeBookComponent implements OnInit {
   grade!: number;
   subjects!: string[];
   editingId: string | undefined;
-  redMark:Result|undefined;
-  loading=false;
-  constructor(private studentService: StudentService, private route: ActivatedRoute) {
+  redMark: Result | undefined;
+  loading = false;
+  lang!: string;
+  subcription: Subscription = Subscription.EMPTY;
+  constructor(private studentService: StudentService, private route: ActivatedRoute, private translocoService: TranslocoService) {
   }
 
   ngOnInit(): void {
+    this.subcription = this.translocoService.langChanges$.subscribe(lang => {
+      this.lang = lang;
+    })
     this.route.queryParams.subscribe(params => {
       this.grade = params['grade'];
       this.subjects = ClassRooms
@@ -46,7 +53,7 @@ export class GradeBookComponent implements OnInit {
         .map(classroom => classroom.subjects)[0];
     });
     this.data$ = this.studentService.getStudentResults().pipe(
-      tap(() =>this.loading=false)
+      tap(() => this.loading = false)
     )
   }
 
@@ -54,7 +61,7 @@ export class GradeBookComponent implements OnInit {
     if (subject !== this.subject) {
       this.subject = subject;
       this.studentService.requestStudentResults(this.grade, this.subject);
-      this.loading=true;
+      this.loading = true;
     }
   }
 
@@ -72,7 +79,7 @@ export class GradeBookComponent implements OnInit {
 
   save(result: Result | null): void {
     if (result) {
-      this.loading=true;
+      this.loading = true;
       if (this.editingId) {
         //submitted editing
         this.studentService.updateStudentResult(this.editingId, result, this.grade, this.subject);
@@ -105,5 +112,14 @@ export class GradeBookComponent implements OnInit {
     this.resultData = result;
     this.editingId = id;
     this.redMark = result;
+  }
+
+  getMonth(i: number): string {
+    if (this.lang === "en")
+      return this.months[i].name;
+    else if (this.lang === "uk")
+      return this.months[i].nameUk;
+    else
+      return this.months[i].nameHu;
   }
 }

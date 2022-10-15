@@ -1,6 +1,7 @@
 <div class="container">
+    <ng-container *transloco="let t">
     <mat-form-field appearance="outline">
-        <mat-label>Type</mat-label>
+        <mat-label>{{t('type')}}</mat-label>
         <mat-select  [(ngModel)]="data.type">
             <mat-option *ngFor="let markType of types" [value]="markType">
                 {{markType}}
@@ -8,23 +9,24 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline">
-        <mat-label>Note</mat-label>
+        <mat-label>{{t('note')}}</mat-label>
         <input matInput [(ngModel)]="data.note" type="text" />
     </mat-form-field>
     <mat-form-field appearance="outline">
         <input matInput [(ngModel)]="data.date" [matDatepicker]="picker">
-        <mat-label>Date</mat-label>
+        <mat-label>{{t('date')}}</mat-label>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker disabled="false"></mat-datepicker>
     </mat-form-field>
     <div class="content" *ngIf="data.mark">
-        <mat-label>Mark</mat-label>
+        <mat-label>{{t('mark')}}</mat-label>
         <mat-radio-group class="radio_group" [(ngModel)]="data.mark">
             <mat-radio-button *ngFor="let number of [1,2,3,4,5]" [value]="number"
                 checked="number==data.mark">{{number}}</mat-radio-button>
         </mat-radio-group>
     </div>
-    <button mat-stroked-button (click)="submit()">Submit</button>
+    <button mat-stroked-button (click)="submit()">{{t('save')}}</button>
     <!-- we are in editing mode if mark is present-->
     <button mat-stroked-button *ngIf="this.data.mark" (click)="cancel()">Cancel</button>
+    </ng-container>
 </div>

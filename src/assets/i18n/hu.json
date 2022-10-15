@@ -1,5 +1,6 @@
 {
     "classes": "Osztályok",
+    "grades":"Jegyek",
     "logout":"Kijelentkezés",
     "roster":"Névsor",
     "diary":"Napló",
@@ -8,8 +9,24 @@
     "class":"Osztály",
     "missed":"Hiányzások",
     "name":"Név",
+    "fullNameC":"Teljes név - cirill betűs",
+    "fullNameL":"Teljes név - latin betűs",
     "dob":"Születési év",
     "address":"Cím",
     "pg_name":"Szülő/Gondviselő neve",
-    "phone":"Telefonszám"
+    "phone":"Telefonszám",
+    "present":"Jelen",
+    "absent":"Hiányzik",
+    "headcount":"Létszám",
+    "save":"Mentés",
+    "date":"Dátum",
+    "note":"Megjegyzés",
+    "type":"Típus",
+    "mark":"Jegy",
+    "login":"Bejelentkezés",
+    "email":"E-mail",
+    "password":"Jelszó",
+    "confirm_password":"Jelszó megerősítése",
+    "signup":"Regisztráció",
+    "vegan":"Vegán"
   }

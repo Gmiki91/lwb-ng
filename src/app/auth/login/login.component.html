@@ -1,13 +1,14 @@
 <div [ngClass]="['container', loading? 'inactive' : '' ]">
     <div class="box">
-            <h1>Log in</h1>
+        <ng-container *transloco="let t">
+            <h1>{{t('login')}}</h1>
             <form #loginForm="ngForm" (ngSubmit)="onLogIn(loginForm)">
                 <mat-form-field>
-                    <mat-label>Email</mat-label>
+                    <mat-label>{{t('email')}}</mat-label>
                     <input matInput ngModel type="email" name="email" required />
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Password</mat-label>
+                    <mat-label>{{t('password')}}</mat-label>
                     <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password" required />
                     <mat-icon matSuffix (click)="togglePasswordVisibility()">
                         {{showPassword ? 'visibility_off' : 'visibility' }}
@@ -16,10 +17,11 @@
                 <button [matTooltip]="!loginForm.valid ? 'All fields must be filled' : ''"
                     [ngClass]="loginForm.valid ? 'form-button' : 'inactive-button'" mat-stroked-button class="btn"
                     type="submit()">
-                    Log me in
+                    {{t('login')}}
                 </button>
             </form>
-            <a routerLink="/signup">Create user</a>
-        </div>
+            <a routerLink="/signup">{{t('signup')}}</a>
+            </ng-container>
+    </div>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

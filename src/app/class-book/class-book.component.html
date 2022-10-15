@@ -1,3 +1,4 @@
+<ng-container *transloco="let t">
 <div class="container">
         <h1>{{year}}</h1>
         <table  [ngClass]="loading?'inactive':''">
@@ -33,15 +34,15 @@
                 <td *ngFor="let day of days, let i=index">
                     <mat-button-toggle-group (change)="setPresence(student,$event.value,i)"
                         [value]="isStudentPresent(student,i)">
-                        <mat-button-toggle value="present">jelen
+                        <mat-button-toggle value="present">{{t('present')}}
                         </mat-button-toggle>
-                        <mat-button-toggle value="absent">nem jelen
+                        <mat-button-toggle value="absent">{{t('absent')}}
                         </mat-button-toggle>
                     </mat-button-toggle-group>
                 </td>
             </tr>
             <tr>
-                <td>Létszám</td>
+                <td>{{t('headcount')}}</td>
                 <td>
                     <!-- placeholder for arrow -->
                 </td>
@@ -49,8 +50,8 @@
             </tr>
         </table>
         <div>
-            <button mat-stroked-button (click)="save()">Save </button>
+            <button mat-stroked-button (click)="save()">{{t('save')}} </button>
         </div>
-
 </div>
+</ng-container>
 <app-spinner *ngIf="loading"></app-spinner>

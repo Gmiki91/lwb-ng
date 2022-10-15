@@ -1,5 +1,6 @@
 {
     "classes": "Classes",
+    "grades":"Grades",
     "logout":"Log out",
     "roster":"List",
     "diary":"Grade book",
@@ -8,8 +9,24 @@
     "class":"Class",
     "missed":"Missed days",
     "name":"Name",
+    "fullNameC":"Full name - cyrillic",
+    "fullNameL":"Full name - latin",
     "dob":"Date of birth",
     "address":"Address",
     "pg_name":"Parent/Guardian name",
-    "phone":"Phone number"
+    "phone":"Phone number",
+    "present":"Present",
+    "absent":"Absent",
+    "headcount":"Headcount",
+    "save":"Save",
+    "date":"Date",
+    "note":"Note",
+    "type":"Type",
+    "mark":"Mark",
+    "login":"Log in",
+    "email":"E-mail",
+    "password":"Password",
+    "confirm_password":"Confirm password",
+    "signup":"Sign up",
+    "vegan":"Vegan"
   }

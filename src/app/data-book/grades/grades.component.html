@@ -1,11 +1,12 @@
 <div class="container" *ngFor="let page of student.gradeBook">
-    <h2>{{page.subject}} - class {{page.grade}}</h2>
+    <ng-container *transloco="let t">
+    <h2>{{page.subject}} - {{t('class')}} {{page.grade}}</h2>
     <table class="content">
         <tr>
-            <th>Date</th>
-            <th>Note</th>
-            <th>Type</th>
-            <th>Mark</th>
+            <th>{{t('date')}}</th>
+            <th>{{t('note')}}</th>
+            <th>{{t('type')}}</th>
+            <th>{{t('mark')}}</th>
         </tr>
         <tr *ngFor="let entry of page.results">
             <td>{{dateOf(entry.date)}}</td>
@@ -14,5 +15,6 @@
             <td>{{entry.mark}}</td>
         </tr>
     </table>
+</ng-container>
 </div>
 

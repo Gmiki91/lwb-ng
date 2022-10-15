@@ -1,5 +1,6 @@
 <div class="container">
-    <h1>{{grade}}. class</h1>
+    <ng-container *transloco="let t">
+    <h1>{{grade}}. {{t('class')}}</h1>
     <mat-button-toggle-group>
         <mat-button-toggle *ngFor="let subject of subjects" value="subject" (change)="changedSubject(subject)">
             {{subject}}
@@ -9,9 +10,11 @@
         <app-mark [ngClass]="loading ? 'inactive' : ''" [data]="resultData" (save)="save($event)"></app-mark>
         <table [ngClass]="editingId? 'inactive':''">
             <tr>
-                <th>NAMES/DATE</th>
-                <th *ngFor="let month of months">{{month.name}}</th>
-                <th>Grades</th>
+                <th></th>
+                <th *ngFor="let month of months, let i=index">{{getMonth(i)}}</th>
+                <ng-container *transloco="let t">
+                <th>{{t('grades')}}</th>
+                </ng-container>
             </tr>
             <tr [ngClass]="loading ? 'inactive' : ''" *ngFor="let student of data$|async">
                 <th>{{student.fullNameC}}</th>
@@ -30,7 +33,7 @@
                 </td>
             </tr>
         </table>
-
     </div>
+</ng-container>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

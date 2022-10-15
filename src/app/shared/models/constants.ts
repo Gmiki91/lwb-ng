@@ -11,7 +11,9 @@ export const ClassRooms = [
     { grade:9, subjects: ["Chemistry"] },
   ];
   export const DayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  export const MonthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
+  export const DayNamesUk = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'Пятниця'];
+  export const DayNamesHu = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek'];
 
+  export const MonthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+  export const MonthNamesHu = ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"];
+  export const MonthNamesUk = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад ", "Грудень"];

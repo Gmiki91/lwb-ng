@@ -1,21 +1,22 @@
 <div [ngClass]="['container', loading? 'inactive' : '' ]">
     <form class="content" #registerForm="ngForm" (ngSubmit)="submit()">
+        <ng-container *transloco="let t">
         <mat-form-field>
-            <mat-label>Child full name - cyrillic</mat-label>
+            <mat-label>{{t('fullNameC')}}</mat-label>
             <input matInput ngModel type="text" name="fullNameC" required />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Child full name - latin</mat-label>
+            <mat-label>{{t('fullNameL')}}</mat-label>
             <input matInput ngModel type="text" name="fullNameL" required />
         </mat-form-field>
         <mat-form-field>
             <input matInput ngModel name="dob" [matDatepicker]="picker" disabled>
-            <mat-label>Date of birth</mat-label>
+            <mat-label>{{t('dob')}}</mat-label>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker disabled="false"></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Class</mat-label>
+            <mat-label>{{t('class')}}</mat-label>
             <mat-select ngModel name="grade" required>
                 <mat-option *ngFor="let class of classes" [value]="class">
                     {{class}}
@@ -27,28 +28,29 @@
             <input matInput ngModel type="text" name="ukraineSchool" required />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Name of Parent/Guardian</mat-label>
+            <mat-label>{{t('pg_name')}}</mat-label>
             <input matInput ngModel type="text" name="parentName" required />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Address</mat-label>
+            <mat-label>{{t('address')}}</mat-label>
             <input matInput ngModel type="text" name="address" required />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Phone number</mat-label>
+            <mat-label>{{t('phone')}}</mat-label>
             <input matInput ngModel type="text" name="phoneNumber" required />
         </mat-form-field>
         <mat-form-field>
             <mat-label>Health concerns, allergies</mat-label>
             <input matInput ngModel type="text" name="healthIssues" />
         </mat-form-field>
-        <mat-checkbox matInput ngModel name="vegetarian" [checked]="false">Vegetarian</mat-checkbox>
+        <mat-checkbox matInput ngModel name="vegetarian" [checked]="false">{{t('vegan')}}</mat-checkbox>
         <mat-checkbox matInput ngModel name="homeGoing" [checked]="false">May go home alone</mat-checkbox>
         <button [matTooltip]="!registerForm.valid ? 'All fields must be filled' : ''"
             [ngClass]="registerForm.valid && !loading ? 'form-button' : 'inactive-button'" mat-stroked-button
             class="btn">
-            Register
+            {{t('save')}}
         </button>
+        </ng-container>
     </form>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>
