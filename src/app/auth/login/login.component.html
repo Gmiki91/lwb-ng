@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="['container', loading? 'inactive' : '' ]">
     <div class="box">
             <h1>Log in</h1>
             <form #loginForm="ngForm" (ngSubmit)="onLogIn(loginForm)">
@@ -22,3 +22,4 @@
             <a routerLink="/signup">Create user</a>
         </div>
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

@@ -4,7 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { GradeBookComponent } from './grade-book/grade-book.component';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './shared/forms/register/register.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ClassBookComponent } from './class-book/class-book.component';
 import { DataBookComponent } from './data-book/data-book.component';

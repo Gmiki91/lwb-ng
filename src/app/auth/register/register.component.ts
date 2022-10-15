@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Student } from '../../models/student.model';
-import { StudentService } from '../../services/student.service';
+import { Student } from '../../shared/models/student.model';
+import { StudentService } from '../../shared/services/student.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../form.scss']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  loading=false;
   classes: number[] = [ 2, 3, 4, 5, 6, 7, 8, 9];
   @ViewChild('registerForm') form?: NgForm;
   constructor(private studentService: StudentService) { }
@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
         missedClassAt:[],
         foodOrderedFor:[]
       }
+      this.loading=true;
       this.studentService.registerStudent(student);
     }
   }

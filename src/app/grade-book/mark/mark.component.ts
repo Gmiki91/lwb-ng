@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output, Input, ViewChild } from '@angular/core';
 import { Result } from 'src/app/shared/models/student.model';
-import { MarkTypes } from '../../models/constants';
+import { MarkTypes } from '../../shared/models/constants';
 @Component({
   selector: 'app-mark',
   templateUrl: './mark.component.html',
-  styleUrls: ['../form.scss','./mark.component.scss']
+  styleUrls: ['./mark.component.scss']
 })
 export class MarkComponent implements OnInit {
   @Output() save: EventEmitter<Result|null> = new EventEmitter();

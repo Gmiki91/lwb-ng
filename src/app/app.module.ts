@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './shared/forms/register/register.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -24,7 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { GradeBookComponent } from './grade-book/grade-book.component';
 import { AuthenticationInterceptor } from './auth/authentication.interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MarkComponent } from './shared/forms/mark/mark.component';
+import { MarkComponent } from './grade-book/mark/mark.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { ClassBookComponent } from './class-book/class-book.component';
 import { StudentComponent } from './data-book/student-data/student.component';
@@ -33,8 +33,9 @@ import { DataBookComponent } from './data-book/data-book.component';
 import { AttendanceComponent } from './data-book/attendance/attendance.component';
 import { GradesComponent } from './data-book/grades/grades.component';
 import { FoodOrderComponent } from './data-book/food-order/food-order.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './shared/spinner/spinner.component'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     DataBookComponent,
     AttendanceComponent,
     GradesComponent,
-    FoodOrderComponent
+    FoodOrderComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     MatDialogModule,
     MatDividerModule,
     MatButtonToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
+    
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },],
   bootstrap: [AppComponent]

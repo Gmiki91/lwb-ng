@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 5% auto;
+  padding: 5%;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+
+  &__type {
+    width: 150px;
+  }
+}
+
+button {
+  margin-left: 5px;
+  height: 60px;
+}
+
+.inactive>* {
+  pointer-events: none;
+  opacity: 0.5;
+}

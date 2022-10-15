@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="['container', loading? 'inactive' : '' ]">
     <div class="box">
         <h1>Sign up</h1>
         <form #signUpForm="ngForm" (ngSubmit)="onSignUp()">
@@ -31,3 +31,4 @@
         </form>
     </div>
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

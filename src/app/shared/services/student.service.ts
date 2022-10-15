@@ -4,14 +4,14 @@ import { Router } from "@angular/router";
 import { Subject, map, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Student, StudentResult, Result } from "../models/student.model";
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
     providedIn: 'root'
 })
 
 export class StudentService {
     studentResult = new Subject<StudentResult[]>;
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, private snackbar: MatSnackBar) { }
 
     registerStudent(student: Student): void {
         this.http.post<{ status: string }>(`${environment.url}/students/`, student).subscribe(result => {
@@ -60,9 +60,13 @@ export class StudentService {
     updateFoodOrders(student: Student) {
         this.http.put<{ status: string }>(`${environment.url}/students/food`, { student }).subscribe(result => {
             if (result.status === 'success')
-                alert("save success");
+                this.snackbar.open('Food order updated', '', {
+                    duration: 2000
+                });
             else
-                alert("error");
+                this.snackbar.open('An error has occurred', '', {
+                    duration: 2000
+                });
         })
     }
 

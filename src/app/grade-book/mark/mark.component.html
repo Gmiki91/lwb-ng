@@ -1,4 +1,4 @@
-<div class="content">
+<div class="container">
     <mat-form-field appearance="outline">
         <mat-label>Type</mat-label>
         <mat-select  [(ngModel)]="data.type">
@@ -17,7 +17,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker disabled="false"></mat-datepicker>
     </mat-form-field>
-    <div class="mark_container" *ngIf="data.mark">
+    <div class="content" *ngIf="data.mark">
         <mat-label>Mark</mat-label>
         <mat-radio-group class="radio_group" [(ngModel)]="data.mark">
             <mat-radio-button *ngFor="let number of [1,2,3,4,5]" [value]="number"

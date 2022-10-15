@@ -13,25 +13,22 @@ import { GradesComponent } from './grades/grades.component';
   templateUrl: './data-book.component.html',
   styleUrls: ['./data-book.component.scss']
 })
-export class DataBookComponent implements OnInit, OnDestroy {
+export class DataBookComponent implements OnInit {
   students$!: Observable<Student[]>;
+  grade!:string;
   loading: boolean = true;
   @Input() parentMode: boolean = false;
   constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.parentMode) {
-      this.students$ = this.studentService.getChildren();
-      this.loading = false;
+      this.students$ = this.studentService.getChildren().pipe(tap(()=>this.loading=false));
     } else {
       this.route.queryParams.subscribe(params => {
+        this.grade=params['grade'];
         this.students$ = this.studentService.getStudentsOfClass(params['grade']).pipe(tap(() => this.loading = false))
       });
     }
-  }
-
-  ngOnDestroy(): void {
-    this.loading = true;
   }
 
   openData(student: Student): void {

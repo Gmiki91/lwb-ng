@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="['container', loading? 'inactive' : '' ]">
     <form class="content" #registerForm="ngForm" (ngSubmit)="submit()">
         <mat-form-field>
             <mat-label>Child full name - cyrillic</mat-label>
@@ -45,8 +45,10 @@
         <mat-checkbox matInput ngModel name="vegetarian" [checked]="false">Vegetarian</mat-checkbox>
         <mat-checkbox matInput ngModel name="homeGoing" [checked]="false">May go home alone</mat-checkbox>
         <button [matTooltip]="!registerForm.valid ? 'All fields must be filled' : ''"
-            [ngClass]="registerForm.valid ? 'form-button' : 'inactive-button'" mat-stroked-button class="btn">
+            [ngClass]="registerForm.valid && !loading ? 'form-button' : 'inactive-button'" mat-stroked-button
+            class="btn">
             Register
         </button>
     </form>
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

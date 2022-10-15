@@ -1,11 +1,6 @@
 <div class="container">
-    <div *ngIf="loading">
-        <mat-spinner></mat-spinner>
-    </div>
-    <div *ngIf="!loading">
-        <span style="display:flex;justify-content:center">{{year}}</span>
-
-        <table>
+        <h1>{{year}}</h1>
+        <table  [ngClass]="loading?'inactive':''">
             <tr>
                 <th></th>
                 <th style="display:flex; flex-direction:column">
@@ -56,5 +51,6 @@
         <div>
             <button mat-stroked-button (click)="save()">Save </button>
         </div>
-    </div>
+
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

@@ -90,16 +90,9 @@ export class ClassBookComponent implements OnInit, OnDestroy {
 
   save(): void {
     this.loading=true;
-    this.sub2 = this.studentService.updateStudents(this.studentsToUpdate).subscribe(success => {
+    this.sub2 = this.studentService.updateStudents(this.studentsToUpdate).subscribe(() => {
       this.loading=false;
-      if (success) {
-        alert("Saved");
-      } else {
-        alert("something went wrong");
-      }
     });
-    
-    
   }
 
   private getDate(index: number): Date {

@@ -3,7 +3,7 @@
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    margin-top:5%;
+    margin-top:1%;
 }
 .subject-btn{
     margin-right:5px;
@@ -12,13 +12,10 @@ table,tr,th,td{
     border:1px solid
 }
 th,td{ 
-    width:100px;
+    width:120px;
+    height:50px;
 }
-.spinner-wrapper{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
+
 .marks{
     width:180px;
 }
@@ -26,9 +23,11 @@ th,td{
       padding-right:5px;
       padding-left:1px;
   }
-  .inactive{
-    color:grey;
-  }
   .red{
     color:red
   }
+  .inactive>*{
+    pointer-events: none;
+    opacity: 0.5;
+  }
+ 

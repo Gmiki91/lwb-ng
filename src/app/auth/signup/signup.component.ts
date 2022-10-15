@@ -11,8 +11,9 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class SignupComponent implements OnInit {
   @ViewChild('signUpForm') form!: NgForm;
-  showPassword: boolean = false;
-  passwordMissmatch: boolean = false;
+  showPassword = false;
+  passwordMissmatch = false;
+  loading=false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -29,7 +30,8 @@ export class SignupComponent implements OnInit {
         email: email.value,
         type: '0'
       }
-      this.authService.signUp(user)
+      this.authService.signUp(user);
+      this.loading=true;
     }
   }
   passwordsMatch(): boolean {

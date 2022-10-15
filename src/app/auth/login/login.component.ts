@@ -9,9 +9,8 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['../auth.component.scss']
 })
 export class LoginComponent implements OnInit {
-  showPassword: boolean = false;
-
-  
+  showPassword = false;
+  loading=false;
   constructor(private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
@@ -20,11 +19,10 @@ export class LoginComponent implements OnInit {
     }
   }
  
- 
   onLogIn(form: NgForm): void {
     const {  email, password } = form.controls;
-
     if (form.valid) {
+      this.loading=true;
       this.authService.logIn(email.value, password.value);
     }
   }

@@ -34,7 +34,7 @@ export class GradeBookComponent implements OnInit {
   subjects!: string[];
   editingId: string | undefined;
   redMark:Result|undefined;
-  loading=true;
+  loading=false;
   constructor(private studentService: StudentService, private route: ActivatedRoute) {
   }
 
@@ -72,6 +72,7 @@ export class GradeBookComponent implements OnInit {
 
   save(result: Result | null): void {
     if (result) {
+      this.loading=true;
       if (this.editingId) {
         //submitted editing
         this.studentService.updateStudentResult(this.editingId, result, this.grade, this.subject);

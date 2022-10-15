@@ -1,7 +1,5 @@
 <div class="container">
-    <div *ngIf="loading">
-        <mat-spinner ></mat-spinner>
-    </div>
+    <h1 *ngIf="grade">{{grade}}. class</h1>
     <div class="content" *ngFor="let student of students$|async">
         <div class="list">
             <div class="name">{{student.fullNameC}}</div>
@@ -13,3 +11,4 @@
         <mat-divider></mat-divider>
     </div>
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

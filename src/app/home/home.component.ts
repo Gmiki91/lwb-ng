@@ -21,9 +21,4 @@ export class HomeComponent implements OnInit {
   openGradeBook(grade: number[], subject: Subject): void {
     this.router.navigate(['grade-book'], { state: { subject, grade } });
   }
-
-  logout():void{
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
 }
