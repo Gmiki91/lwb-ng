@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 
@@ -27,5 +27,9 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+  onChange() {
+
+    window.location.href = `/${this.activeLocale}`;
   }
 }
