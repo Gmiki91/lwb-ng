@@ -1,3 +1,8 @@
 <div class="container">
-    <button mat-stroked-button (click)="logout()">Log out</button>
+    <button i18n mat-stroked-button (click)="logout()">Log out</button>
+    <select (change)="onChange()" [(ngModel)]="activeLocale">
+        <option *ngFor="let locale of locales" [value]="locale.code">
+            {{ locale.name }}
+        </option>
+    </select>
 </div>

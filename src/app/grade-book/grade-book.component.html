@@ -16,7 +16,7 @@
             <tr [ngClass]="loading ? 'inactive' : ''" *ngFor="let student of data$|async">
                 <th>{{student.fullNameC}}</th>
                 <td *ngFor="let month of months">
-                    <span [ngClass]="['clickable',redMark===result ? 'red' : '' ]"
+                    <span [ngClass]="['clickable','pr-3',redMark===result ? 'red' : '' ]"
                         *ngFor="let result of ratedInMonth(month.value,student.results)"
                         (click)="editMark(student._id,result)">{{result.mark}}</span>
                 </td>
