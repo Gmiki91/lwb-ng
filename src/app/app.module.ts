@@ -36,6 +36,7 @@ import { FoodOrderComponent } from './data-book/food-order/food-order.component'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AttendanceComponent,
     GradesComponent,
     FoodOrderComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
