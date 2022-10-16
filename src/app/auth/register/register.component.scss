@@ -2,19 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  margin: 5% auto;
-  padding: 5%;
-  background: #FFF;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  z-index: 0;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  padding:5%;
 
   &__type {
     width: 150px;

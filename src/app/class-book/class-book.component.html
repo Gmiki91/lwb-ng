@@ -1,6 +1,7 @@
 <ng-container *transloco="let t">
 <div class="container">
-        <h1>{{year}}</h1>
+    <h1>{{grade}}. {{t('class')}}</h1>
+        <h3>{{year}}</h3>
         <table  [ngClass]="loading?'inactive':''">
             <tr>
                 <th></th>

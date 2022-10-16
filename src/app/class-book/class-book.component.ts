@@ -13,6 +13,7 @@ import { startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
 })
 export class ClassBookComponent implements OnInit, OnDestroy {
   dayNames=DayNames;
+  grade!:number;
   date = new Date();
   sub1: Subscription = Subscription.EMPTY;
   sub2: Subscription = Subscription.EMPTY;
@@ -30,7 +31,10 @@ export class ClassBookComponent implements OnInit, OnDestroy {
     this.initDates(this.date);
     this.route.queryParams.subscribe(params => {
       this.sub1 = this.studentService.getStudentsOfClass(params['grade'])
-        .subscribe(students => { this.students = students; this.loading = false; });
+        .subscribe(students => { 
+          this.grade = params['grade'];
+          this.students = students; 
+          this.loading = false; });
     });
   }
 
