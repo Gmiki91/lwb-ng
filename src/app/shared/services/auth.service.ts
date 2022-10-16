@@ -10,8 +10,8 @@ import { User } from "../models/user.model";
 })
 
 export class AuthService {
+    loggedIn=new BehaviorSubject<boolean>(false);
     constructor(private http: HttpClient, private router: Router) { }
-
     signUp(user:User) {
         this.http.post<{ status: string, token:string,user: User }>(`${environment.url}/users/signup`, user).subscribe(result => {
             if (result.status==='success') {
@@ -30,6 +30,7 @@ export class AuthService {
                         this.router.navigate(['/']);
                         localStorage.setItem('access_token', result.token);
                         localStorage.setItem('type',result.type);
+                        this.loggedIn.next(true);
                     } else {
                         console.log(result);
                     }
@@ -38,5 +39,16 @@ export class AuthService {
                     alert(repsonse.error.message)
                 }
             });
+    }
+    logOut(){
+        this.loggedIn.next(false);
+    }
+    requestLogInStatus(){
+        const value = localStorage.getItem('access_token')!==null
+       this.loggedIn.next(value);
+    }
+
+    getLogInStatus(){
+        return this.loggedIn.asObservable();
     }
 }

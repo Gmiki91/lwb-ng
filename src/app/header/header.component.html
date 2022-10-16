@@ -2,7 +2,7 @@
     <img class="icon" src="../../assets/lwb-logo.jpg">
   <div class="left">
     <ng-container *transloco="let t">
-      <button mat-stroked-button (click)="logout()">{{t('logout')}}</button>
+      <button *ngIf="loggedIn$|async" mat-stroked-button (click)="logout()">{{t('logout')}}</button>
     </ng-container>
     <select style="margin-left:10px" (change)="changeSiteLanguage($event)">
       <option *ngFor="let language of languageList" [value]="language.code">
