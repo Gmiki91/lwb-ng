@@ -1,10 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input,  OnInit } from '@angular/core';
 import { eachDayOfInterval, startOfWeek, endOfWeek, isFriday, isWeekend, nextMonday } from 'date-fns';
-import { DayNames, DayNamesUk, DayNamesHu, MonthNames, MonthNamesUk, MonthNamesHu } from '../../shared/models/constants';
+import { DayNames,  MonthNames } from '../../shared/models/constants';
 import { Student } from 'src/app/shared/models/student.model';
 import { StudentService } from 'src/app/shared/services/student.service';
-import { TranslocoService } from '@ngneat/transloco';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-food-order',
@@ -12,21 +10,18 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./food-order.component.scss'],
 })
 
-export class FoodOrderComponent implements OnInit, OnDestroy {
+export class FoodOrderComponent implements OnInit {
   @Input() student!: Student;
-  days: string[] = [];
-  months: string[] = [];
+  dayNames=DayNames;
+  months: string[]=[];
+  days:number[]=[];
   dates!: Date[];
   daysOfWeek: string[] = [];
   checkedDays: number[] = [];
-  subscription:Subscription= Subscription.EMPTY;
 
-  constructor(private studentService: StudentService, private translocoService:TranslocoService) { }
+  constructor(private studentService: StudentService) { }
 
   ngOnInit(): void {
-    const currentLang = this.translocoService.getActiveLang();
-    this._langChanged(currentLang);
-    this.subscription = this.translocoService.langChanges$.subscribe(lang => this._langChanged(lang));
     this.checkedDays = this.student.foodOrderedFor;
     let today = new Date();
     if (isWeekend(today) || isFriday(today)) today = nextMonday(today);
@@ -35,11 +30,8 @@ export class FoodOrderComponent implements OnInit, OnDestroy {
       end: endOfWeek(today, { weekStartsOn: 1 })
     })
 
-    this.daysOfWeek = this.dates.map(date => `${MonthNames[date.getMonth()]} - ${date.getDate()}`)
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe()
+    this.months = this.dates.map(date => MonthNames[date.getMonth()])
+    this.days = this.dates.map(date => date.getDate());
   }
 
   onChange(i: number, checked: boolean) {
@@ -73,19 +65,5 @@ export class FoodOrderComponent implements OnInit, OnDestroy {
     this.student.foodOrderedFor = this.checkedDays;
     this.studentService.updateFoodOrders(this.student);
   }
-
-  private _langChanged(lang: string) {
-    if (lang === "en") {
-      this.days = DayNames;
-      this.months = MonthNames;
-    } else if (lang === "uk") {
-      this.days = DayNamesUk;
-      this.months = MonthNamesUk;
-    } else {
-      this.days = DayNamesHu;
-      this.months = MonthNamesHu;
-    }
-  }
-
 
 }

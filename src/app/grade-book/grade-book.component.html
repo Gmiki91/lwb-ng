@@ -3,7 +3,7 @@
     <h1>{{grade}}. {{t('class')}}</h1>
     <mat-button-toggle-group>
         <mat-button-toggle *ngFor="let subject of subjects" value="subject" (change)="changedSubject(subject)">
-            {{subject}}
+            {{t(subject)}}
         </mat-button-toggle>
     </mat-button-toggle-group>
     <div *ngIf="subject">
@@ -11,7 +11,7 @@
         <table [ngClass]="editingId? 'inactive':''">
             <tr>
                 <th></th>
-                <th *ngFor="let month of months, let i=index">{{getMonth(i)}}</th>
+                <th *ngFor="let month of months, let i=index">{{t(month.name)}}</th>
                 <ng-container *transloco="let t">
                 <th>{{t('grades')}}</th>
                 </ng-container>

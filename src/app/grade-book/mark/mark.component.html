@@ -4,7 +4,7 @@
         <mat-label>{{t('type')}}</mat-label>
         <mat-select  [(ngModel)]="data.type">
             <mat-option *ngFor="let markType of types" [value]="markType">
-                {{markType}}
+                {{t(markType)}}
             </mat-option>
         </mat-select>
     </mat-form-field>

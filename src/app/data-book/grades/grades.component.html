@@ -1,6 +1,6 @@
 <div class="container" *ngFor="let page of student.gradeBook">
     <ng-container *transloco="let t">
-    <h2>{{page.subject}} - {{t('class')}} {{page.grade}}</h2>
+    <h2>{{t(page.subject)}} - {{t('class')}} {{page.grade}}</h2>
     <table class="content">
         <tr>
             <th>{{t('date')}}</th>

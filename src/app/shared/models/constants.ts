@@ -1,19 +1,13 @@
-export const Subjects = ["English" , "Math" ,"Biology"];
-export const MarkTypes = ['Írásbeli',  'szóbeli'];
+export const MarkTypes = ['writing',  'oral'];
 export const ClassRooms = [
-    { grade:2, subjects: ["Biology", "Math"] },
-    { grade:3, subjects: ["English", "Math"] },
-    { grade:4, subjects: ["English", "Math"] },
-    { grade:5, subjects: ["History", "Literature"] },
-    { grade:6, subjects: ["History", "Literature"] },
-    { grade:7, subjects: ["English", "Math","Biology"] },
-    { grade:8, subjects: ["English", "Math","Biology"] },
-    { grade:9, subjects: ["Chemistry"] },
+    { grade:2, subjects: ["biology", "math"] },
+    { grade:3, subjects: ["english", "math"] },
+    { grade:4, subjects: ["english", "math"] },
+    { grade:5, subjects: ["history", "literature"] },
+    { grade:6, subjects: ["history", "literature"] },
+    { grade:7, subjects: ["english", "math","biology"] },
+    { grade:8, subjects: ["english", "math","biology"] },
+    { grade:9, subjects: ["chemistry"] },
   ];
-  export const DayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  export const DayNamesUk = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'Пятниця'];
-  export const DayNamesHu = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek'];
-
-  export const MonthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
-  export const MonthNamesHu = ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"];
-  export const MonthNamesUk = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад ", "Грудень"];
+  export const DayNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+  export const MonthNames = ["january", "february", "march", "april", "may", "june","july", "august", "september", "october", "november", "december"];

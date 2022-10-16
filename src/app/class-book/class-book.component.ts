@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DayNames, DayNamesUk, DayNamesHu, MonthNames, MonthNamesUk, MonthNamesHu } from '../shared/models/constants';
+import { DayNames,MonthNames } from '../shared/models/constants';
 import { Student } from '../shared/models/student.model';
 import { StudentService } from '../shared/services/student.service';
 import { startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
-import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-class-book',
@@ -13,42 +12,37 @@ import { TranslocoService } from '@ngneat/transloco';
   styleUrls: ['./class-book.component.scss']
 })
 export class ClassBookComponent implements OnInit, OnDestroy {
-  days: string[] = [];
-  months: string[] = [];
+  dayNames=DayNames;
   date = new Date();
-  subscription: Subscription = Subscription.EMPTY;
+  sub1: Subscription = Subscription.EMPTY;
   sub2: Subscription = Subscription.EMPTY;
-  sub3: Subscription = Subscription.EMPTY;
   students?: Student[];
   year!: number;
-  daysOfWeek!: string[];
+  months: string[]=[];
+  days:number[]=[];
   studentsToUpdate: Student[] = [];
   loading = true;
-  constructor(private route: ActivatedRoute, private studentService: StudentService, private translocoService: TranslocoService) {
+  constructor(private route: ActivatedRoute, private studentService: StudentService) {
   }
 
   ngOnInit(): void {
-    const currentLang = this.translocoService.getActiveLang();
-    this._langChanged(currentLang);
-    this.sub3 = this.translocoService.langChanges$.subscribe(lang => this._langChanged(lang));
     this.date.setHours(8, 0, 0, 0);
     this.initDates(this.date);
     this.route.queryParams.subscribe(params => {
-      this.subscription = this.studentService.getStudentsOfClass(params['grade'])
+      this.sub1 = this.studentService.getStudentsOfClass(params['grade'])
         .subscribe(students => { this.students = students; this.loading = false; });
     });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.sub1.unsubscribe();
     this.sub2.unsubscribe();
-    this.sub3.unsubscribe();
   }
 
   changeWeek(value: number) {
     const dayOfMonth = this.date.getDate() + (value * 7);
     this.date.setDate(dayOfMonth);
-    this.initDates(this.date)
+    this.initDates(this.date);
   }
 
   changeMonth(value: number) {
@@ -97,9 +91,7 @@ export class ClassBookComponent implements OnInit, OnDestroy {
 
   save(): void {
     this.loading = true;
-    this.sub2 = this.studentService.updateStudents(this.studentsToUpdate).subscribe(() => {
-      this.loading = false;
-    });
+    this.sub2 = this.studentService.updateStudents(this.studentsToUpdate).subscribe(() =>this.loading = false);
   }
 
   private getDate(index: number): Date {
@@ -108,25 +100,13 @@ export class ClassBookComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  private _langChanged(lang: string) {
-    if (lang === "en") {
-      this.days = DayNames;
-      this.months = MonthNames;
-    } else if (lang === "uk") {
-      this.days = DayNamesUk;
-      this.months = MonthNamesUk;
-    } else {
-      this.days = DayNamesHu;
-      this.months = MonthNamesHu;
-    }
-  }
-
   private initDates(date: Date): void {
     this.year = date.getFullYear();
     const dates = eachDayOfInterval({
       start: startOfWeek(this.date, { weekStartsOn: 1 }),
       end: endOfWeek(this.date, { weekStartsOn: 1 })
     })
-    this.daysOfWeek = dates.map(date => `${this.months[date.getMonth()]} - ${date.getDate()}`)
+    this.months = dates.map(date => MonthNames[date.getMonth()])
+    this.days = dates.map(date => date.getDate());
   }
 }

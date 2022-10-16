@@ -5,23 +5,23 @@
             <tr>
                 <th></th>
                 <th style="display:flex; flex-direction:column">
-                    <span class="clickable" (click)="changeMonth(-1)" matTooltip="previous month"
+                    <span class="clickable" (click)="changeMonth(-1)" [matTooltip]="t('previous_month')"
                         matTooltipPosition="before">
                         << </span>
-                            <span class="clickable" (click)="changeWeek(-1)" matTooltip="previous week"
+                            <span class="clickable" (click)="changeWeek(-1)" [matTooltip]="t('previous_week')"
                                 matTooltipPosition="before">
                                 < </span>
                 </th>
-                <th *ngFor="let day of days, let i = index">
+                <th *ngFor="let day of dayNames, let i = index">
                     <div style="display:flex; flex-direction:column">
-                        <span>{{daysOfWeek[i]}}</span>
-                        <span>{{day}}</span>
+                        <span>{{t(months[i])}} - {{days[i]}}</span>
+                        <span>{{t(day)}}</span>
                     </div>
                 </th>
                 <th style="display:flex; flex-direction:column">
-                    <span class="clickable" (click)="changeMonth(1)" matTooltip="next month"
+                    <span class="clickable" (click)="changeMonth(1)" [matTooltip]="t('next_month')"
                         matTooltipPosition="after">>></span>
-                    <span class="clickable" (click)="changeWeek(1)" matTooltip="next week"
+                    <span class="clickable" (click)="changeWeek(1)" [matTooltip]="t('next_week')"
                         matTooltipPosition="after">></span>
                 </th>
             </tr>
@@ -31,7 +31,7 @@
                 <td>
                     <!-- placeholder for arrow -->
                 </td>
-                <td *ngFor="let day of days, let i=index">
+                <td *ngFor="let day of dayNames, let i=index">
                     <mat-button-toggle-group (change)="setPresence(student,$event.value,i)"
                         [value]="isStudentPresent(student,i)">
                         <mat-button-toggle value="present">{{t('present')}}
@@ -46,7 +46,7 @@
                 <td>
                     <!-- placeholder for arrow -->
                 </td>
-                <td *ngFor="let day of days, let i=index">{{sumOfPresentStudents(i)}}</td>
+                <td *ngFor="let day of dayNames, let i=index">{{sumOfPresentStudents(i)}}</td>
             </tr>
         </table>
         <div>

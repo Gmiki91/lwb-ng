@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Result, StudentResult } from '../shared/models/student.model';
 import { StudentService } from '../shared/services/student.service';
 import { ClassRooms } from '../shared/models/constants'
-import { TranslocoService } from '@ngneat/transloco';
 type StudentMark = {
   id: string,
   mark: number
@@ -16,16 +15,16 @@ type StudentMark = {
 })
 export class GradeBookComponent implements OnInit {
   months = [
-    { name: 'September', nameHu: 'Szeptember', nameUk: 'Вересень', value: 9 },
-    { name: 'October', nameHu: 'Október', nameUk: 'Жовтень', value: 10 },
-    { name: 'November', nameHu: 'November', nameUk: 'Листопад', value: 11 },
-    { name: 'December', nameHu: 'December', nameUk: 'Грудень', value: 12 },
-    { name: 'January', nameHu: 'Január', nameUk: 'Січень', value: 1 },
-    { name: 'February', nameHu: 'Február', nameUk: 'Лютий', value: 2 },
-    { name: 'March', nameHu: 'Március', nameUk: 'Березень', value: 3 },
-    { name: 'April', nameHu: 'Április', nameUk: 'Квітень', value: 4 },
-    { name: 'May', nameHu: 'Május', nameUk: 'Травень', value: 5 },
-    { name: 'June', nameHu: 'Június', nameUk: 'Червень', value: 6 }
+    { name: 'september', value: 9 },
+    { name: 'october', value: 10 },
+    { name: 'november', value: 11 },
+    { name: 'december',  value: 12 },
+    { name: 'january', value: 1 },
+    { name: 'february', value: 2 },
+    { name: 'march',  value: 3 },
+    { name: 'april', value: 4 },
+    { name: 'may', value: 5 },
+    { name: 'june', value: 6 }
   ];
 
   studentMarks: StudentMark[] = [];
@@ -37,15 +36,10 @@ export class GradeBookComponent implements OnInit {
   editingId: string | undefined;
   redMark: Result | undefined;
   loading = false;
-  lang!: string;
-  subcription: Subscription = Subscription.EMPTY;
-  constructor(private studentService: StudentService, private route: ActivatedRoute, private translocoService: TranslocoService) {
-  }
+  
+  constructor(private studentService: StudentService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.subcription = this.translocoService.langChanges$.subscribe(lang => {
-      this.lang = lang;
-    })
     this.route.queryParams.subscribe(params => {
       this.grade = params['grade'];
       this.subjects = ClassRooms
@@ -112,14 +106,5 @@ export class GradeBookComponent implements OnInit {
     this.resultData = result;
     this.editingId = id;
     this.redMark = result;
-  }
-
-  getMonth(i: number): string {
-    if (this.lang === "en")
-      return this.months[i].name;
-    else if (this.lang === "uk")
-      return this.months[i].nameUk;
-    else
-      return this.months[i].nameHu;
   }
 }

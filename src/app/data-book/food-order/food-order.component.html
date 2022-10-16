@@ -1,20 +1,21 @@
+<ng-container *transloco="let t">
 <table class="food_table">
     <tr>
-        <td>Food request</td>
-        <td *ngFor="let day of days, let i = index">
+        <td>{{t('food_request')}}</td>
+        <td *ngFor="let day of dayNames, let i = index">
            <div  class="top">
-                <span class="top__upper">{{daysOfWeek[i]}}</span>
-                <span class="top__lower">{{day}}</span>
+                <span class="top__upper">{{t(months[i])}} - {{days[i]}}</span>
+                <span class="top__lower">{{t(day)}}</span>
             </div>
         </td>
     </tr>
     <tr>
         <td>
-            <button mat-stroked-button color="primary" (click)="updateFoodOrder()">Update order</button>
+            <button mat-stroked-button color="primary" (click)="updateFoodOrder()">{{t('save')}}</button>
         </td>
-        <td style="text-align:center" *ngFor="let day of days, let i = index">
+        <td style="text-align:center" *ngFor="let day of dayNames, let i = index">
             <mat-checkbox  [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
         </td>
-       
     </tr>
 </table>
+</ng-container>
