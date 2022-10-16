@@ -18,7 +18,7 @@ export class FoodOrderComponent implements OnInit {
   dates!: Date[];
   daysOfWeek: string[] = [];
   checkedDays: number[] = [];
-
+  changed=false;
   constructor(private studentService: StudentService) { }
 
   ngOnInit(): void {
@@ -35,6 +35,7 @@ export class FoodOrderComponent implements OnInit {
   }
 
   onChange(i: number, checked: boolean) {
+    this.changed=true
     const result = this.dates[i].getTime();
     if (checked) {
       this.checkedDays.push(result)
@@ -64,6 +65,7 @@ export class FoodOrderComponent implements OnInit {
   updateFoodOrder(): void {
     this.student.foodOrderedFor = this.checkedDays;
     this.studentService.updateFoodOrders(this.student);
+    this.changed=false;
   }
 
 }

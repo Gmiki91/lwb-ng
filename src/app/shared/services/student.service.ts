@@ -5,6 +5,7 @@ import { Subject, map, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Student, StudentResult, Result } from "../models/student.model";
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -58,22 +59,14 @@ export class StudentService {
     }
 
     updateFoodOrders(student: Student) {
-        this.http.put<{ status: string }>(`${environment.url}/students/food`, { student }).subscribe(result => {
-            if (result.status === 'success')
-                this.snackbar.open('Food order updated', '', {
-                    duration: 2000
-                });
-            else
-                this.snackbar.open('An error has occurred', '', {
-                    duration: 2000
-                });
+        this.http.put<{ status: string }>(`${environment.url}/students/food`, { student }).subscribe(() => {
         })
     }
 
     getAllFoodOrders() {
-        // this.http.get<{ status: string, orders:{date:number,value:number} }>(`${environment.url}/food`).subscribe(result => {
-        //     console.log(result);
-        // })
+        return this.http.get<{status:string,result:{date:Date, count:number}[]}>(`${environment.url}/students/food/all`).pipe(map(value => {
+            return value.result;
+        }));
     }
 
     requestStudentResults(grade: number, subject: string) {

@@ -27,6 +27,6 @@
     </div>
     <button mat-stroked-button (click)="submit()">{{t('save')}}</button>
     <!-- we are in editing mode if mark is present-->
-    <button mat-stroked-button *ngIf="this.data.mark" (click)="cancel()">Cancel</button>
+    <button mat-stroked-button *ngIf="this.data.mark" (click)="cancel()">{{t('cancel')}}</button>
     </ng-container>
 </div>

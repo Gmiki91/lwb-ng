@@ -11,9 +11,9 @@
     </tr>
     <tr>
         <td>
-            <button mat-stroked-button color="primary" (click)="updateFoodOrder()">{{t('save')}}</button>
+            <button mat-raised-button [color]="changed ? 'warn':''" (click)="updateFoodOrder()">{{changed ? t('save'): '✔'}}</button>
         </td>
-        <td style="text-align:center" *ngFor="let day of dayNames, let i = index">
+        <td style="text-align:center"  *ngFor="let day of dayNames, let i = index">
             <mat-checkbox  [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
         </td>
     </tr>

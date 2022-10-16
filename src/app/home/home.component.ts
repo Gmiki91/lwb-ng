@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type') as '1' | '2' | '0';
-    this.studentService.getAllFoodOrders();
   }
 
   openGradeBook(grade: number[], subject: Subject): void {

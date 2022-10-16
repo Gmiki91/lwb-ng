@@ -38,6 +38,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HeaderComponent } from './header/header.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import {SummaryComponent} from './summary/summary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { TranslocoRootModule } from './transloco-root.module';
     GradesComponent,
     FoodOrderComponent,
     SpinnerComponent,
-    HeaderComponent
+    HeaderComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

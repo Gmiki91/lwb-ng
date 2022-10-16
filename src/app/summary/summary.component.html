@@ -1,0 +1,8 @@
+<h2>Rendelések</h2>
+<div *ngFor="let item of data$|async">
+    {{formatDate(item.date)}} - {{formatCount(item.count)}}
+</div>
+<h2>Létszám</h2>
+<div>
+    
+</div>
