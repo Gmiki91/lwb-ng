@@ -3,7 +3,7 @@
         <div *ngIf="type === '1'">
             <h1 style="text-align:center">{{t('classes')}}</h1>
             <ng-container *ngFor="let classroom of classRooms">
-                <mat-expansion-panel hideToggle *ngFor="let grade of classroom.grades, let i=index">
+                <mat-expansion-panel  hideToggle *ngFor="let grade of classroom.grades, let i=index">
                     <mat-expansion-panel-header>
                         <mat-panel-title class="center">{{grade}}</mat-panel-title>
                     </mat-expansion-panel-header>

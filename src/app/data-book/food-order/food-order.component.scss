@@ -1,3 +1,4 @@
+@use '../../../variables' as v;
 .food_table>* {
     text-align: center;
 }
@@ -21,5 +22,8 @@
     }
 }
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-   background-color: #2196f3;
+   background-color: v.$secondary_color;;
 }
+::ng-deep .mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background {
+    background-color: #cccccc;
+ }

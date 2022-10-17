@@ -46,7 +46,7 @@
         <mat-checkbox matInput ngModel name="vegetarian" [checked]="false">{{t('vegan')}}</mat-checkbox>
         <mat-checkbox matInput ngModel name="homeGoing" [checked]="false">May go home alone</mat-checkbox>
         <button [matTooltip]="!registerForm.valid ? t('missing_fields') : ''"
-            [ngClass]="registerForm.valid && !loading ? 'blue-btn' : 'inactive-btn'" mat-stroked-button
+            [ngClass]="registerForm.valid && !loading ? 'primary-btn' : 'inactive-btn'" mat-stroked-button
             class="wide-btn">
             {{t('save')}}
         </button>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DayNames,MonthNames } from '../shared/models/constants';
+import { DayNames, MonthNames } from '../shared/models/constants';
 import { Student } from '../shared/models/student.model';
 import { StudentService } from '../shared/services/student.service';
 import { startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
@@ -12,17 +12,18 @@ import { startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
   styleUrls: ['./class-book.component.scss']
 })
 export class ClassBookComponent implements OnInit, OnDestroy {
-  dayNames=DayNames;
-  grade!:number;
+  dayNames = DayNames;
+  grade!: number;
   date = new Date();
   sub1: Subscription = Subscription.EMPTY;
   sub2: Subscription = Subscription.EMPTY;
   students?: Student[];
   year!: number;
-  months: string[]=[];
-  days:number[]=[];
+  months: string[] = [];
+  days: number[] = [];
   studentsToUpdate: Student[] = [];
   loading = true;
+  changed = false;
   constructor(private route: ActivatedRoute, private studentService: StudentService) {
   }
 
@@ -31,10 +32,11 @@ export class ClassBookComponent implements OnInit, OnDestroy {
     this.initDates(this.date);
     this.route.queryParams.subscribe(params => {
       this.sub1 = this.studentService.getStudentsOfClass(params['grade'])
-        .subscribe(students => { 
+        .subscribe(students => {
           this.grade = params['grade'];
-          this.students = students; 
-          this.loading = false; });
+          this.students = students;
+          this.loading = false;
+        });
     });
   }
 
@@ -81,6 +83,7 @@ export class ClassBookComponent implements OnInit, OnDestroy {
       const i = student.missedClassAt.indexOf(date);
       student.missedClassAt.splice(i, 1);
     }
+    this.changed = true;
     this.studentsToUpdate.push(student);
   }
 
@@ -94,8 +97,14 @@ export class ClassBookComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    this.loading = true;
-    this.sub2 = this.studentService.updateStudents(this.studentsToUpdate).subscribe(() =>this.loading = false);
+    if (this.changed) {
+      this.loading = true;
+      this.sub2 = this.studentService.updateStudents(this.studentsToUpdate).subscribe(() => {
+        this.loading = false;
+        this.changed = false;
+      });
+    }
+
   }
 
   private getDate(index: number): Date {

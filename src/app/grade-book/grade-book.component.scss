@@ -1,3 +1,4 @@
+@use '../../variables' as v;
 app-mark{
     display:flex;
     justify-content: center;
@@ -18,7 +19,12 @@ app-mark{
 :host ::ng-deep .mat-button-toggle-group-appearance-standard .mat-button-toggle+.mat-button-toggle  {
     border:0;
 }
-
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: v.$secondary_color;
+ }
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: v.$main_color
+}
 table{
     margin-bottom:5%;
 }

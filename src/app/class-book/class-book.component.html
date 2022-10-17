@@ -51,7 +51,7 @@
             </tr>
         </table>
         <div>
-            <button class="blue-btn" mat-stroked-button (click)="save()">{{t('save')}} </button>
+            <button [disabled]="!changed" [ngClass]="changed ? 'primary-btn':'inactive-btn'" mat-stroked-button (click)="save()">{{t('save')}} </button>
         </div>
 </div>
 </ng-container>

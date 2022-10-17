@@ -25,7 +25,7 @@
                 </td>
                 <td class="marks">
                     <mat-radio-group (change)="changeMark(student._id,$event.value)">
-                        <mat-radio-button [disabled]="editingId!==undefined" *ngFor="let number of [1,2,3,4,5]"
+                        <mat-radio-button class="mat-checkbox-background" [disabled]="editingId!==undefined" *ngFor="let number of [1,2,3,4,5]"
                             [value]="number">
                             <span class="wrap-mat-radio-label">{{number}}</span>
                         </mat-radio-button>

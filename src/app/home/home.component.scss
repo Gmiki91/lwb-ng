@@ -1,3 +1,4 @@
+@use '../../variables' as v;
 .container{
     display:flex;
     flex-direction:column;
@@ -10,4 +11,7 @@
 }
 .center{
     justify-content: center;
+}
+::ng-deep .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]){
+    background:v.$secondary_color;
 }

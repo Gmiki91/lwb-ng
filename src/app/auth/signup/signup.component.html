@@ -25,7 +25,7 @@
                 <mat-hint class="red" *ngIf="passwordMissmatch">Passwords do not match</mat-hint>
             </mat-form-field>
             <button [matTooltip]="!signUpForm.valid ? t('missing_fields') : ''"
-                [ngClass]="signUpForm.valid && !passwordMissmatch ? 'blue-btn' : 'inactive-btn'"
+                [ngClass]="signUpForm.valid && !passwordMissmatch ? 'primary-btn' : 'inactive-btn'"
                 mat-stroked-button class="wide-btn" type="submit()">
                 {{t('signup')}}
             </button>
