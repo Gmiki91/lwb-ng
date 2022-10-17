@@ -1,17 +1,19 @@
 <ng-container *transloco="let t">
-<div class="container">
-    <div *ngIf="type === '1'">
+    <div class="container">
+        <div *ngIf="type === '1'">
             <h1 style="text-align:center">{{t('classes')}}</h1>
-            <mat-expansion-panel hideToggle *ngFor="let classroom of classRooms">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>{{classroom.grade}}</mat-panel-title>
-                </mat-expansion-panel-header>
-                <div class="links">
-                    <a routerLink="/data-book" [queryParams]="{grade:classroom.grade}">{{t('roster')}}</a>
-                    <a routerLink="/grade-book" [queryParams]="{grade:classroom.grade}">{{t('diary')}}</a>
-                    <a routerLink="/class-book" [queryParams]="{grade:classroom.grade}">{{t('attendance')}}</a>
-                </div>
-            </mat-expansion-panel>
+            <ng-container *ngFor="let classroom of classRooms">
+                <mat-expansion-panel hideToggle *ngFor="let grade of classroom.grades, let i=index">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{grade}}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="links">
+                        <a routerLink="/data-book" [queryParams]="{grade:classroom.grades[i]}">{{t('roster')}}</a>
+                        <a routerLink="/grade-book" [queryParams]="{grade:classroom.grades[i]}">{{t('diary')}}</a>
+                        <a routerLink="/class-book" [queryParams]="{grade:classroom.grades[i]}">{{t('attendance')}}</a>
+                    </div>
+                </mat-expansion-panel>
+            </ng-container>
         </div>
         <app-data-book *ngIf="type === '0'" [parentMode]="true"></app-data-book>
         <app-summary *ngIf="type==='2'"></app-summary>

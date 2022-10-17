@@ -43,7 +43,7 @@ export class GradeBookComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.grade = params['grade'];
       this.subjects = ClassRooms
-        .filter(classroom => classroom.grade === +this.grade)
+        .filter(classroom => classroom.grades.includes(+this.grade))
         .map(classroom => classroom.subjects)[0];
     });
     this.data$ = this.studentService.getStudentResults().pipe(
@@ -88,6 +88,7 @@ export class GradeBookComponent implements OnInit {
       //cancelled editing
       this.editingId = undefined;
       this.redMark = undefined;
+      this.resultData={} as Result;
     }
   }
   ratedInMonth(monthIndex: number, results: Result[]): Result[] {

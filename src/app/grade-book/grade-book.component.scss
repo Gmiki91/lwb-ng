@@ -1,3 +1,7 @@
+app-mark{
+    display:flex;
+    justify-content: center;
+}
 .container {
     display: flex;
     flex-direction: column;
@@ -5,9 +9,14 @@
     justify-content: center;
     margin-top: 1%;
 }
+.subjects{
+    margin-top:5%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
 
-.subject-btn {
-    margin-right: 5px;
+:host ::ng-deep .mat-button-toggle-group-appearance-standard .mat-button-toggle+.mat-button-toggle  {
+    border:0;
 }
 
 table,
