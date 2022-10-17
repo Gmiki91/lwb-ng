@@ -1,29 +1,29 @@
 <ng-container *transloco="let t">
 <div class="container">
     <h1>{{grade}}. {{t('class')}}</h1>
-        <h3>{{year}}</h3>
+        <h2>{{year}}</h2>
         <table  [ngClass]="loading?'inactive':''">
             <tr>
                 <th></th>
                 <th style="display:flex; flex-direction:column">
                     <span class="clickable" (click)="changeMonth(-1)" [matTooltip]="t('previous_month')"
                         matTooltipPosition="before">
-                        << </span>
+                        ⮘⮘ </span>
                             <span class="clickable" (click)="changeWeek(-1)" [matTooltip]="t('previous_week')"
                                 matTooltipPosition="before">
-                                < </span>
+                                ⮘ </span>
                 </th>
                 <th *ngFor="let day of dayNames, let i = index">
                     <div style="display:flex; flex-direction:column">
-                        <span>{{t(months[i])}} - {{days[i]}}</span>
-                        <span>{{t(day)}}</span>
+                        <i>{{t(months[i])}} - {{days[i]}}</i>
+                        <i>{{t(day)}}</i>
                     </div>
                 </th>
                 <th style="display:flex; flex-direction:column">
                     <span class="clickable" (click)="changeMonth(1)" [matTooltip]="t('next_month')"
-                        matTooltipPosition="after">>></span>
+                        matTooltipPosition="after">⮚⮚</span>
                     <span class="clickable" (click)="changeWeek(1)" [matTooltip]="t('next_week')"
-                        matTooltipPosition="after">></span>
+                        matTooltipPosition="after">⮚</span>
                 </th>
             </tr>
 
