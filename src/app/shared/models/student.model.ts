@@ -28,7 +28,7 @@ export type StudentResult={
     fullNameC:string;
     results:Result[];
 }
-type GradeBook ={
+export type GradeBook ={
     grade:number;
     subject:string;
     results:Result[];

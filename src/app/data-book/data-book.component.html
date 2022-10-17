@@ -5,7 +5,7 @@
         <div class="list">
             <div class="name">{{student.fullNameC}}</div>
             <button mat-stroked-button class="clickable" (click)="openData(student)">{{t('data')}}</button>
-            <button mat-stroked-button class="clickable" (click)="openGrades(student)">{{t('roster')}}</button>
+            <button mat-stroked-button class="clickable" (click)="openGrades(student)">{{t('diary')}}</button>
             <button mat-stroked-button class="clickable" (click)="openAttendance(student)">{{t('attendance')}}</button>
         </div>
         <app-food-order *ngIf="parentMode" [student]="student"></app-food-order>

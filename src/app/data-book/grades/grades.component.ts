@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Student } from 'src/app/shared/models/student.model';
+import { GradeBook, Student } from 'src/app/shared/models/student.model';
 import { format } from 'date-fns'
 @Component({
   selector: 'app-grades',
@@ -9,8 +9,8 @@ import { format } from 'date-fns'
 })
 export class GradesComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<GradesComponent>,
-    @Inject(MAT_DIALOG_DATA) public student: Student) {
+  page:GradeBook|null = null;
+  constructor(@Inject(MAT_DIALOG_DATA) public student: Student) {
   }
 
   ngOnInit(): void {
@@ -20,4 +20,8 @@ export class GradesComponent implements OnInit {
     const dateToString = format(new Date(date),'dd/MM/yyyy')
     return dateToString;
   }
+  changeSubject(page:GradeBook){
+    this.page=page;
+  }
+
 }

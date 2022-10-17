@@ -1,20 +1,25 @@
-<div class="container" *ngFor="let page of student.gradeBook">
-    <ng-container *transloco="let t">
-    <h2>{{t(page.subject)}} - {{t('class')}} {{page.grade}}</h2>
-    <table class="content">
-        <tr>
-            <th>{{t('date')}}</th>
-            <th>{{t('note')}}</th>
-            <th>{{t('type')}}</th>
-            <th>{{t('mark')}}</th>
-        </tr>
-        <tr *ngFor="let entry of page.results">
-            <td>{{dateOf(entry.date)}}</td>
-            <td>{{entry.note}}</td>
-            <td>{{entry.type}}</td>
-            <td>{{entry.mark}}</td>
-        </tr>
-    </table>
-</ng-container>
+<div>
+   
+        <ng-container *transloco="let t">
+        <mat-button-toggle-group class="subjects">
+            <mat-button-toggle *ngFor="let page of student.gradeBook" value="page.subject" (change)="changeSubject(page)">
+                {{t(page.subject)}}
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+            <table *ngIf="page" >
+                <tr>
+                    <th>{{t('note')}}</th>
+                    <th>{{t('date')}}</th>
+                    <th>{{t('type')}}</th>
+                    <th>{{t('mark')}}</th>
+                </tr>
+                <tr *ngFor="let entry of page.results">
+                    <td>{{entry.note}}</td>
+                    <td>{{dateOf(entry.date)}}</td>
+                    <td>{{entry.type}}</td>
+                    <td>{{entry.mark}}</td>
+                </tr>
+            </table>
+        </ng-container>
+  
 </div>
-
