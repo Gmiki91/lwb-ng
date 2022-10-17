@@ -20,3 +20,6 @@
         border-radius: 0px  0px  5px  5px;   
     }
 }
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+   background-color: #2196f3;
+}

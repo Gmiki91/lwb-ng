@@ -9,10 +9,11 @@
   "class": "Class",
   "missed": "Missed days",
   "food_request": "Food request",
- 
+
   "headcount": "Headcount",
   "save": "Save",
   "cancel": "Cancel",
+  "update":"Update",
   "date": "Date",
   "note": "Note",
   "type": "Type",
