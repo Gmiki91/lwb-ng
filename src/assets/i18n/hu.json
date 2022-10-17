@@ -78,5 +78,6 @@
   "phone":"Telefonszám",
   "present":"Jelen",
   "absent":"Hiányzik",
-  "vegan":"Vegán"
+  "vegan":"Vegán",
+  "missing_fields": "Hiányzó adat"
 }

@@ -14,13 +14,16 @@
                         {{showPassword ? 'visibility_off' : 'visibility' }}
                     </mat-icon>
                 </mat-form-field>
-                <button [matTooltip]="!loginForm.valid ? 'All fields must be filled' : ''"
-                    [ngClass]="loginForm.valid ? 'form-button' : 'inactive-button'" mat-stroked-button class="btn"
+                <button [matTooltip]="!loginForm.valid ? t('missing_fields') : ''"
+                    [ngClass]="loginForm.valid ? 'blue-btn' : 'inactive-btn'" mat-stroked-button class="wide-btn"
                     type="submit()">
                     {{t('login')}}
                 </button>
             </form>
-            <a routerLink="/signup">{{t('signup')}}</a>
+            <br>
+            <br>
+            <br>
+            <button mat-button class="blue-btn wide-btn" routerLink="/signup">{{t('signup')}}</button>
             </ng-container>
     </div>
 </div>

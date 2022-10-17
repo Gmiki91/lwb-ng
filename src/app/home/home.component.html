@@ -5,12 +5,12 @@
             <ng-container *ngFor="let classroom of classRooms">
                 <mat-expansion-panel hideToggle *ngFor="let grade of classroom.grades, let i=index">
                     <mat-expansion-panel-header>
-                        <mat-panel-title>{{grade}}</mat-panel-title>
+                        <mat-panel-title class="center">{{grade}}</mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="links">
-                        <a routerLink="/data-book" [queryParams]="{grade:classroom.grades[i]}">{{t('roster')}}</a>
-                        <a routerLink="/grade-book" [queryParams]="{grade:classroom.grades[i]}">{{t('diary')}}</a>
-                        <a routerLink="/class-book" [queryParams]="{grade:classroom.grades[i]}">{{t('attendance')}}</a>
+                        <button mat-button routerLink="/data-book" [queryParams]="{grade:classroom.grades[i]}">{{t('roster')}}</button>
+                        <button mat-button routerLink="/grade-book" [queryParams]="{grade:classroom.grades[i]}">{{t('diary')}}</button>
+                        <button mat-button routerLink="/class-book" [queryParams]="{grade:classroom.grades[i]}">{{t('attendance')}}</button>
                     </div>
                 </mat-expansion-panel>
             </ng-container>

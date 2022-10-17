@@ -78,5 +78,6 @@
   "phone": "Phone number",
   "present": "Present",
   "absent": "Absent",
-  "vegan": "Vegan"
+  "vegan": "Vegan",
+  "missing_fields": "Missing data"
 }

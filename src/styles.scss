@@ -2,17 +2,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-button.btn {
+
+button.wide-btn {
     width: 220px;
-    color:white;
     margin:2px 0px;
   }
 
-  button.form-button{
+  button.blue-btn{
     background:#2196f3;
+    color:white;
   }
 
-  button.inactive-button{
+  button.inactive-btn{
     background-color: #cccccc;
     color: #666666;
 

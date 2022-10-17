@@ -45,9 +45,9 @@
         </mat-form-field>
         <mat-checkbox matInput ngModel name="vegetarian" [checked]="false">{{t('vegan')}}</mat-checkbox>
         <mat-checkbox matInput ngModel name="homeGoing" [checked]="false">May go home alone</mat-checkbox>
-        <button [matTooltip]="!registerForm.valid ? 'All fields must be filled' : ''"
-            [ngClass]="registerForm.valid && !loading ? 'form-button' : 'inactive-button'" mat-stroked-button
-            class="btn">
+        <button [matTooltip]="!registerForm.valid ? t('missing_fields') : ''"
+            [ngClass]="registerForm.valid && !loading ? 'blue-btn' : 'inactive-btn'" mat-stroked-button
+            class="wide-btn">
             {{t('save')}}
         </button>
         </ng-container>
