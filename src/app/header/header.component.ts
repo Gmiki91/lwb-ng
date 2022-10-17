@@ -11,8 +11,8 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   languageList = [
-    { code: 'en', label: 'English' },
     { code: 'uk', label: 'Український' },
+    { code: 'en', label: 'English' },
     { code: 'hu', label: 'Magyar' }
   ];
   selected = this.languageList[0];
