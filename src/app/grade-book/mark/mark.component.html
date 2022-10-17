@@ -25,7 +25,7 @@
                 checked="number==data.mark">{{number}}</mat-radio-button>
         </mat-radio-group>
     </div>
-    <button mat-stroked-button [disabled]="!data.date" [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' " (click)="submit()">{{t(data.mark? 'update' : 'save')}}</button>
+    <button mat-raised-button [disabled]="!data.date" [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' " (click)="submit()">{{t(data.mark? 'update' : 'save')}}</button>
     <!-- we are in editing mode if mark is present-->
     <button mat-raised-button class="secondary-btn" *ngIf="data.mark" (click)="cancel()">{{t('cancel')}}</button>
     </ng-container>

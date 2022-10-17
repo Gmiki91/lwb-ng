@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use 'variables' as v;
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif}
 
 button.wide-btn {
     width: 220px;
@@ -26,4 +26,14 @@ button.wide-btn {
 
 .clickable{
   cursor:pointer;
+}
+
+.mat-expansion-panel.mat-expanded {
+  background:v.$secondary_color;
+  b, div>*{
+      color:white
+  }
+}
+.mat-button-toggle-checked{
+  background-color:v.$secondary_color;
 }
