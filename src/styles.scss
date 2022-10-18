@@ -8,7 +8,7 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 button.wide-btn {
@@ -56,4 +56,14 @@ h1 {
   color: v.$main_color;
   font-weight: lighter;
   text-align: center;
+}
+.box {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding:3rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }

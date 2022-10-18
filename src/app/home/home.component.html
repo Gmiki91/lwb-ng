@@ -1,6 +1,6 @@
 <ng-container *transloco="let t">
     <div class="container">
-        <div *ngIf="type === '1'">
+        <div class="box" *ngIf="type === '1'">
             <h1> {{t('classes')}}</h1>
             <ng-container *ngFor="let classroom of classRooms">
                 <mat-expansion-panel  hideToggle *ngFor="let grade of classroom.grades, let i=index">

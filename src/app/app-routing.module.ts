@@ -5,11 +5,11 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { GradeBookComponent } from './grade-book/grade-book.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 import { ClassBookComponent } from './class-book/class-book.component';
 import { DataBookComponent } from './data-book/data-book.component';
-import { AdminGuard } from './auth/admin.guard';
-import { TeacherGuard } from './auth/teacher.guard';
+import { AdminGuard } from './auth/guards/admin.guard';
+import { TeacherGuard } from './auth/guards/teacher.guard';
 const routes: Routes = [
   {component:SignupComponent, path: 'signup'},
   {component:LoginComponent, path: 'login'},
