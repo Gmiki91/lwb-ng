@@ -50,9 +50,9 @@
                 <td *ngFor="let day of dayNames, let i=index">{{sumOfPresentStudents(i)}}</td>
             </tr>
         </table>
+        <app-spinner *ngIf="loading"></app-spinner>
         <div>
             <button [disabled]="!changed" [ngClass]="changed ? 'primary-btn':'inactive-btn'" mat-stroked-button (click)="save()">{{t('save')}} </button>
         </div>
 </div>
 </ng-container>
-<app-spinner *ngIf="loading"></app-spinner>

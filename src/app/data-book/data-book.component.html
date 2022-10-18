@@ -8,6 +8,7 @@
             <button mat-stroked-button class="clickable" (click)="openGrades(student)">{{t('diary')}}</button>
             <button mat-stroked-button class="clickable" (click)="openAttendance(student)">{{t('attendance')}}</button>
         </div>
+        <br>
         <app-food-order *ngIf="parentMode" [student]="student"></app-food-order>
         <mat-divider></mat-divider>
     </div>

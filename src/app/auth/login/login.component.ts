@@ -23,7 +23,20 @@ export class LoginComponent implements OnInit {
     const {  email, password } = form.controls;
     if (form.valid) {
       this.loading=true;
-      this.authService.logIn(email.value, password.value);
+      this.authService.logIn(email.value, password.value).subscribe(
+        {
+            next: result => {
+                if (result.status==='success') {
+                    this.router.navigate(['/']);
+                    localStorage.setItem('access_token', result.token);
+                    localStorage.setItem('type',result.type);
+                } 
+            },
+            error: repsonse => {
+                alert(repsonse.error.message);
+                this.loading=false;
+            }
+        });
     }
   }
 
