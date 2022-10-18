@@ -22,6 +22,7 @@ export class GradesComponent implements OnInit {
   }
   changeSubject(page:GradeBook){
     this.page=page;
+    this.page.results.sort((a,b) =>new Date(a.date).getTime()-new Date(b.date).getTime());
   }
 
 }

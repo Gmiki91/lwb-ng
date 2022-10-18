@@ -18,5 +18,6 @@ export class AttendanceComponent implements OnInit {
     this.missedClasses = this.student.missedClassAt
     .map(missedClass=> new Date(missedClass))
     .map(missedClass=>format(new Date(missedClass),'yyyy/MM/dd'))
+    .sort((a,b)=>new Date(a).getTime() - new Date(b).getTime())
   }
 }
