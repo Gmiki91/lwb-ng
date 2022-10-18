@@ -1,7 +1,7 @@
 <ng-container *transloco="let t">
 <table class="food_table">
     <tr>
-        <td>{{t('food_request')}}</td>
+            <td class="food-request">🍔 {{t('food_request')}} 🍔</td>
         <td *ngFor="let day of dayNames, let i = index">
            <div  class="top">
                 <span class="top__upper">{{t(months[i])}} - {{days[i]}}</span>
@@ -11,7 +11,7 @@
     </tr>
     <tr>
         <td>
-            <button mat-raised-button [ngClass]="changed ? 'primary-btn':''" (click)="updateFoodOrder()">{{changed ? t('save'): '✔'}}</button>
+            <button mat-raised-button *ngIf="changed" [ngClass]="['full-width', 'primary-btn']" (click)="updateFoodOrder()">{{t('save')}}</button>
         </td>
         <td style="text-align:center"  *ngFor="let day of dayNames, let i = index">
             <mat-checkbox [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>

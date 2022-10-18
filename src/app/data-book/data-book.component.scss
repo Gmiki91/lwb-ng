@@ -1,28 +1,26 @@
-.container{
-    display:flex;
+.container {
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top:1%;
-
-    .list{
-      display:flex;
-      justify-content: space-between;
-      min-width:400px;
-
-        .name{
-            align-self:center;
-            font-weight: bold;
-        }
+    margin-top: 1%;
+    h1 {
+        text-align: center;
     }
-    .content{
-        display:flex;
+
+    .name {
+        align-self: center;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom:5px;
+    }
+
+    .content {
+        display: flex;
         flex-direction: column;
-        margin-top:20px;
-        margin-bottom:20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
 
     }
 }
-h1{
-    text-align:center;
-}
+

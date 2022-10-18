@@ -22,6 +22,15 @@
         border-radius: 0px  0px  5px  5px;   
     }
 }
+.food-request{
+    border-width: 1px;
+    border-style:solid;
+    border-color:#0000001f;
+    border-radius: 5px;
+}
+.full-width{
+    width:100%;
+}
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
    background-color: v.$secondary_color;;
 }
