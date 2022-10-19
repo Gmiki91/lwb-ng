@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GradeBook, Student } from 'src/app/shared/models/student.model';
 import { format } from 'date-fns'
 @Component({
@@ -14,7 +14,6 @@ export class GradesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.student.gradeBook
   }
   dateOf(date:number):string{
     const dateToString = format(new Date(date),'dd/MM/yyyy')

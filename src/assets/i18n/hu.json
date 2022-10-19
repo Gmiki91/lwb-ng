@@ -14,10 +14,16 @@
   "save":"Mentés",
   "cancel": "Mégse",
   "update":"Frissítés",
+  "delete":"Törlés",
+  "remove_student":"Tanuló archiválása",
+  "activate_student":"Tanuló törlése",
   "date":"Dátum",
   "note":"Megjegyzés",
   "type":"Típus",
   "mark":"Jegy",
+  "writing":"Írásbeli",
+  "oral":"Szóbeli",
+  "text_assesment":"Szöveges értékelés",
 
   "next_week":"Következő hét",
   "next_month":"Következő hónap",
@@ -64,8 +70,6 @@
   "music":"Zene",
   "p_e":"Testnevelés",
 
-  "writing":"Írásbeli",
-  "oral":"Szóbeli",
 
   "login":"Bejelentkezés",
   "signup":"Regisztráció",

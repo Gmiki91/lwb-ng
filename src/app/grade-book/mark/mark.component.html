@@ -25,8 +25,19 @@
                 checked="number==data.mark">{{number}}</mat-radio-button>
         </mat-radio-group>
     </div>
-    <button mat-raised-button [disabled]="!data.date" [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' " (click)="submit()">{{t(data.mark? 'update' : 'save')}}</button>
+    
+    <div *ngIf="data.textAssesment">
+        <mat-form-field appearance="outline">
+            <mat-label>{{t('text_assesment')}}</mat-label>
+            <input matInput [(ngModel)]="data.textAssesment" type="text" />
+        </mat-form-field>
+    </div>
+    <button mat-raised-button  
+    [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' " (click)="onSave()">{{t(data.mark||data.textAssesment? 'update' : 'save')}}</button>
     <!-- we are in editing mode if mark is present-->
-    <button mat-raised-button class="secondary-btn" *ngIf="data.mark" (click)="cancel()">{{t('cancel')}}</button>
+    <div *ngIf="data.mark || data.textAssesment">
+        <button mat-raised-button color="warn"  (click)="onDelete()">{{t('delete')}}</button>
+        <button mat-raised-button class="secondary-btn"  (click)="cancel()">{{t('cancel')}}</button>
+    </div>
     </ng-container>
 </div>

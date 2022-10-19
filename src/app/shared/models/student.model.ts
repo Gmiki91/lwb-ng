@@ -11,6 +11,7 @@ export type Student ={
     healthIssues:string[];
     vegetarian:boolean;
     homeGoing:boolean;
+    archived:boolean;
     registeredAt:number;
     notes?:string;
     missedClassAt:number[];
@@ -19,13 +20,15 @@ export type Student ={
 }
 export type Result={
     date:number;
-    mark:number;
-    note:string;
-    type:string;
+    mark?:number;
+    textAssesment?:string;
+    note?:string;
+    type?:string;
 }
 export type StudentResult={
     _id:string;
     fullNameC:string;
+    fullNameL:string;
     results:Result[];
 }
 export type GradeBook ={

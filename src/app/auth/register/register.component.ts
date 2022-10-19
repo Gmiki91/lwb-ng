@@ -33,7 +33,8 @@ export class RegisterComponent implements OnInit {
         ukraineSchool: ukraineSchool.value,
         registeredAt: Date.now(),
         missedClassAt:[],
-        foodOrderedFor:[]
+        foodOrderedFor:[],
+        archived:false
       }
       this.loading=true;
       this.studentService.registerStudent(student);

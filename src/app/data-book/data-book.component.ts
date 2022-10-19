@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
@@ -13,22 +13,28 @@ import { GradesComponent } from './grades/grades.component';
   templateUrl: './data-book.component.html',
   styleUrls: ['./data-book.component.scss']
 })
-export class DataBookComponent implements OnInit {
-  students$!: Observable<Student[]>;
+export class DataBookComponent implements OnInit{
+  archivedStudents$!: Observable<Student[]>;
+  activeStudents$!: Observable<Student[]>;
   grade!:string;
-  loading: boolean = true;
+  loading!: boolean;
   @Input() parentMode: boolean = false;
-  constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) {
+    
+   }
 
   ngOnInit(): void {
+    this.archivedStudents$ = this.studentService.getArchivedStudents().pipe(tap(() => this.loading = false))
+    this.activeStudents$ = this.studentService.getActiveStudents().pipe(tap(() => this.loading = false))
     if (this.parentMode) {
-      this.students$ = this.studentService.getChildren().pipe(tap(()=>this.loading=false));
+     this.studentService.getChildren();
     } else {
       this.route.queryParams.subscribe(params => {
         this.grade=params['grade'];
-        this.students$ = this.studentService.getStudentsOfClass(params['grade']).pipe(tap(() => this.loading = false))
+        this.studentService.getStudentsOfClass(params['grade']);
       });
     }
+    
   }
 
   openData(student: Student): void {
@@ -41,4 +47,7 @@ export class DataBookComponent implements OnInit {
     const dialogRef = this.dialog.open(GradesComponent, { data: student });
   }
 
+  toggleArchive(student: Student):void{
+    this.studentService.toggleArchive(student,this.parentMode);
+  }
 }

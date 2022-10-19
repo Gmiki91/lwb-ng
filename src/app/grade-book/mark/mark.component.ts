@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Result } from 'src/app/shared/models/student.model';
 import { MarkTypes } from '../../shared/models/constants';
 @Component({
@@ -6,24 +6,26 @@ import { MarkTypes } from '../../shared/models/constants';
   templateUrl: './mark.component.html',
   styleUrls: ['./mark.component.scss']
 })
-export class MarkComponent implements OnInit {
-  @Output() save: EventEmitter<Result|null> = new EventEmitter();
+export class MarkComponent{
+  @Output() save: EventEmitter<Result | null> = new EventEmitter();
+  @Output() delete: EventEmitter<boolean> = new EventEmitter();
   @Input() data: Result = {} as Result;
-  @ViewChild('mark') mark?:number
   types = MarkTypes;
-  
-  constructor() {}
 
-  ngOnInit(): void {
-  }
+  constructor() { }
 
-  submit() {
-    this.save.next(this.data);
+  onSave() {
+    this.save.emit(this.data);
     this.data = {} as Result
   }
 
-  cancel(){
-    this.save.next(null);
+  onDelete() {
+    this.delete.emit(true);
+  }
+
+  cancel() {
+    this.save.emit(null);
     this.data = {} as Result
   }
+
 }

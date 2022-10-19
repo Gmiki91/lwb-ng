@@ -31,12 +31,14 @@ export class ClassBookComponent implements OnInit, OnDestroy {
     this.date.setHours(8, 0, 0, 0);
     this.initDates(this.date);
     this.route.queryParams.subscribe(params => {
-      this.sub1 = this.studentService.getStudentsOfClass(params['grade'])
+      this.grade = params['grade'];
+      
+      this.sub1 =this.studentService.getActiveStudents()
         .subscribe(students => {
-          this.grade = params['grade'];
-          this.students = students;
+          this.students = students; 
           this.loading = false;
         });
+        this.studentService.getStudentsOfClass(params['grade'])
     });
   }
 

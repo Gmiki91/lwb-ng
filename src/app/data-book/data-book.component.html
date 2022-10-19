@@ -1,19 +1,37 @@
 <div class="container">
-    <div class="box">
     <ng-container *transloco="let t">
-    <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>
-    <div class="content" *ngFor="let student of students$|async">
-        <div>
-            <div class="name">{{student.fullNameC}}</div>
-            <button mat-stroked-button class="clickable" (click)="openData(student)">{{t('data')}}</button>
-            <button mat-stroked-button class="clickable" (click)="openGrades(student)">{{t('diary')}}</button>
-            <button mat-stroked-button class="clickable" (click)="openAttendance(student)">{{t('attendance')}}</button>
+        <div class="box">
+            <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>  
+            <div class="content" *ngFor="let student of activeStudents$|async">
+                <div class="content__student">
+                    <div class="name">{{student.fullNameC}} - {{student.fullNameL}}</div>
+                    <div>
+                        <button mat-stroked-button class="clickable" (click)="openData(student)">{{t('data')}}</button>
+                        <button mat-stroked-button class="clickable"
+                            (click)="openGrades(student)">{{t('diary')}}</button>
+                        <button mat-stroked-button class="clickable"
+                            (click)="openAttendance(student)">{{t('attendance')}}</button>
+                        <button mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
+                            t('remove_student') }}</button>
+                    </div>
+                </div>
+
+                <div *ngIf="parentMode">
+                    <app-food-order [student]="student"></app-food-order>
+                    <mat-divider></mat-divider>
+                    <br>
+                </div>
+            </div>
+            <br>
+            <div class="content" *ngFor="let student of archivedStudents$|async">
+                <div class="content__student">
+                    <div class="name">{{student.fullNameC}} - {{student.fullNameL}}</div>
+                    <button mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
+                        t('activate_student') }}</button>
+
+                </div>
+            </div>
         </div>
-        <br>
-        <app-food-order *ngIf="parentMode" [student]="student"></app-food-order>
-        <br>
-    </div>
-</ng-container>
-</div>
+    </ng-container>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

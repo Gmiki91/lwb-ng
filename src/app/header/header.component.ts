@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { Observable } from 'rxjs';
+import { Observable, map, filter, Subscription } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../shared/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   languageList = [
     { code: 'uk', label: 'Український' },
     { code: 'en', label: 'English' },
@@ -17,12 +17,22 @@ export class HeaderComponent implements OnInit {
   ];
   selected = this.languageList[0];
   loggedIn$!: Observable<boolean>;
+  backArrowVisible = false;
+  sub:Subscription = Subscription.EMPTY;
   constructor(private router: Router, private service: TranslocoService, private auth: AuthService) { }
   ngOnInit(): void {
+   this.sub = this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationStart),
+        map(event => event as NavigationStart))
+      .subscribe(event => this.backArrowVisible=event.url!=='/')
     this.auth.requestLogInStatus();
     this.loggedIn$ = this.auth.getLogInStatus();
   }
 
+  ngOnDestroy():void{
+    this.sub.unsubscribe();
+  }
   changeSiteLanguage(language: any): void {
     const lang = language.target.value
     this.service.setActiveLang(lang);

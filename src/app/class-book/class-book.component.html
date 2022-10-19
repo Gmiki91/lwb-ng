@@ -2,16 +2,19 @@
 <div class="container">
     <h1>{{grade}}. {{t('class')}}</h1>
         <h2>{{year}}</h2>
+        <div>
+            <button [disabled]="!changed" [ngClass]="changed ? 'primary-btn':'inactive-btn'" mat-stroked-button (click)="save()">{{t('save')}} </button>
+        </div>
         <table  [ngClass]="loading?'inactive':''">
             <tr>
                 <th></th>
                 <th style="display:flex; flex-direction:column">
                     <span class="clickable" (click)="changeMonth(-1)" [matTooltip]="t('previous_month')"
                         matTooltipPosition="before">
-                        ⮘⮘ </span>
+                        <<</span>
                             <span class="clickable" (click)="changeWeek(-1)" [matTooltip]="t('previous_week')"
                                 matTooltipPosition="before">
-                                ⮘ </span>
+                                <</span>
                 </th>
                 <th *ngFor="let day of dayNames, let i = index">
                     <div style="display:flex; flex-direction:column">
@@ -21,14 +24,14 @@
                 </th>
                 <th style="display:flex; flex-direction:column">
                     <span class="clickable" (click)="changeMonth(1)" [matTooltip]="t('next_month')"
-                        matTooltipPosition="after">⮚⮚</span>
+                        matTooltipPosition="after">>></span>
                     <span class="clickable" (click)="changeWeek(1)" [matTooltip]="t('next_week')"
-                        matTooltipPosition="after">⮚</span>
+                        matTooltipPosition="after">></span>
                 </th>
             </tr>
 
             <tr *ngFor="let student of students">
-                <td>{{student.fullNameC}}</td>
+                <td>{{student.fullNameC}} - {{student.fullNameL}}</td>
                 <td>
                     <!-- placeholder for arrow -->
                 </td>
@@ -51,8 +54,6 @@
             </tr>
         </table>
         <app-spinner *ngIf="loading"></app-spinner>
-        <div>
-            <button [disabled]="!changed" [ngClass]="changed ? 'primary-btn':'inactive-btn'" mat-stroked-button (click)="save()">{{t('save')}} </button>
-        </div>
+       
 </div>
 </ng-container>

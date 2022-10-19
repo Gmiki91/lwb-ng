@@ -14,10 +14,16 @@
   "save": "Save",
   "cancel": "Cancel",
   "update":"Update",
+  "delete":"Delete",
+  "remove_student": "Remove student",
+  "activate_student":"Activate student",
   "date": "Date",
   "note": "Note",
   "type": "Type",
   "mark": "Mark",
+  "writing":"Writing",
+  "oral":"Oral",
+  "text_assesment":"Text assesment",
 
   "next_week": "Next week",
   "next_month": "Next month",
@@ -64,8 +70,6 @@
   "music":"Music",
   "p_e":"Physical education",
 
-  "writing":"Writing",
-  "oral":"Oral",
 
   "login": "Log in",
   "signup": "Sign up",

@@ -1,10 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Subject, map, Observable } from "rxjs";
+import { Subject, map, Observable, BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Student, StudentResult, Result } from "../models/student.model";
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +11,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class StudentService {
     studentResult = new Subject<StudentResult[]>;
-    constructor(private http: HttpClient, private router: Router, private snackbar: MatSnackBar) { }
+    studentsActive = new BehaviorSubject<Student[]>([]);
+    studentsInActive = new BehaviorSubject<Student[]>([]);
+    constructor(private http: HttpClient, private router: Router) { }
 
     registerStudent(student: Student): void {
         this.http.post<{ status: string }>(`${environment.url}/students/`, student).subscribe(result => {
@@ -22,32 +23,16 @@ export class StudentService {
                 alert("error")
         })
     }
-
-    // getAllStudents() {
-    //     return this.http.get<{  status: string,  students: Student[] }>(`${environment.url}/students/`).pipe(map(result => {
-    //         if (result.status === 'success') {
-    //             return result.students;
-    //         }
-    //         return [];
-    //     }))
-    // }
-
     getStudentsOfClass(classes: number) {
-        return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students/${classes}`).pipe(map(result => {
-            if (result.status === 'success') {
-                return result.students.map(student => { return { ...student, attendance: false } });
-            }
-            return [];
-        }))
+        return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students/many/${classes}`).subscribe(result => {
+            if (result.status === 'success')this._splitStudents(result.students);
+        })
     }
 
     getChildren() {
-        return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students`).pipe(map(result => {
-            if (result.status === 'success') {
-                return result.students;
-            }
-            return [];
-        }))
+        return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students`).subscribe(result => {
+            if (result.status === 'success') this._splitStudents(result.students);
+        })
     }
 
     updateStudents(students: Student[]): Observable<boolean> {
@@ -64,7 +49,7 @@ export class StudentService {
     }
 
     getAllFoodOrders() {
-        return this.http.get<{status:string,result:{date:Date, count:number}[]}>(`${environment.url}/students/food/all`).pipe(map(value => {
+        return this.http.get<{ status: string, result: { date: Date, count: number }[] }>(`${environment.url}/students/food`).pipe(map(value => {
             return value.result;
         }));
     }
@@ -78,7 +63,7 @@ export class StudentService {
         })
     }
 
-    giveStudentsResult(studentMarks: { id: string, mark: number }[], result: Result, grade: number, subject: string) {
+    giveStudentsResult(studentMarks: { id: string, mark?: number, textAssesment?: string }[], result: Result, grade: number, subject: string) {
         this.http.put<{ status: string }>(`${environment.url}/students/results`, { studentMarks, result, grade, subject }).subscribe(result => {
             if (result.status === 'success')
                 this.requestStudentResults(grade, subject)
@@ -96,7 +81,39 @@ export class StudentService {
         })
     }
 
+    deleteStudentResult(studentId: string, result: Result, grade: number, subject: string) {
+        this.http.request<{ status: string }>('delete',`${environment.url}/students/results`, {body:{ studentId, result, grade, subject }}).subscribe(result => {
+            if (result.status === 'success')
+                this.requestStudentResults(grade, subject)
+            else
+                alert("error")
+        })
+    }
+
+    getActiveStudents(){
+        return this.studentsActive.asObservable();
+    }
+    getArchivedStudents(){
+        return this.studentsInActive.asObservable();
+    }
     getStudentResults() {
         return this.studentResult.asObservable();
+    }
+
+    toggleArchive(student:Student, parentDidIt: boolean) {
+        this.http.patch<{ status: string }>(`${environment.url}/students/`,  {student}).subscribe(result => {
+            if (result.status === 'success') {
+                parentDidIt ? this.getChildren() : this.getStudentsOfClass(student.currentGrade);
+            } else
+                alert("error");
+        })
+    }
+
+
+    private _splitStudents(students: Student[]) {
+        const activeStudents = students.filter(student => !student.archived);
+        const archivedStudents = students.filter(student => student.archived);
+        this.studentsActive.next(activeStudents);
+        this.studentsInActive.next(archivedStudents);
     }
 }

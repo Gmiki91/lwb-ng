@@ -1,13 +1,17 @@
 <div class="container">
     <img class="icon" src="../../assets/lwb-logo.jpg">
+    <a *ngIf="backArrowVisible" routerLink="/">
+      <mat-icon  fontIcon="arrow_back"></mat-icon>
+  </a>
   <div class="left">
-    <ng-container *transloco="let t">
-      <button *ngIf="loggedIn$|async" mat-stroked-button (click)="logout()">{{t('logout')}}</button>
-    </ng-container>
+   
     <select style="margin-left:10px" (change)="changeSiteLanguage($event)">
       <option *ngFor="let language of languageList" [value]="language.code">
         {{language.label}}
       </option>
     </select>
+    <ng-container *transloco="let t">
+      <button *ngIf="loggedIn$|async" mat-stroked-button (click)="logout()">{{t('logout')}}</button>
+    </ng-container>
   </div>
 </div>

@@ -35,10 +35,10 @@ import { GradesComponent } from './data-book/grades/grades.component';
 import { FoodOrderComponent } from './data-book/food-order/food-order.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component'
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HeaderComponent } from './header/header.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import {SummaryComponent} from './summary/summary.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +80,6 @@ import {SummaryComponent} from './summary/summary.component';
     MatDividerModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule,
     TranslocoRootModule
     
   ],
