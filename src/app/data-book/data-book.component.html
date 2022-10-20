@@ -1,7 +1,6 @@
 <div class="container">
     <ng-container *transloco="let t">
         <div [ngClass]="['box', loading?'inactive':'']">
-         
             <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>  
             <div class="content" *ngFor="let student of activeStudents$|async">
                 <div class="content__student">
@@ -16,7 +15,6 @@
                             t('remove_student') }}</button>
                     </div>
                 </div>
-
                 <div *ngIf="parentMode">
                     <mat-divider></mat-divider>
                     <app-food-order [student]="student"></app-food-order>
@@ -29,7 +27,6 @@
                     <div class="name">{{student.fullNameC}} - {{student.fullNameL}}</div>
                     <button mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
                         t('activate_student') }}</button>
-
                 </div>
             </div>
             <app-spinner *ngIf="loading"></app-spinner>

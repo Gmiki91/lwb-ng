@@ -9,10 +9,13 @@
         padding:5px;
     }
 }
-.center{
-    justify-content: center;
+.grade_container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:300px;
+    border-bottom: 2px solid v.$border_color;
 }
-::ng-deep .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]){
-    background:v.$secondary_color;
-    b{color:white}
+b{
+    font-size: 24px;
 }

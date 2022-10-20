@@ -3,9 +3,9 @@
     <h1>{{grade}}. {{t('class')}}</h1>
         <h2>{{year}}</h2>
         <div>
-            <button [disabled]="!changed" [ngClass]="changed ? 'primary-btn':'inactive-btn'" mat-stroked-button (click)="save()">{{t('save')}} </button>
+            <button [disabled]="!changed" [ngClass]="['wide-btn',changed ? 'primary-btn':'inactive-btn']" mat-stroked-button (click)="save()">{{t('save')}} </button>
         </div>
-        <table  [ngClass]="loading?'inactive':''">
+        <table [ngClass]="loading?'inactive':''">
             <tr>
                 <th></th>
                 <th style="display:flex; flex-direction:column">

@@ -3,16 +3,14 @@
         <div class="box" *ngIf="type === '1'">
             <h1> {{t('classes')}}</h1>
             <ng-container *ngFor="let classroom of classRooms">
-                <mat-expansion-panel  hideToggle *ngFor="let grade of classroom.grades, let i=index">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title class="center"><b>{{grade}}</b></mat-panel-title>
-                    </mat-expansion-panel-header>
+                <div class="grade_container" *ngFor="let grade of classroom.grades, let i=index">
+                   <b>{{grade}}.</b>
                     <div class="links">
                         <button mat-button routerLink="/data-book" [queryParams]="{grade:classroom.grades[i]}">{{t('roster')}}</button>
                         <button mat-button routerLink="/grade-book" [queryParams]="{grade:classroom.grades[i]}">{{t('diary')}}</button>
                         <button mat-button routerLink="/class-book" [queryParams]="{grade:classroom.grades[i]}">{{t('attendance')}}</button>
                     </div>
-                </mat-expansion-panel>
+                </div>
             </ng-container>
         </div>
         <app-data-book *ngIf="type === '0'" [parentMode]="true"></app-data-book>
