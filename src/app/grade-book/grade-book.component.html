@@ -19,7 +19,10 @@
                     </ng-container>
                 </tr>
                 <tr [ngClass]="loading ? 'inactive' : ''" *ngFor="let student of data$|async">
-                    <th>{{student.fullNameC}} - {{student.fullNameL}}</th>
+                    <th class="names">
+                        <p>{{student.fullNameC}} </p>
+                        <p>{{student.fullNameL}}</p>
+                   </th>
                     <td *ngFor="let month of months">
                         <span [ngClass]="['clickable','pr-3',redMark===result ? 'red' : '' ]"
                             *ngFor="let result of ratedInMonth(month.value,student.results)"
@@ -30,7 +33,7 @@
                     </td> 
                     <td class="marks">
                         <mat-radio-group (change)="changeMark(student._id,$event.value)">
-                            <mat-radio-button class="mat-checkbox-background" [disabled]="editingId!==undefined"
+                            <mat-radio-button [disabled]="editingId!==undefined"
                                 *ngFor="let number of [1,2,3,4,5]" [value]="number">
                                 {{number}}
                             </mat-radio-button>

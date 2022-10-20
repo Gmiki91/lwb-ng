@@ -1,39 +1,51 @@
 @use '../../../variables' as v;
-.food_table>* {
-    text-align: center;
+
+.food_container {
+    display: flex;
+    justify-content: space-between;
+
+    &__order {
+        display: flex;
+        flex-direction: column;
+       justify-content: center;
+    }
+
+    &__table>* {
+        text-align: center;
+    }
 }
 
 .top {
     display: flex;
-    flex-direction:column;
-    >*{
-        padding:1px 5px 1px 5px;
-        border-color:#0000001f
+    flex-direction: column;
+
+    >* {
+        padding: 1px 5px 1px 5px;
+        border-color: #0000001f;
     }
-     &__upper {
+
+    &__upper {
         border-width: 1px;
         border-style: solid solid none solid;
-        border-radius: 5px  5px  0px  0px;  
-        
+        border-radius: 5px 5px 0px 0px;
+
     }
+
     &__lower {
         border-width: 1px;
         border-style: none solid solid solid;
-        border-radius: 0px  0px  5px  5px;   
+        border-radius: 0px 0px 5px 5px;
     }
 }
-.food-request{
-    border-width: 1px;
-    border-style:solid;
-    border-color:#0000001f;
-    border-radius: 5px;
+
+.full-width {
+    width: 100%;
 }
-.full-width{
-    width:100%;
-}
+
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-   background-color: v.$secondary_color;;
+   background-color: v.$secondary_color;
 }
+
 ::ng-deep .mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background {
     background-color: #cccccc;
- }
+}

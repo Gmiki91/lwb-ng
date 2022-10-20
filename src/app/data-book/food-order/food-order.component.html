@@ -1,21 +1,25 @@
 <ng-container *transloco="let t">
-<table class="food_table">
-    <tr>
-            <td class="food-request">🍔 {{t('food_request')}} 🍔</td>
-        <td *ngFor="let day of dayNames, let i = index">
-           <div  class="top">
-                <span class="top__upper">{{t(months[i])}} - {{days[i]}}</span>
-                <span class="top__lower">{{t(day)}}</span>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <button mat-raised-button *ngIf="changed" [ngClass]="['full-width', 'primary-btn']" (click)="updateFoodOrder()">{{t('save')}}</button>
-        </td>
-        <td style="text-align:center"  *ngFor="let day of dayNames, let i = index">
-            <mat-checkbox [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)" (change)="onChange(i, $event.checked)"></mat-checkbox>
-        </td>
-    </tr>
-</table>
+    <div class="food_container">
+        <div class="food_container__order">
+            <span>🍔 {{t('food_request')}} 🍔</span>
+            <button mat-raised-button *ngIf="changed" [ngClass]="['full-width', 'primary-btn']"
+                (click)="updateFoodOrder()">{{t('save')}}</button>
+        </div>
+        <table class="food_container__table">
+            <tr>
+                <td *ngFor="let day of dayNames, let i = index">
+                    <div class="top">
+                        <span class="top__upper">{{t(months[i])}} - {{days[i]}}</span>
+                        <span class="top__lower">{{t(day)}}</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td *ngFor="let day of dayNames, let i = index">
+                    <mat-checkbox [disabled]="disableCheckbox(i)" [checked]="checkIfOrdered(i)"
+                        (change)="onChange(i, $event.checked)"></mat-checkbox>
+                </td>
+            </tr>
+        </table>
+    </div>
 </ng-container>

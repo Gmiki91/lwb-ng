@@ -38,13 +38,16 @@ td {
 
 th,
 td {
-    width: 100px;
+    width: 75px;
 }
 textarea{
     resize: vertical;
 }
-.marks {
-    width: 180px;
+.marks, .names {
+    width:200px;
+}
+p{
+    margin:0;
 }
 
 :host ::ng-deep .mat-radio-label-content {
