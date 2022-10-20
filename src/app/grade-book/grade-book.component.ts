@@ -96,8 +96,7 @@ export class GradeBookComponent implements OnInit {
       if (this.editingId) {
         //submitted editing
         this.studentService.updateStudentResult(this.editingId, result, this.grade, this.subject);
-        this.editingId = undefined;
-        this.redMark = result;
+        this._cancel();
       } else if(this.studentMarks.length>0) {
         // submitted new result
         this.studentService.giveStudentsResult(this.studentMarks, result, this.grade, this.subject);
@@ -128,7 +127,7 @@ export class GradeBookComponent implements OnInit {
   }
 
   editMark(id: string, result: Result) {
-    this.resultData = result;
+    this.resultData = {...result};
     this.editingId = id;
     this.redMark = result;
   }
