@@ -1,10 +1,9 @@
 <div class="container">
-    <img class="icon" src="../../assets/lwb-logo.jpg">
-    <a *ngIf="backArrowVisible" routerLink="/">
-      <mat-icon  fontIcon="arrow_back"></mat-icon>
+ 
+  <a *ngIf="backArrowVisible" routerLink="/">
+    <mat-icon fontIcon="arrow_back"></mat-icon>
   </a>
   <div class="left">
-   
     <select style="margin-left:10px" (change)="changeSiteLanguage($event)">
       <option *ngFor="let language of languageList" [value]="language.code">
         {{language.label}}
@@ -15,3 +14,4 @@
     </ng-container>
   </div>
 </div>
+<img class="icon" src="../../assets/lwb-logo.jpg">

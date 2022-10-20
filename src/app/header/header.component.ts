@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .pipe(
         filter(event => event instanceof NavigationStart),
         map(event => event as NavigationStart))
-      .subscribe(event => this.backArrowVisible=event.url!=='/')
+      .subscribe(event => this.backArrowVisible=(event.url!=='/'&&event.url!=='/login'))
     this.auth.requestLogInStatus();
     this.loggedIn$ = this.auth.getLogInStatus();
   }
