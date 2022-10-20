@@ -11,8 +11,8 @@ import { Student, StudentResult, Result } from "../models/student.model";
 
 export class StudentService {
     studentResult = new Subject<StudentResult[]>;
-    studentsActive = new BehaviorSubject<Student[]>([]);
-    studentsInActive = new BehaviorSubject<Student[]>([]);
+    studentsActive = new Subject<Student[]>();
+    studentsInActive = new Subject<Student[]>();
     constructor(private http: HttpClient, private router: Router) { }
 
     registerStudent(student: Student): void {

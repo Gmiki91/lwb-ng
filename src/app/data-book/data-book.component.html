@@ -1,6 +1,7 @@
 <div class="container">
     <ng-container *transloco="let t">
-        <div class="box">
+        <div [ngClass]="['box', loading?'inactive':'']">
+         
             <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>  
             <div class="content" *ngFor="let student of activeStudents$|async">
                 <div class="content__student">
@@ -31,7 +32,7 @@
 
                 </div>
             </div>
+            <app-spinner *ngIf="loading"></app-spinner>
         </div>
     </ng-container>
 </div>
-<app-spinner *ngIf="loading"></app-spinner>

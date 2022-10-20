@@ -17,10 +17,9 @@ export class DataBookComponent implements OnInit{
   archivedStudents$!: Observable<Student[]>;
   activeStudents$!: Observable<Student[]>;
   grade!:string;
-  loading!: boolean;
+  loading=true;
   @Input() parentMode: boolean = false;
   constructor(private route: ActivatedRoute, private studentService: StudentService, private dialog: MatDialog) {
-    
    }
 
   ngOnInit(): void {
@@ -49,5 +48,6 @@ export class DataBookComponent implements OnInit{
 
   toggleArchive(student: Student):void{
     this.studentService.toggleArchive(student,this.parentMode);
+    this.loading=true;
   }
 }
