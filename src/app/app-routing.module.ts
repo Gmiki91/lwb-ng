@@ -13,7 +13,7 @@ import { TeacherGuard } from './auth/guards/teacher.guard';
 const routes: Routes = [
   {component:SignupComponent, path: 'signup'},
   {component:LoginComponent, path: 'login'},
-  {component:RegisterComponent, path: 'register',canActivate:[AdminGuard]},
+  {component:RegisterComponent, path: 'register',canActivate:[AuthGuard]},
   {component:GradeBookComponent, path: 'grade-book',canActivate:[TeacherGuard]},
   {component:ClassBookComponent, path: 'class-book',canActivate:[TeacherGuard]},
   {component:DataBookComponent, path: 'data-book',canActivate:[TeacherGuard]},
@@ -24,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

@@ -1,7 +1,7 @@
 <div class="container">
     <ng-container *transloco="let t">
         <div [ngClass]="['box', loading?'inactive':'']">
-            <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>  
+            <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>
             <div class="content" *ngFor="let student of activeStudents$|async">
                 <div class="content__student">
                     <div class="name">{{student.fullNameC}} - {{student.fullNameL}}</div>
@@ -29,6 +29,7 @@
                         t('activate_student') }}</button>
                 </div>
             </div>
+            <a mat-stroked-button routerLink="/register">Register new student</a>
             <app-spinner *ngIf="loading"></app-spinner>
         </div>
     </ng-container>

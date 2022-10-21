@@ -9,12 +9,14 @@
   "class": "Class",
   "missed": "Missed days",
   "food_request": "Food request",
+  "contact_info": "If you have any questions or suggestions:",
 
   "headcount": "Headcount",
   "save": "Save",
   "cancel": "Cancel",
   "update":"Update",
   "delete":"Delete",
+  "back":"Back",
   "remove_student": "Remove student",
   "activate_student":"Activate student",
   "date": "Date",
@@ -69,7 +71,6 @@
   "art":"Art",
   "music":"Music",
   "p_e":"Physical education",
-
 
   "login": "Log in",
   "signup": "Sign up",
