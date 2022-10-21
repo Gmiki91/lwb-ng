@@ -25,11 +25,10 @@
                 checked="number==data.mark">{{number}}</mat-radio-button>
         </mat-radio-group>
     </div>
-    
     <div *ngIf="data.textAssesment">
         <mat-form-field appearance="outline">
             <mat-label>{{t('text_assesment')}}</mat-label>
-            <input matInput [(ngModel)]="data.textAssesment" type="text" />
+            <textarea class="textAssesment" matInput [(ngModel)]="data.textAssesment"></textarea>
         </mat-form-field>
     </div>
     <button mat-raised-button  

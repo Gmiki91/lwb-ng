@@ -101,6 +101,9 @@ export class GradeBookComponent implements OnInit {
         // submitted new result
         this.studentService.giveStudentsResult(this.studentMarks, result, this.grade, this.subject);
         this.studentMarks = [];
+      }else{
+        // empty submit
+        this.loading=false;
       }
     } else {
       //cancelled editing
@@ -110,6 +113,7 @@ export class GradeBookComponent implements OnInit {
   }
 
   delete():void{
+    this.loading = true;
     this.studentService.deleteStudentResult(this.editingId!,this.redMark!, this.grade, this.subject);
     this._cancel();
   }
