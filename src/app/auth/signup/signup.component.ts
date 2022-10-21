@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   showPassword = false;
   passwordMissmatch = false;
   loading=false;
+  agreement=false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -40,5 +41,8 @@ export class SignupComponent implements OnInit {
   }
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
+  }
+  checkAgreement(check: boolean) {
+    this.agreement = check;
   }
 }

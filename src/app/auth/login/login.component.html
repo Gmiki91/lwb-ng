@@ -1,7 +1,7 @@
 <div [ngClass]="['container', loading? 'inactive' : '' ]">
-    <div class="box">
-        <ng-container *transloco="let t">
-            <h1>{{t('login')}}</h1>
+    <ng-container *transloco="let t">
+        <h1>{{t('login')}}</h1>
+        <div class="box">
             <form #loginForm="ngForm" (ngSubmit)="onLogIn(loginForm)">
                 <mat-form-field>
                     <mat-label>{{t('email')}}</mat-label>
@@ -24,7 +24,7 @@
             <br>
             <br>
             <button mat-button class="secondary-btn wide-btn" routerLink="/signup">{{t('signup')}}</button>
-            </ng-container>
-    </div>
+        </div>
+    </ng-container>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

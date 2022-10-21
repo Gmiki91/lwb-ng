@@ -1,36 +1,30 @@
-   .container {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-   }
+form {
+  display: flex;
+  flex-direction: column;
+}
 
-   form {
-     display: flex;
-     flex-direction: column;
-   }
+h1 {
+  margin: 0 0 20px 0;
+  font-weight: 300;
+  font-size: 28px;
+}
 
-   h1 {
-     margin: 0 0 20px 0;
-     font-weight: 300;
-     font-size: 28px;
-   }
+mat-radio-group {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.4rem;
+}
 
-   mat-radio-group {
-     display: flex;
-     justify-content: space-around;
-     padding: 0.4rem;
-   }
-
-   .red {
-     color: red;
-   }
+.red {
+  color: red;
+}
 
 
-   @media (max-width: 800px) {
-     .login-box {
-       display: flex;
-       flex-direction: column;
-       width: 340px;
-       height: 850px
-     }
-   }
+@media (max-width: 800px) {
+  .login-box {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    height: 850px
+  }
+}

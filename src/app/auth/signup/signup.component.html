@@ -1,7 +1,7 @@
 <div [ngClass]="['container', loading? 'inactive' : '' ]">
-    <div class="box">
-        <ng-container *transloco="let t">
+    <ng-container *transloco="let t">
         <h1>{{t('signup')}}</h1>
+        <div class="box">
         <form #signUpForm="ngForm" (ngSubmit)="onSignUp()">
             <mat-form-field>
                 <mat-label>{{t('email')}}</mat-label>
@@ -24,13 +24,16 @@
                 </mat-icon>
                 <mat-hint class="red" *ngIf="passwordMissmatch">Passwords do not match</mat-hint>
             </mat-form-field>
+            <!-- <mat-checkbox (change)="checkAgreement($event.checked)"><span style="font-size: 12px">I agree to the <a
+                routerLink="/terms">terms and conditions </a>and the <a routerLink="/privacy">privacy
+                policy</a>.*</span></mat-checkbox> -->
             <button [matTooltip]="!signUpForm.valid ? t('missing_fields') : ''"
                 [ngClass]="signUpForm.valid && !passwordMissmatch ? 'primary-btn' : 'inactive-btn'"
                 mat-stroked-button class="wide-btn" type="submit()">
                 {{t('signup')}}
             </button>
         </form>
-        </ng-container>
     </div>
+</ng-container>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>
