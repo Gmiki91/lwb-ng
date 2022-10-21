@@ -1,7 +1,7 @@
 <ng-container *transloco="let t">
     <div class="container">
+        <h1> {{t('classes')}}</h1>
         <div class="box" *ngIf="type === '1'">
-            <h1> {{t('classes')}}</h1>
             <ng-container *ngFor="let classroom of classRooms">
                 <div class="grade_container" *ngFor="let grade of classroom.grades, let i=index">
                    <b>{{grade}}.</b>

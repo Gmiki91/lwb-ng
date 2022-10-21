@@ -1,7 +1,7 @@
 <div class="container">
     <ng-container *transloco="let t">
+        <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>
         <div [ngClass]="['box', loading?'inactive':'']">
-            <h1 *ngIf="grade">{{grade}}. {{t('class')}}</h1>
             <div class="content" *ngFor="let student of activeStudents$|async">
                 <div class="content__student">
                     <div class="name">{{student.fullNameC}} - {{student.fullNameL}}</div>
