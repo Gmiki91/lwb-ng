@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (click)="outsideClick()">
     <ng-container *transloco="let t">
         <h1>{{grade}}. {{t('class')}}</h1>
         <mat-button-toggle-group class="subjects">
@@ -26,7 +26,7 @@
                     <td *ngFor="let month of months">
                         <span [ngClass]="['clickable','pr-3',redMark===result ? 'red' : '' ]"
                             *ngFor="let result of ratedInMonth(month.value,student.results)"
-                            (click)="editMark(student._id,result)">{{result.mark ? result.mark : 'T'}}</span>
+                            (click)="editMark(student._id,result);$event.stopPropagation();">{{result.mark ? result.mark : 'T'}}</span>
                     </td>
                     <td>
                         <textarea (change)="changeMark(student._id, $event)"></textarea>

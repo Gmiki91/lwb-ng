@@ -52,7 +52,7 @@ export class GradeBookComponent implements OnInit {
     )
   }
 
-  changedSubject(subject: string) {
+  changedSubject(subject: string):void {
     if (subject !== this.subject) {
       this.subject = subject;
       this.studentService.requestStudentResults(this.grade, this.subject);
@@ -97,24 +97,23 @@ export class GradeBookComponent implements OnInit {
         //submitted editing
         this.studentService.updateStudentResult(this.editingId, result, this.grade, this.subject);
         this._cancel();
-      } else if(this.studentMarks.length>0) {
+      } else if (this.studentMarks.length > 0) {
         // submitted new result
         this.studentService.giveStudentsResult(this.studentMarks, result, this.grade, this.subject);
         this.studentMarks = [];
-      }else{
+      } else {
         // empty submit
-        this.loading=false;
+        this.loading = false;
       }
     } else {
       //cancelled editing
       this._cancel();
-    
     }
   }
 
-  delete():void{
+  delete(): void {
     this.loading = true;
-    this.studentService.deleteStudentResult(this.editingId!,this.redMark!, this.grade, this.subject);
+    this.studentService.deleteStudentResult(this.editingId!, this.redMark!, this.grade, this.subject);
     this._cancel();
   }
 
@@ -130,13 +129,18 @@ export class GradeBookComponent implements OnInit {
     return [];
   }
 
-  editMark(id: string, result: Result) {
-    this.resultData = {...result};
+  outsideClick(): void {
+    if (this.editingId)
+      this._cancel()
+  }
+
+  editMark(id: string, result: Result):void {
+    this.resultData = { ...result };
     this.editingId = id;
     this.redMark = result;
   }
 
-  _cancel():void{
+  _cancel(): void {
     this.editingId = undefined;
     this.redMark = undefined;
     this.resultData = {} as Result;

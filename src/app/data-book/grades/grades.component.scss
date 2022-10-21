@@ -10,6 +10,10 @@ tr{
     text-align:center;
     border-bottom:1px solid;
 }
+textarea{
+    resize:vertical;
+    height:15.75px;
+}
 :host ::ng-deep .mat-button-toggle-group-appearance-standard .mat-button-toggle+.mat-button-toggle {
     border: 0;
 }

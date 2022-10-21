@@ -14,7 +14,7 @@
                 <th>{{t('mark')}}</th>
             </tr>
             <tr *ngFor="let entry of page.results">
-                <td>{{entry.textAssesment}}</td>
+                <td><textarea>{{entry.textAssesment}}</textarea></td>
                 <td>{{entry.note}}</td>
                 <td>{{dateOf(entry.date)}}</td>
                 <td>{{entry.type}}</td>
