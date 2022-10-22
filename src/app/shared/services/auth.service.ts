@@ -17,6 +17,7 @@ export class AuthService {
             if (result.status === 'success') {
                 localStorage.setItem('type', result.type);
                 localStorage.setItem('access_token', result.token);
+                this.loggedIn.next(true);
                 this.router.navigate(['/']);
             }
         })

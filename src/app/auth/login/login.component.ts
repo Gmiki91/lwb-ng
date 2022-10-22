@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { AuthService } from '../../shared/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['../auth.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy{
   showPassword = false;
   loading=false;
+  sub:Subscription = Subscription.EMPTY;
   constructor(private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
@@ -18,12 +20,16 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
  
   onLogIn(form: NgForm): void {
     const {  username, password } = form.controls;
     if (form.valid && username.value.length>2 && password.value.length>2 ) {
       this.loading=true;
-      this.authService.logIn(username.value, password.value).subscribe(
+      this.sub=this.authService.logIn(username.value, password.value).subscribe(
         {
             next: result => {
                 if (result.status==='success') {
