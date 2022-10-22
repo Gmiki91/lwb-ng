@@ -1,42 +1,58 @@
-<div class="container" (click)="$event.stopPropagation()">
-    <ng-container *transloco="let t">
-    <mat-form-field appearance="outline">
-        <mat-label>{{t('type')}}</mat-label>
-        <mat-select  [(ngModel)]="data.type">
-            <mat-option *ngFor="let markType of types" [value]="markType">
-                {{t(markType)}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>{{t('note')}}</mat-label>
-        <input matInput [(ngModel)]="data.note" type="text" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <input matInput [(ngModel)]="data.date" [matDatepicker]="picker">
-        <mat-label>{{t('date')}}</mat-label>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker disabled="false"></mat-datepicker>
-    </mat-form-field>
-    <div class="content" *ngIf="data.mark">
-        <mat-label>{{t('mark')}}</mat-label>
-        <mat-radio-group class="radio_group" [(ngModel)]="data.mark">
-            <mat-radio-button *ngFor="let number of [1,2,3,4,5]" [value]="number"
-                checked="number==data.mark">{{number}}</mat-radio-button>
-        </mat-radio-group>
+<ng-container *transloco="let t">
+    <div class="main" (click)="$event.stopPropagation()">
+        <div class="container">
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{t('type')}}</mat-label>
+                <mat-select [(ngModel)]="data.type">
+                    <mat-option *ngFor="let markType of types" [value]="markType">
+                        {{t(markType)}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{t('note')}}</mat-label>
+                <input matInput [(ngModel)]="data.note" type="text" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <input matInput [(ngModel)]="data.date" [matDatepicker]="picker">
+                <mat-label>{{t('date')}}</mat-label>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <button *ngIf="!data.mark && !data.textAssesment" mat-raised-button
+                [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' " (click)="onSave()">{{t('save')}}
+            </button>
+    
+        </div>
+        <!-- we are in editing mode if mark is present-->
+        <div class="container" *ngIf="data.mark || data.textAssesment">
+
+            <mat-form-field class="signedBy" appearance="outline">
+                <mat-label> {{t('teacher')}}</mat-label>
+                <input matInput disabled style="color:black" [value]="data.updatedBy" />
+            </mat-form-field>
+
+            <mat-form-field *ngIf="data.textAssesment" appearance="outline">
+                <mat-label>{{t('text_assesment')}}</mat-label>
+                <textarea class="textAssesment" matInput [(ngModel)]="data.textAssesment"></textarea>
+            </mat-form-field>
+
+            <div class="center" *ngIf="data.mark">
+                <mat-label>{{t('mark')}}</mat-label>
+                <mat-radio-group class="radio_group" [(ngModel)]="data.mark">
+                    <mat-radio-button *ngFor="let number of [1,2,3,4,5]" [value]="number" checked="number==data.mark">
+                        {{number}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <button mat-raised-button [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' "
+                (click)="onSave()">{{t('update')}}</button>
+            <button mat-raised-button class="secondary-btn" (click)="onDelete()">{{t('delete')}}</button>
+            
+        </div>
     </div>
-    <div *ngIf="data.textAssesment">
-        <mat-form-field appearance="outline">
-            <mat-label>{{t('text_assesment')}}</mat-label>
-            <textarea class="textAssesment" matInput [(ngModel)]="data.textAssesment"></textarea>
-        </mat-form-field>
-    </div>
-    <button mat-raised-button  
-    [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' " (click)="onSave()">{{t(data.mark||data.textAssesment? 'update' : 'save')}}</button>
-    <!-- we are in editing mode if mark is present-->
-    <div *ngIf="data.mark || data.textAssesment">
-        <button mat-raised-button color="warn"  (click)="onDelete()">{{t('delete')}}</button>
-        <button mat-raised-button class="secondary-btn"  (click)="cancel()">{{t('cancel')}}</button>
-    </div>
-    </ng-container>
-</div>
+</ng-container>

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Subject, map, Observable, BehaviorSubject } from "rxjs";
+import { Subject, map, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Student, StudentResult, Result } from "../models/student.model";
 

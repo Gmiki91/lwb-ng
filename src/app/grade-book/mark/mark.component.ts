@@ -8,10 +8,8 @@ import { MarkTypes } from '../../shared/models/constants';
 })
 export class MarkComponent{
   @Output() save: EventEmitter<Result | null> = new EventEmitter();
-  @Output() delete: EventEmitter<boolean> = new EventEmitter();
   @Input() data: Result = {} as Result;
   types = MarkTypes;
-
   constructor() { }
 
   onSave() {
@@ -20,12 +18,8 @@ export class MarkComponent{
   }
 
   onDelete() {
-    this.delete.emit(true);
-  }
-
-  cancel() {
-    this.save.emit(null);
-    this.data = {} as Result
+    this.data.deleted=true;
+    this.save.emit(this.data);
   }
 
 }

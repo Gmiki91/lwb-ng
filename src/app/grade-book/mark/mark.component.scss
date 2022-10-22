@@ -1,25 +1,35 @@
-.container{
-    display:flex;
-    flex-direction: row;
-    margin:5px;
-  }
-  .radio_group{
-    display:flex; flex-direction:row
-  }
-:host ::ng-deep .mat-radio-label-content {
-    padding-right:5px;
-    padding-left:1px;
+.container {
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-.content{
-  text-align:center;
+.radio_group {
+  display: flex;
+  flex-direction: row;
+  padding:5px;
 }
+
+:host ::ng-deep .mat-radio-label-content {
+  padding-right: 5px;
+  padding-left: 1px;
+}
+.main{
+  display:flex;
+  flex-direction: column;
+}
+.center {
+  text-align: center;
+}
+
+.textAssesment {
+  resize: none;
+  height: 15.75px;
+}
+
+.signedBy{
+  width:100px;
+}
+
 button{
-  height: 50px;
-  margin-top: 4px;
-  margin-left: 1px;
-}
-.textAssesment{
-  resize:none;
-  height:15.75px;
+  margin-bottom: 20px;
 }

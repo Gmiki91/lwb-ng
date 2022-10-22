@@ -20,6 +20,10 @@ app-spinner{
     height: 100px;
 
 }
+button{
+  height: 40px;
+  place-self:center;
+}
 button.wide-btn {
   width: 220px;
   margin: 2px 0px;
@@ -32,7 +36,6 @@ button.primary-btn {
 
 button.secondary-btn {
   background: v.$secondary_color;
-  ;
   color: white;
 }
 

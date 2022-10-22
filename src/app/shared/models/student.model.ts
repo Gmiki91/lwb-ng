@@ -24,6 +24,8 @@ export type Result={
     textAssesment?:string;
     note?:string;
     type?:string;
+    updatedBy:string;
+    deleted:boolean;
 }
 export type StudentResult={
     _id:string;

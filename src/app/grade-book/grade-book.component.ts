@@ -111,12 +111,6 @@ export class GradeBookComponent implements OnInit {
     }
   }
 
-  delete(): void {
-    this.loading = true;
-    this.studentService.deleteStudentResult(this.editingId!, this.redMark!, this.grade, this.subject);
-    this._cancel();
-  }
-
   ratedInMonth(monthIndex: number, results: Result[]): Result[] {
     if (results) {
       let resultsInMonth = results.filter(result => {

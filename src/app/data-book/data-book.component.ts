@@ -37,13 +37,13 @@ export class DataBookComponent implements OnInit{
   }
 
   openData(student: Student): void {
-    const dialogRef = this.dialog.open(StudentComponent, { data: student });
+    this.dialog.open(StudentComponent, { data: student });
   }
   openAttendance(student: Student): void {
-    const dialogRef = this.dialog.open(AttendanceComponent, { data: student });
+    this.dialog.open(AttendanceComponent, { data: student });
   }
   openGrades(student: Student): void {
-    const dialogRef = this.dialog.open(GradesComponent, { data: student });
+    this.dialog.open(GradesComponent, { data: student });
   }
 
   toggleArchive(student: Student):void{
