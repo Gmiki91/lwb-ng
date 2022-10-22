@@ -4,18 +4,20 @@
         <div class="box">
             <form #loginForm="ngForm" (ngSubmit)="onLogIn(loginForm)">
                 <mat-form-field>
-                    <mat-label>{{t('email')}}</mat-label>
-                    <input matInput ngModel type="email" name="email" required />
+                    <mat-label>{{t('username')}}</mat-label>
+                    <input #username="ngModel" matInput  ngModel name="username" required />
+                    <mat-hint class="red" *ngIf="username.touched && username.value.length<3">{{t('minLength')}}</mat-hint>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>{{t('password')}}</mat-label>
-                    <input matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password" required />
+                    <input #password="ngModel" matInput ngModel [type]="showPassword ? 'text' : 'password'" name="password" required />
                     <mat-icon matSuffix (click)="togglePasswordVisibility()">
                         {{showPassword ? 'visibility_off' : 'visibility' }}
                     </mat-icon>
+                    <mat-hint class="red" *ngIf="password.touched && password.value.length<3">{{t('minLength')}}</mat-hint>
                 </mat-form-field>
                 <button [matTooltip]="!loginForm.valid ? t('missing_fields') : ''"
-                    [ngClass]="loginForm.valid ? 'primary-btn' : 'inactive-btn'" mat-stroked-button class="wide-btn"
+                    [ngClass]="loginForm.valid && username.value?.length>2 && password.value?.length>2 ? 'primary-btn' : 'inactive-btn'" mat-stroked-button class="wide-btn"
                     type="submit()">
                     {{t('login')}}
                 </button>

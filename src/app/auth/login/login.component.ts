@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
   }
  
   onLogIn(form: NgForm): void {
-    const {  email, password } = form.controls;
-    if (form.valid) {
+    const {  username, password } = form.controls;
+    if (form.valid && username.value.length>2 && password.value.length>2 ) {
       this.loading=true;
-      this.authService.logIn(email.value, password.value).subscribe(
+      this.authService.logIn(username.value, password.value).subscribe(
         {
             next: result => {
                 if (result.status==='success') {

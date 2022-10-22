@@ -17,6 +17,7 @@
   "update":"Frissítés",
   "delete":"Törlés",
   "back":"Vissza",
+  "minLength": "Minimum 3 karakter szükséges",
   "remove_student":"Tanuló archiválása",
   "activate_student":"Tanuló törlése",
   "date":"Dátum",
@@ -75,7 +76,7 @@
 
   "login":"Bejelentkezés",
   "signup":"Regisztráció",
-  "email":"E-mail",
+  "username":"Felhasználónév",
   "password":"Jelszó",
   "confirm_password":"Jelszó megerősítése",
   "name":"Név",

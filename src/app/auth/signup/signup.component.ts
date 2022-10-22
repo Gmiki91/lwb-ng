@@ -23,12 +23,12 @@ export class SignupComponent implements OnInit {
     }
   }
   onSignUp(): void {
-    const { email, password } = this.form.controls;
+    const { username, password } = this.form.controls;
     const match = this.passwordsMatch();
-    if (this.form.valid && match) {
+    if (this.form.valid && match && username.value.length>2 && password.value.length>2) {
       const user: User = {
         password: password.value,
-        email: email.value,
+        email: username.value,
         type: '0'
       }
       this.authService.signUp(user);

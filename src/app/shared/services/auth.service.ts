@@ -13,9 +13,9 @@ export class AuthService {
     loggedIn = new BehaviorSubject<boolean>(false);
     constructor(private http: HttpClient, private router: Router) { }
     signUp(user: User) {
-        this.http.post<{ status: string, token: string, user: User }>(`${environment.url}/users/signup`, user).subscribe(result => {
+        this.http.post<{ status: string, token: string, type: string, }>(`${environment.url}/users/signup`, user).subscribe(result => {
             if (result.status === 'success') {
-                localStorage.setItem('type', result.user.type);
+                localStorage.setItem('type', result.type);
                 localStorage.setItem('access_token', result.token);
                 this.router.navigate(['/']);
             }

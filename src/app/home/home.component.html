@@ -13,11 +13,11 @@
                 </div>
             </ng-container>
         </div>
+        <app-data-book *ngIf="type === '0'" [parentMode]="true"></app-data-book>
+        <app-summary *ngIf="type==='2'"></app-summary>
         <div class="contact_info">
             <span>{{t('contact_info')}}</span>
               <p>gmiki91@gmail.com</p>
         </div>
-        <app-data-book *ngIf="type === '0'" [parentMode]="true"></app-data-book>
-        <app-summary *ngIf="type==='2'"></app-summary>
     </div>
 </ng-container>
