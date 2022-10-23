@@ -51,7 +51,7 @@
 
             <button mat-raised-button [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' "
                 (click)="onSave()">{{t('update')}}</button>
-            <button mat-raised-button class="secondary-btn" (click)="onDelete()">{{t('delete')}}</button>
+            <button *ngIf="!data.deleted" mat-raised-button class="secondary-btn" (click)="onDelete()">{{t('delete')}}</button>
             
         </div>
     </div>

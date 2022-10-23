@@ -13,6 +13,7 @@ export class MarkComponent{
   constructor() { }
 
   onSave() {
+    this.data.deleted = false;
     this.save.emit(this.data);
     this.data = {} as Result
   }
