@@ -1,4 +1,6 @@
 {
+  "yes":"Yes",
+  "no":"No",
   "classes": "Classes",
   "grades": "Grades",
   "logout": "Log out",
@@ -84,10 +86,14 @@
   "fullNameL": "Full name - latin",
   "dob": "Date of birth",
   "address": "Address",
+  "email":"Email",
+  "uk_school":"The city and school in Ukraine where the child is registered",
   "pg_name": "Parent/Guardian name",
   "phone": "Phone number",
   "present": "Present",
   "absent": "Absent",
   "vegan": "Vegan",
+  "home_alone":"May go home alone",
+  "health":"Health concerns, allergies",
   "missing_fields": "Missing data"
 }

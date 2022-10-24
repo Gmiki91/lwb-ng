@@ -24,27 +24,31 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Ukrainian school</mat-label>
-            <input matInput ngModel type="text" name="ukraineSchool" required />
+            <mat-label>{{t('uk_school')}}</mat-label>
+            <input matInput ngModel type="text" name="ukraineSchool" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>{{t('pg_name')}}</mat-label>
-            <input matInput ngModel type="text" name="parentName" required />
+            <input matInput ngModel type="text" name="pgName" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>{{t('address')}}</mat-label>
-            <input matInput ngModel type="text" name="address" required />
+            <input matInput ngModel type="text" name="address" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>{{t('phone')}}</mat-label>
-            <input matInput ngModel type="text" name="phoneNumber" required />
+            <input matInput ngModel type="text" name="phoneNumber" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Health concerns, allergies</mat-label>
+            <mat-label>{{t('email')}}</mat-label>
+            <input matInput ngModel type="email" name="email" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{t('health')}}</mat-label>
             <input matInput ngModel type="text" name="healthIssues" />
         </mat-form-field>
         <mat-checkbox matInput ngModel name="vegetarian" [checked]="false">{{t('vegan')}}</mat-checkbox>
-        <mat-checkbox matInput ngModel name="homeGoing" [checked]="false">May go home alone</mat-checkbox>
+        <mat-checkbox matInput ngModel name="homeGoing" [checked]="false">{{t('home_alone')}}</mat-checkbox>
         <button [matTooltip]="!registerForm.valid ? t('missing_fields') : ''"
             [ngClass]="registerForm.valid && !loading ? 'primary-btn' : 'inactive-btn'" mat-stroked-button
             class="wide-btn">

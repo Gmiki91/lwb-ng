@@ -1,4 +1,6 @@
 {
+  "yes":"Igen",
+  "no":"Nem",
   "classes": "Osztályok",
   "grades":"Jegyek",
   "logout":"Kijelentkezés",
@@ -85,10 +87,14 @@
   "fullNameL":"Teljes név - latin betűs",
   "dob":"Születési év",
   "address":"Cím",
+  "email":"Email",
+  "uk_school":"Az ukrajnai város és iskola, ahol a gyermeket bejegyezték",
   "pg_name":"Szülő/Gondviselő neve",
   "phone":"Telefonszám",
   "present":"Jelen",
   "absent":"Hiányzik",
   "vegan":"Vegán",
+  "home_alone":"Hazamehet egyedül",
+  "health":"Egészségügyi problémák, allergia",
   "missing_fields": "Hiányzó adat"
 }
