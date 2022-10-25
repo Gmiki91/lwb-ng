@@ -33,7 +33,7 @@
                 <label>{{t('uk_school')}}:</label>
                 <p> {{student.ukraineSchool}}</p> 
             </span>
-            <span *ngIf="student.healthIssues">
+            <span *ngIf="student.healthIssues.length>0">
                 <label>{{t('health')}}:</label>
                 <p> {{student.healthIssues}}</p> 
             </span>

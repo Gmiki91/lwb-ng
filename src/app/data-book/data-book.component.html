@@ -29,7 +29,7 @@
                         t('activate_student') }}</button>
                 </div>
             </div>
-            <a mat-stroked-button routerLink="/register">Register new student</a>
+            <a  *ngIf="parentMode" mat-stroked-button routerLink="/register">Register new student</a>
             <app-spinner *ngIf="loading"></app-spinner>
         </div>
     </ng-container>
