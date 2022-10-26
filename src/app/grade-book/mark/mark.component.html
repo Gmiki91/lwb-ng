@@ -36,7 +36,7 @@
                 <input matInput disabled style="color:black" [value]="data.updatedBy" />
             </mat-form-field>
 
-            <mat-form-field *ngIf="data.textAssesment" appearance="outline">
+            <mat-form-field appearance="outline">
                 <mat-label>{{t('text_assesment')}}</mat-label>
                 <textarea class="textAssesment" matInput [(ngModel)]="data.textAssesment"></textarea>
             </mat-form-field>
