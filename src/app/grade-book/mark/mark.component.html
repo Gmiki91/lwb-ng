@@ -23,8 +23,8 @@
                 <mat-datepicker #picker disabled="false"></mat-datepicker>
             </mat-form-field>
 
-            <button *ngIf="!data.mark && !data.textAssesment" mat-raised-button
-                [ngClass]="data.date ? 'primary-btn' : 'inactive-btn' " (click)="onSave()">{{t('save')}}
+            <button *ngIf="!data.mark && !data.textAssesment" mat-raised-button class="primary-btn"
+                [disabled]="!data.date" (click)="onSave()">{{t('save')}}
             </button>
     
         </div>

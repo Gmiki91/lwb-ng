@@ -24,7 +24,7 @@ export class StudentService {
         })
     }
     getStudentsOfClass(classes: number) {
-        return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students/many/${classes}`).subscribe(result => {
+        this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students/many/${classes}`).subscribe(result => {
             if (result.status === 'success')this._splitStudents(result.students);
         })
     }

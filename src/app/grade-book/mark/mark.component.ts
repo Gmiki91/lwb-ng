@@ -15,7 +15,7 @@ export class MarkComponent{
   onSave() {
     this.data.deleted = false;
     this.save.emit(this.data);
-    this.data = {} as Result
+    this.data = {} as Result;
   }
 
   onDelete() {
