@@ -1,0 +1,18 @@
+<ng-container *transloco="let t">
+    <table>
+        <tr>
+            <th>{{t('topic')}}</th>
+            <th>{{t('lesson')}}</th>
+            <th>{{t('date')}}</th>
+        </tr>
+    <tr *ngFor="let topic of topicList$|async, let i=index">
+            <td><textarea disabled>{{topic.text}}</textarea></td>
+            <td>{{topic.lesson}}</td>
+            <td>{{formatDate(topic.date)}}</td>
+        <td *ngIf="!parentMode">
+            <button  mat-raised-button class="secondary-btn" (click)="onDelete(topic)">{{t('delete')}}</button>
+        </td>
+</tr>
+    </table>
+</ng-container>
+

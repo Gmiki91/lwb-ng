@@ -30,6 +30,9 @@
   "oral":"Oral",
   "text_assesment":"Text assesment",
   "teacher":"Teacher",
+  "topic":"Topic",
+  "topics":"Topics",
+  "lesson":"Lesson",
 
   "next_week": "Next week",
   "next_month": "Next month",

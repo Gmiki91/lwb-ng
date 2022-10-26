@@ -30,7 +30,10 @@
   "oral":"Szóbeli",
   "text_assesment":"Szöveges értékelés",
   "teacher":"Tanár",
-  
+  "topic":"Téma",
+  "topics":"Témák",
+  "lesson":"Óra",
+
   "next_week":"Következő hét",
   "next_month":"Következő hónap",
   "previous_week":"Előző hét",

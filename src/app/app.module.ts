@@ -38,6 +38,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component'
 import { HeaderComponent } from './header/header.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import {SummaryComponent} from './summary/summary.component';
+import { TopicComponent } from './grade-book/topic/topic.component';
+import { TopicListComponent } from './shared/topic-list/topic-list.component';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import {SummaryComponent} from './summary/summary.component';
     FoodOrderComponent,
     SpinnerComponent,
     HeaderComponent,
-    SummaryComponent
+    SummaryComponent,
+    TopicComponent,
+    TopicListComponent
   ],
   imports: [
     BrowserModule,

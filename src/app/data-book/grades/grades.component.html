@@ -21,4 +21,6 @@
                 <td>{{entry.mark}}</td>
             </tr>
         </table>
+        <br>
+        <app-topic-list *ngIf="page" [parentMode]="true" [info]="{subject:page.subject,grade:page.grade}"></app-topic-list>
     </ng-container>
