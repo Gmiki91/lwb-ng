@@ -1,6 +1,6 @@
 <ng-container *transloco="let t">
     <table>
-        <tr>
+        <tr *ngIf="!emptyList">
             <th>{{t('topic')}}</th>
             <th>{{t('lesson')}}</th>
             <th>{{t('date')}}</th>
