@@ -1,13 +1,21 @@
-table{
+table {
   width: 100%;
   border-collapse: collapse;
-}
-tr{
-  text-align:center;
-  border-bottom:1px solid;
+  margin-bottom: 30px;
 }
 
-textarea{
-  resize:vertical;
-  height:15.75px;
+tr {
+  text-align: center;
+  border-bottom: 1px solid;
+
+}
+
+td {
+  padding: 5px;
+}
+
+.topic_wrapper {
+  text-align: left;
+  max-width: 500px;
+  word-break: break-word;
 }

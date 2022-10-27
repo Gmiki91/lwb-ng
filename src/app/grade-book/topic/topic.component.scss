@@ -1,11 +1,17 @@
 .container {
     flex-direction: row;
-    align-items: flex-start;
   }
   
   button{
     margin-bottom: 20px;
   }
+  .topic_text_container{
+    width:400px;
+  }
   .topic {
     height: 15.75px;
+  }
+  .list_container{
+    display:flex;
+    justify-content:center;
   }

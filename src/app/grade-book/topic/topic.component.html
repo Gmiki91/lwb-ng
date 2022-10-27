@@ -1,8 +1,8 @@
-<ng-container  *transloco="let t">
+<ng-container *transloco="let t">
     <form #form="ngForm" (ngSubmit)="onSave(form)" class="container" (click)="$event.stopPropagation()">
-        <mat-form-field appearance="outline">
+        <mat-form-field class="topic_text_container" appearance="outline">
             <mat-label>{{t('topic')}}</mat-label>
-            <textarea class="topic" matInput ngModel name="text" type="text" required></textarea> 
+            <textarea class="topic" matInput ngModel name="text" type="text" required></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -20,5 +20,7 @@
         <button mat-raised-button [disabled]="!form.valid" class="primary-btn">{{t('save')}}
         </button>
     </form>
-    <app-topic-list [info]="{subject,grade}"></app-topic-list>
+    <div class="list_container">
+        <app-topic-list [info]="{subject,grade}"></app-topic-list>
+    </div>
 </ng-container>

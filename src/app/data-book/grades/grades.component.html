@@ -9,16 +9,16 @@
             <tr>
                 <th>{{t('text_assesment')}}</th>
                 <th>{{t('note')}}</th>
-                <th>{{t('date')}}</th>
                 <th>{{t('type')}}</th>
                 <th>{{t('mark')}}</th>
+                <th>{{t('date')}}</th>
             </tr>
             <tr *ngFor="let entry of page.results">
                 <td><textarea disabled>{{entry.textAssesment}}</textarea></td>
                 <td>{{entry.note}}</td>
-                <td>{{dateOf(entry.date)}}</td>
-                <td>{{entry.type}}</td>
+                <td >{{ entry.type ? t(entry.type) : ''}}</td>
                 <td>{{entry.mark}}</td>
+                <td>{{dateOf(entry.date)}}</td>
             </tr>
         </table>
         <br>
