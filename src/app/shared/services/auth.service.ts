@@ -23,8 +23,8 @@ export class AuthService {
         })
     }
 
-    logIn(email: string, password: string) {
-        return this.http.post<{ status: string, token: string, type: string, message: string }>(`${environment.url}/users/login`, { email, password }).pipe(tap(result => {
+    logIn(email: string, password: string, isTeacher:boolean) {
+        return this.http.post<{ status: string, token: string, type: string, message: string }>(`${environment.url}/users/login`, { email, password, isTeacher }).pipe(tap(result => {
             if (result.status === 'success')
                 this.loggedIn.next(true);
         }))

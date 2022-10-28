@@ -1,5 +1,6 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
@@ -10,6 +11,7 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['../auth.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy{
+  isTeacher:boolean = false;
   showPassword = false;
   loading=false;
   sub:Subscription = Subscription.EMPTY;
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     const {  username, password } = form.controls;
     if (form.valid && username.value.length>2 && password.value.length>2 ) {
       this.loading=true;
-      this.sub=this.authService.logIn(username.value, password.value).subscribe(
+      this.sub=this.authService.logIn(username.value, password.value,this.isTeacher).subscribe(
         {
             next: result => {
                 if (result.status==='success') {
@@ -48,5 +50,9 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
+  }
+
+  toggleText(event: MatSlideToggleChange):void {
+   this.isTeacher = event.source.checked;   
   }
 }

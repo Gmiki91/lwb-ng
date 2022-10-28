@@ -100,5 +100,6 @@
   "vegan":"Vegán",
   "home_alone":"Hazamehet egyedül",
   "health":"Egészségügyi problémák, allergia",
-  "missing_fields": "Hiányzó adat"
+  "missing_fields": "Hiányzó adat",
+  "parent":"Szülő"
 }
