@@ -25,21 +25,22 @@ import { GradeBookComponent } from './grade-book/grade-book.component';
 import { AuthenticationInterceptor } from './auth/authentication.interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MarkComponent } from './grade-book/mark/mark.component';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { ClassBookComponent } from './class-book/class-book.component';
 import { StudentComponent } from './data-book/student-data/student.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DataBookComponent } from './data-book/data-book.component';
 import { AttendanceComponent } from './data-book/attendance/attendance.component';
 import { GradesComponent } from './data-book/grades/grades.component';
 import { FoodOrderComponent } from './data-book/food-order/food-order.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component'
 import { HeaderComponent } from './header/header.component';
 import { TranslocoRootModule } from './transloco-root.module';
-import {SummaryComponent} from './summary/summary.component';
-import { TopicComponent } from './grade-book/topic/topic.component';
-import { TopicListComponent } from './shared/topic-list/topic-list.component';
+import { SummaryComponent } from './summary/summary.component';
+import { TopicComponent } from './topic/topic.component';
+import { TopicListComponent } from './topic/topic-list/topic-list.component';
+import { SubjectSelectorComponent } from './shared/subject-selector/subject-selector.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { TopicListComponent } from './shared/topic-list/topic-list.component';
     HeaderComponent,
     SummaryComponent,
     TopicComponent,
-    TopicListComponent
+    TopicListComponent,
+    SubjectSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,7 @@ import { TopicListComponent } from './shared/topic-list/topic-list.component';
     MatButtonToggleModule,
     MatProgressSpinnerModule,
     TranslocoRootModule
-    
+
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },],
   bootstrap: [AppComponent]

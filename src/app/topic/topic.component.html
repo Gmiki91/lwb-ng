@@ -1,0 +1,25 @@
+<div class="container">
+    <ng-container *transloco="let t">
+        <h1>{{grade}}. {{t('class')}}</h1>
+        <app-subject-selector [grade]="grade" (subjectEmitter)="changedSubject($event)">
+        </app-subject-selector>
+
+        <form *ngIf="subject" #form="ngForm" (ngSubmit)="onSave(form)" (click)="$event.stopPropagation()">
+
+            <mat-form-field class="number_input" appearance="outline">
+                <mat-label>#</mat-label>
+                <input matInput ngModel name="lesson" type="number" required />
+            </mat-form-field>
+
+            <mat-form-field class="topic_text_container" appearance="outline">
+                <mat-label>{{t('topic')}}</mat-label>
+                <textarea class="topic" matInput ngModel name="text" type="text" required></textarea>
+            </mat-form-field>
+
+            <button mat-raised-button [disabled]="!form.valid" class="primary-btn">{{t('save')}}
+            </button>
+        </form>
+
+        <app-topic-list [subject]="subject" [grade]="grade" ></app-topic-list>
+    </ng-container>
+</div>

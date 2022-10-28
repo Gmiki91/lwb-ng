@@ -20,6 +20,7 @@ export type Student ={
 }
 export type Result={
     date:number;
+    topics:string[];
     mark?:number;
     textAssesment?:string;
     note?:string;

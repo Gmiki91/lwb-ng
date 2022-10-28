@@ -1,0 +1,7 @@
+.subjects{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+:host ::ng-deep .mat-button-toggle-group-appearance-standard .mat-button-toggle+.mat-button-toggle  {
+    border:0;
+}

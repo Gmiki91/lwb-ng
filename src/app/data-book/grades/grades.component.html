@@ -7,6 +7,7 @@
         </mat-button-toggle-group>
         <table *ngIf="page">
             <tr>
+                <th>{{t('topic')}}</th>
                 <th>{{t('text_assesment')}}</th>
                 <th>{{t('note')}}</th>
                 <th>{{t('type')}}</th>
@@ -14,6 +15,7 @@
                 <th>{{t('date')}}</th>
             </tr>
             <tr *ngFor="let entry of page.results">
+                <td><p *ngFor="let topic of entry.topics">{{topic}}</p></td>
                 <td><textarea disabled>{{entry.textAssesment}}</textarea></td>
                 <td>{{entry.note}}</td>
                 <td >{{ entry.type ? t(entry.type) : ''}}</td>
@@ -21,6 +23,4 @@
                 <td>{{dateOf(entry.date)}}</td>
             </tr>
         </table>
-        <br>
-        <app-topic-list *ngIf="page" [parentMode]="true" [info]="{subject:page.subject,grade:page.grade}"></app-topic-list>
     </ng-container>

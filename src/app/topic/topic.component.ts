@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Topic } from 'src/app/shared/models/topic';
 import { TopicService } from 'src/app/shared/services/topic.service';
 
@@ -9,27 +10,30 @@ import { TopicService } from 'src/app/shared/services/topic.service';
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent {
-  subject = "";
-  grade = -1;
-
-  @Input() set info(obj: { subject: string, grade: number }) {
-    this.grade = obj.grade;
-    this.subject = obj.subject;
-  };
-
-  constructor(private topicService: TopicService) { }
+  grade!:number;
+  subject!: string;
+  loading=false;
+  constructor(private topicService: TopicService,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => this.grade = params['grade']);
+   }
 
   onSave(form: NgForm): void {
     if (form.valid) {
-      const { text, lesson, date } = form.controls;
+      const { text, lesson } = form.controls;
       const topic: Topic = {
         text: text.value,
         lesson: lesson.value,
-        date: new Date(date.value).getTime(),
         grade: this.grade,
         subject: this.subject
       }
       this.topicService.addTopic(topic);
+    }
+  }
+  changedSubject(subject: string): void {
+    if (subject !== this.subject) {
+      this.subject = subject;
+      this.topicService.requestTopics(this.subject,this.grade);
+      this.loading = true;
     }
   }
 

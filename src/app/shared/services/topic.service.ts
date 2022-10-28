@@ -17,14 +17,9 @@ export class TopicService {
 
     requestTopics(subject: string, grade: number): void {
         this.http.get<{ status: string, topics: Topic[] }>(`${environment.url}/topics/${subject}/${grade}`)
-            .pipe(map(result => result.topics.sort((a, b) => a.date - b.date)))
+            .pipe(map(result => result.topics.sort((a, b) => a.lesson - b.lesson)))
             .subscribe(result => this.topicList.next(result))
 
-    }
-
-    updateTopic(topic: Topic) {
-        this.http.put<{ status: string }>(`${environment.url}/topics/`, topic)
-            .subscribe(() => this.requestTopics(topic.subject, topic.grade));
     }
 
     deleteTopic(topic: Topic) {

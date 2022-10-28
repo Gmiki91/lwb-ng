@@ -26,6 +26,10 @@
   height: 15.75px;
 }
 
+::ng-deep .mat-select-panel-wrap .mat-select-panel{
+  max-width:1000px;
+  width:fit-content;
+}
 .signedBy{
   width:100px;
 }

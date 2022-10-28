@@ -9,9 +9,6 @@ app-mark{
     grid-template-columns: repeat(6, 1fr);
 }
 
-:host ::ng-deep .mat-button-toggle-group-appearance-standard .mat-button-toggle+.mat-button-toggle  {
-    border:0;
-}
 ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
     border-color: v.$secondary_color;
  }

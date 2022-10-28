@@ -1,14 +1,10 @@
 <div class="container" (click)="outsideClick()">
     <ng-container *transloco="let t">
         <h1>{{grade}}. {{t('class')}}</h1>
-        <mat-button-toggle-group class="subjects">
-            <mat-button-toggle [disabled]="editingId" *ngFor="let subject of subjects" value="subject"
-                (change)="changedSubject(subject)">
-                {{t(subject)}}
-            </mat-button-toggle>
-        </mat-button-toggle-group>
+        <app-subject-selector [disabled]="editingId!==undefined" [grade]="grade" (subjectEmitter)="changedSubject($event)">
+        </app-subject-selector>
         <div *ngIf="subject">
-            <app-mark [ngClass]="loading ? 'inactive' : ''" [data]="resultData" (save)="save($event)"></app-mark>
+            <app-mark [ngClass]="loading ? 'inactive' : ''" [dataInput]="resultData" (save)="save($event)"></app-mark>
             <table [ngClass]="editingId? 'inactive':''">
                 <tr>
                     <th></th>
@@ -22,26 +18,28 @@
                     <th class="names">
                         <p>{{student.fullNameC}} </p>
                         <p>{{student.fullNameL}}</p>
-                   </th>
+                    </th>
                     <td *ngFor="let month of months">
                         <span *ngFor="let result of ratedInMonth(month.value,student.results)"
-                        [ngClass]="['clickable','pr-3',redMark===result ? 'red' : '', result.deleted ? 'crossed' : '' ]"
-                            (click)="editMark(student._id,result);$event.stopPropagation();">{{result.mark ? result.mark : 'T'}}</span>
+                            [ngClass]="['clickable','pr-3',redMark===result ? 'red' : '', result.deleted ? 'crossed' : '' ]"
+                            (click)="editMark(student._id,result);$event.stopPropagation();">{{result.mark ? result.mark
+                            : 'T'}}</span>
+                        <!-- <span *ngFor="let result of ratedInMonth(month.value,student.results)"
+                            (click)="delete(student._id,result);$event.stopPropagation();">{{result.mark ? result.mark : 'T'}}</span> -->
                     </td>
                     <td>
                         <textarea (change)="changeMark(student._id, $event)"></textarea>
-                    </td> 
+                    </td>
                     <td class="marks">
                         <mat-radio-group (change)="changeMark(student._id,$event.value)">
-                            <mat-radio-button [disabled]="editingId!==undefined"
-                                *ngFor="let number of [1,2,3,4,5]" [value]="number">
+                            <mat-radio-button [disabled]="editingId!==undefined" *ngFor="let number of [1,2,3,4,5]"
+                                [value]="number">
                                 {{number}}
                             </mat-radio-button>
                         </mat-radio-group>
                     </td>
                 </tr>
             </table>
-            <app-topic [info]="{subject,grade}"></app-topic>
         </div>
     </ng-container>
 </div>

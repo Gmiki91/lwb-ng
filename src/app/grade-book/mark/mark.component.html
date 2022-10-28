@@ -1,6 +1,14 @@
 <ng-container *transloco="let t">
     <div class="main" (click)="$event.stopPropagation()">
         <div class="container">
+            <mat-form-field appearance="outline">
+                <mat-label>{{t('topic')}}</mat-label>
+                <mat-select panelClass="topic_panel" >
+                    <mat-option (click)="selectTopic(topic)" *ngFor="let topic of topicList$|async" [value]="topic">
+                        {{topic.lesson}} - {{topic.text}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>{{t('type')}}</mat-label>
@@ -54,5 +62,7 @@
             <button *ngIf="!data.deleted" mat-raised-button class="secondary-btn" (click)="onDelete()">{{t('delete')}}</button>
             
         </div>
+        <h4 *ngIf="selectedTopics.length>0">{{t('topics')}}</h4>
+        <i (click)="removeTopic(topic)" *ngFor="let topic of selectedTopics">{{topic}}</i>
     </div>
 </ng-container>

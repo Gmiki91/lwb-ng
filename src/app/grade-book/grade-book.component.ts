@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { Result, StudentResult } from '../shared/models/student.model';
 import { StudentService } from '../shared/services/student.service';
-import { ClassRooms } from '../shared/models/constants'
+import { TopicService } from '../shared/services/topic.service';
 type StudentMark = {
   id: string,
   mark?: number,
@@ -33,29 +33,22 @@ export class GradeBookComponent implements OnInit {
   resultData: Result = {} as Result;
   subject!: string;
   grade!: number;
-  subjects!: string[];
   editingId: string | undefined;
   redMark: Result | undefined;
   loading = false;
 
-  constructor(private studentService: StudentService, private route: ActivatedRoute) { }
+  constructor(private studentService: StudentService, private topicService: TopicService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.grade = params['grade'];
-      this.subjects = ClassRooms
-        .filter(classroom => classroom.grades.includes(+this.grade))
-        .map(classroom => classroom.subjects)[0];
-    });
-    this.data$ = this.studentService.getStudentResults().pipe(
-      tap(() => this.loading = false)
-    )
+    this.route.queryParams.subscribe(params => this.grade = params['grade']);
+    this.data$ = this.studentService.getStudentResults().pipe(tap(() => this.loading = false));
   }
 
-  changedSubject(subject: string):void {
+  changedSubject(subject: string): void {
     if (subject !== this.subject) {
       this.subject = subject;
       this.studentService.requestStudentResults(this.grade, this.subject);
+      this.topicService.requestTopics(this.subject,this.grade);
       this.loading = true;
     }
   }
@@ -89,7 +82,11 @@ export class GradeBookComponent implements OnInit {
     }
 
   }
-
+  // delete(studentId: string, result: Result): void {
+  //   this.loading = true;
+  //   this.studentService.deleteStudentResult(studentId, result, this.grade, this.subject);
+  //   this._cancel();
+  // }
   save(result: Result | null): void {
     if (result) {
       this.loading = true;
@@ -128,7 +125,7 @@ export class GradeBookComponent implements OnInit {
       this._cancel()
   }
 
-  editMark(id: string, result: Result):void {
+  editMark(id: string, result: Result): void {
     this.resultData = { ...result };
     this.editingId = id;
     this.redMark = result;

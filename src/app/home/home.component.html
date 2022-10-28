@@ -9,6 +9,7 @@
                         <button mat-button routerLink="/data-book" [queryParams]="{grade:classroom.grades[i]}">{{t('roster')}}</button>
                         <button mat-button routerLink="/grade-book" [queryParams]="{grade:classroom.grades[i]}">{{t('diary')}}</button>
                         <button mat-button routerLink="/class-book" [queryParams]="{grade:classroom.grades[i]}">{{t('attendance')}}</button>
+                        <button mat-button routerLink="/topic" [queryParams]="{grade:classroom.grades[i]}">{{t('topics')}}</button>
                     </div>
                 </div>
             </ng-container>

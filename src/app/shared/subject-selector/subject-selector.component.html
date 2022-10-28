@@ -1,0 +1,8 @@
+<ng-container *transloco="let t">
+    <mat-button-toggle-group class="subjects">
+        <mat-button-toggle [disabled]="disabled" *ngFor="let subject of subjects" value="subject"
+            (change)="changedSubject(subject)">
+            {{t(subject)}}
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+</ng-container>
