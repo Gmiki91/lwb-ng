@@ -11,7 +11,7 @@
                             (click)="openGrades(student)">{{t('diary')}}</button>
                         <button mat-stroked-button class="clickable"
                             (click)="openAttendance(student)">{{t('attendance')}}</button>
-                        <button mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
+                        <button *ngIf="!parentMode" mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
                             t('remove_student') }}</button>
                     </div>
                 </div>
@@ -25,11 +25,10 @@
             <div class="content" *ngFor="let student of archivedStudents$|async">
                 <div class="content__student">
                     <div class="name">{{student.fullNameC}} - {{student.fullNameL}}</div>
-                    <button mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
+                    <button *ngIf="!parentMode" mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
                         t('activate_student') }}</button>
                 </div>
             </div>
-            <a  *ngIf="parentMode" mat-stroked-button routerLink="/register">Register new student</a>
             <app-spinner *ngIf="loading"></app-spinner>
         </div>
     </ng-container>

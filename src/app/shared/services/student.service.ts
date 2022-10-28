@@ -30,8 +30,11 @@ export class StudentService {
     }
 
     getChildren() {
-        return this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students`).subscribe(result => {
-            if (result.status === 'success') this._splitStudents(result.students);
+        return this.http.get<{ status: string, user: Student }>(`${environment.url}/students`).subscribe(result => {
+            if (result.status === 'success') {
+                result.user.archived ?  this.studentsInActive.next([result.user]) : this.studentsActive.next([result.user]);
+            }
+            
         })
     }
 

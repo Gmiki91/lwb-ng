@@ -11,9 +11,9 @@ import { DataBookComponent } from './data-book/data-book.component';
 import { TeacherGuard } from './auth/guards/teacher.guard';
 import { TopicComponent } from './topic/topic.component';
 const routes: Routes = [
-  {component:SignupComponent, path: 'signup'},
+  // {component:SignupComponent, path: 'signup'},
   {component:LoginComponent, path: 'login'},
-  {component:RegisterComponent, path: 'register',canActivate:[AuthGuard]},
+  {component:RegisterComponent, path: 'register'},
   {component:GradeBookComponent, path: 'grade-book',canActivate:[TeacherGuard]},
   {component:ClassBookComponent, path: 'class-book',canActivate:[TeacherGuard]},
   {component:DataBookComponent, path: 'data-book',canActivate:[TeacherGuard]},

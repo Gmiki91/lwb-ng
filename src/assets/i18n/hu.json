@@ -82,6 +82,7 @@
 
   "login":"Bejelentkezés",
   "signup":"Regisztráció",
+  "register":"Tanuló regisztrációja",
   "username":"Felhasználónév",
   "password":"Jelszó",
   "confirm_password":"Jelszó megerősítése",

@@ -10,6 +10,10 @@
             <input matInput ngModel type="text" name="fullNameL" required />
         </mat-form-field>
         <mat-form-field>
+            <mat-label>{{t('password')}}</mat-label>
+            <input matInput ngModel type="password" name="pw" required />
+        </mat-form-field>
+        <mat-form-field>
             <input matInput ngModel name="dob" [matDatepicker]="picker" disabled>
             <mat-label>{{t('dob')}}</mat-label>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

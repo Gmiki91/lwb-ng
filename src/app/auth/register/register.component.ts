@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   }
   submit(): void {
     if (this.form && this.form.valid) {
-      const { fullNameC, fullNameL,email, dob, grade,pgName,phoneNumber,address, ukraineSchool, healthIssues, vegetarian,homeGoing } = this.form.controls;
+      const { fullNameC, fullNameL,email, dob, grade,pgName,phoneNumber,address, ukraineSchool, healthIssues, vegetarian,homeGoing,pw } = this.form.controls;
       const student: Student = {
         fullNameC: fullNameC.value,
         fullNameL: fullNameL.value,
@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
         registeredAt: Date.now(),
         missedClassAt:[],
         foodOrderedFor:[],
-        archived:false
+        archived:false,
+        pw:pw.value
       }
       this.loading=true;
       this.studentService.registerStudent(student);

@@ -17,6 +17,7 @@ export type Student ={
     missedClassAt:number[];
     foodOrderedFor:number[];
     gradeBook?:GradeBook[];
+    pw:string;
 }
 export type Result={
     date:number;
