@@ -24,6 +24,7 @@ export class FoodOrderComponent implements OnInit {
   ngOnInit(): void {
     this.checkedDays = this.student.foodOrderedFor;
     let today = new Date();
+    
     if (isWeekend(today) || isFriday(today)) today = nextMonday(today);
     this.dates = eachDayOfInterval({
       start: startOfWeek(today, { weekStartsOn: 1 }),
@@ -32,6 +33,7 @@ export class FoodOrderComponent implements OnInit {
 
     this.months = this.dates.map(date => MonthNames[date.getMonth()])
     this.days = this.dates.map(date => date.getDate());
+    console.log(today);
   }
 
   onChange(i: number, checked: boolean) {
@@ -58,6 +60,9 @@ export class FoodOrderComponent implements OnInit {
   disableCheckbox(i: number): boolean {
     const selectedDay = this.dates[i].getTime();
     const currentDay = Date.now();
+    if (isWeekend(currentDay) || isFriday(currentDay)){
+      return i===0
+    }
     // 1 nappal előre kell rendelni
     return selectedDay - currentDay < 24 * 60 * 60 * 1000
   }
