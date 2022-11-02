@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DayNames, MonthNames } from '../shared/models/constants';
-import { Student } from '../shared/models/student.model';
-import { StudentService } from '../shared/services/student.service';
+import { DayNames, MonthNames } from '../../shared/models/constants';
+import { Student } from '../../shared/models/student.model';
+import { StudentService } from '../../shared/services/student.service';
 import { startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns'
 
 @Component({

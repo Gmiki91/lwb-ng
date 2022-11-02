@@ -1,6 +1,6 @@
 import { Component, Input,  OnInit } from '@angular/core';
 import { eachDayOfInterval, startOfWeek, endOfWeek, isFriday, isWeekend, nextMonday } from 'date-fns';
-import { DayNames,  MonthNames } from '../../shared/models/constants';
+import { DayNames,  MonthNames } from '../../../shared/models/constants';
 import { Student } from 'src/app/shared/models/student.model';
 import { StudentService } from 'src/app/shared/services/student.service';
 

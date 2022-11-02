@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { StudentComponent } from './student-data/student.component';
-import { Student } from '../shared/models/student.model';
-import { StudentService } from '../shared/services/student.service';
+import { Student } from '../../shared/models/student.model';
+import { StudentService } from '../../shared/services/student.service';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { GradesComponent } from './grades/grades.component';
 

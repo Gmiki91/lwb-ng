@@ -21,25 +21,25 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { GradeBookComponent } from './grade-book/grade-book.component';
+import { GradeBookComponent } from './core/grade-book/grade-book.component';
 import { AuthenticationInterceptor } from './auth/authentication.interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MarkComponent } from './grade-book/mark/mark.component';
+import { MarkComponent } from './core/grade-book/mark/mark.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { ClassBookComponent } from './class-book/class-book.component';
-import { StudentComponent } from './data-book/student-data/student.component';
+import { ClassBookComponent } from './core/class-book/class-book.component';
+import { StudentComponent } from './core/data-book/student-data/student.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { DataBookComponent } from './data-book/data-book.component';
-import { AttendanceComponent } from './data-book/attendance/attendance.component';
-import { GradesComponent } from './data-book/grades/grades.component';
-import { FoodOrderComponent } from './data-book/food-order/food-order.component';
+import { DataBookComponent } from './core/data-book/data-book.component';
+import { AttendanceComponent } from './core/data-book/attendance/attendance.component';
+import { GradesComponent } from './core/data-book/grades/grades.component';
+import { FoodOrderComponent } from './core/data-book/food-order/food-order.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component'
 import { HeaderComponent } from './header/header.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { SummaryComponent } from './summary/summary.component';
-import { TopicComponent } from './topic/topic.component';
-import { TopicListComponent } from './topic/topic-list/topic-list.component';
+import { TopicComponent } from './core/topics/topic.component';
+import { TopicListComponent } from './core/topics/topic-list/topic-list.component';
 import { SubjectSelectorComponent } from './shared/subject-selector/subject-selector.component';
 
 

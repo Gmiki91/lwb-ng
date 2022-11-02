@@ -1,8 +1,8 @@
 import { OnInit, Component, Input } from '@angular/core';
 import { format } from 'date-fns';
 import { Observable,tap } from 'rxjs';
-import { Topic } from '../../shared/models/topic';
-import { TopicService } from '../../shared/services/topic.service';
+import { Topic } from '../../../shared/models/topic';
+import { TopicService } from '../../../shared/services/topic.service';
 
 @Component({
   selector: 'app-topic-list',

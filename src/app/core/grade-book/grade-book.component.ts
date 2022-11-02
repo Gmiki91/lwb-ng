@@ -1,9 +1,9 @@
 import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
-import { Result, StudentResult } from '../shared/models/student.model';
-import { StudentService } from '../shared/services/student.service';
-import { TopicService } from '../shared/services/topic.service';
+import { Result, StudentResult } from '../../shared/models/student.model';
+import { StudentService } from '../../shared/services/student.service';
+import { TopicService } from '../../shared/services/topic.service';
 type StudentMark = {
   id: string,
   mark?: number,

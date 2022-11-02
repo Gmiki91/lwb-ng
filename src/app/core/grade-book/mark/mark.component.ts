@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Result } from 'src/app/shared/models/student.model';
 import { Topic } from 'src/app/shared/models/topic';
 import { TopicService } from 'src/app/shared/services/topic.service';
-import { MarkTypes } from '../../shared/models/constants';
+import { MarkTypes } from '../../../shared/models/constants';
 @Component({
   selector: 'app-mark',
   templateUrl: './mark.component.html',
