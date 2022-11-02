@@ -19,7 +19,6 @@
             <button mat-raised-button [disabled]="!form.valid" class="primary-btn">{{t('save')}}
             </button>
         </form>
-
-        <app-topic-list [subject]="subject" [grade]="grade" ></app-topic-list>
+        <app-topic-list [subjectChanged]="subject"></app-topic-list>
     </ng-container>
 </div>

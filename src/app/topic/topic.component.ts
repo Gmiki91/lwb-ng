@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Topic } from 'src/app/shared/models/topic';
@@ -12,7 +12,6 @@ import { TopicService } from 'src/app/shared/services/topic.service';
 export class TopicComponent {
   grade!:number;
   subject!: string;
-  loading=false;
   constructor(private topicService: TopicService,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => this.grade = params['grade']);
    }
@@ -33,7 +32,6 @@ export class TopicComponent {
     if (subject !== this.subject) {
       this.subject = subject;
       this.topicService.requestTopics(this.subject,this.grade);
-      this.loading = true;
     }
   }
 

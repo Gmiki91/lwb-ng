@@ -1,13 +1,19 @@
 <ng-container *transloco="let t">
     <table>
-        <tr *ngIf="!emptyList">
+        <tr *ngIf="!isLoading">
             <th>#</th>
             <th>{{t('topic')}}</th>
         </tr>
         <tr *ngFor="let topic of topicList$|async, let i=index">
-            <td>{{topic.lesson}}</td>
-            <td><div class="topic_wrapper">{{topic.text}}</div></td>
-            <td><button mat-raised-button class="secondary-btn" (click)="onDelete(topic)">{{t('delete')}}</button></td>
+            <ng-container *ngIf="!isLoading">
+                <td>{{topic.lesson}}</td>
+                <td>
+                    <div class="topic_wrapper">{{topic.text}}</div>
+                </td>
+                <td><button mat-raised-button class="secondary-btn" (click)="onDelete(topic)">{{t('delete')}}</button>
+                </td>
+            </ng-container>
         </tr>
     </table>
+    <app-spinner *ngIf="isLoading"></app-spinner>
 </ng-container>

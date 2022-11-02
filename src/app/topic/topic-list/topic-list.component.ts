@@ -12,14 +12,14 @@ import { TopicService } from '../../shared/services/topic.service';
 export class TopicListComponent implements OnInit {
 
   topicList$!: Observable<Topic[]>
-  emptyList=true;
-  @Input() subject!:string;
-  @Input() grade!:number;
-
+  isLoading=true;
+  @Input() set subjectChanged(value:string){
+    this.isLoading=true;
+  }
   constructor(private topicService: TopicService) { }
 
   ngOnInit(): void {
-    this.topicList$ = this.topicService.getTopics().pipe(tap((list) => this.emptyList = list.length===0));
+    this.topicList$ = this.topicService.getTopics().pipe(tap(() => this.isLoading = false));
   }
   formatDate(date: number): string {
     return format(new Date(date), 'yyyy/MM/dd');
