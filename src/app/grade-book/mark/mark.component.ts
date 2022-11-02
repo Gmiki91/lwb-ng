@@ -41,7 +41,10 @@ export class MarkComponent implements OnInit {
     const value = `${topic.lesson} - ${topic.text}`
     if (this.selectedTopics.length===0 || this.selectedTopics.indexOf(value) === -1) {
       this.selectedTopics.push(value);
-      this.selectedTopics.sort((a,b)=>+a.substring(0,1)-+b.substring(0,1))
+      this.selectedTopics.sort((a,b)=>{
+        const number1 = a.split('-')[0];
+        const number2 = b.split('-')[0];
+        return +number1-+number2})
     }
   }
   removeTopic(topic: string) {
