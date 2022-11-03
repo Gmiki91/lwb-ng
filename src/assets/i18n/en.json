@@ -99,5 +99,6 @@
   "vegan": "Vegan",
   "health":"Health concerns, allergies",
   "missing_fields": "Missing data",
-  "parent":"Parent"
+  "parent":"Parent",
+  "inactive":"Inactive"
 }

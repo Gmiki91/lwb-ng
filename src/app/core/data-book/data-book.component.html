@@ -23,12 +23,13 @@
             </div>
             <br>
             <div class="content" *ngFor="let student of archivedStudents$|async">
+                <h4>{{t('inactive')}}</h4>
                 <div class="content__student">
                     <div class="name">{{student.fullNameC}} - {{student.fullNameL}}</div>
                     <button *ngIf="!parentMode" mat-stroked-button class="clickable" color="warn" (click)="toggleArchive(student)">{{
                         t('activate_student') }}</button>
+                    </div>
                 </div>
-            </div>
             <app-spinner *ngIf="loading"></app-spinner>
         </div>
     </ng-container>

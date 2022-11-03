@@ -21,7 +21,7 @@
   "back":"Vissza",
   "minLength": "Minimum 3 karakter szükséges",
   "remove_student":"Tanuló archiválása",
-  "activate_student":"Tanuló törlése",
+  "activate_student":"Tanuló aktiválása",
   "date":"Dátum",
   "note":"Megjegyzés",
   "type":"Típus",
@@ -100,5 +100,6 @@
   "vegan":"Vegán",
   "health":"Egészségügyi problémák, allergia",
   "missing_fields": "Hiányzó adat",
-  "parent":"Szülő"
+  "parent":"Szülő",
+  "inactive":"Inaktív"
 }
