@@ -18,19 +18,18 @@ export class RegisterComponent implements OnInit {
   }
   submit(): void {
     if (this.form && this.form.valid) {
-      const { fullNameC, fullNameL,email, dob, grade,pgName,phoneNumber,address, ukraineSchool, healthIssues, vegetarian,homeGoing,pw } = this.form.controls;
+      const { fullNameC, fullNameL,email, dob, grade,pgName,phoneNumber,address, ukraineSchool, healthIssues, vegetarian,pw } = this.form.controls;
       const student: Student = {
         fullNameC: fullNameC.value,
         fullNameL: fullNameL.value,
         dob: dob.value,
         currentGrade: grade.value,
-        healthIssues: healthIssues.value,
+        healthIssues: healthIssues.value.split(','),
         pgName:pgName.value,
         phone:phoneNumber.value,
         address:address.value,
         email:email.value,
         vegetarian: vegetarian.value ==='' ? false : vegetarian.value,
-        homeGoing:homeGoing.value ==='' ? false : homeGoing.value,
         ukraineSchool: ukraineSchool.value,
         registeredAt: Date.now(),
         missedClassAt:[],

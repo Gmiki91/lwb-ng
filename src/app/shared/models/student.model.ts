@@ -11,7 +11,6 @@ export type Student ={
     ukraineSchool:string;
     healthIssues:string[];
     vegetarian:boolean;
-    homeGoing:boolean;
     archived:boolean;
     registeredAt:number;
     missedClassAt:number[];
