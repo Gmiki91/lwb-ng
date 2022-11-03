@@ -21,7 +21,7 @@
                     </th>
                     <td *ngFor="let month of months">
                         <span *ngFor="let result of ratedInMonth(month.value,student.results)"
-                            [ngClass]="['clickable','pr-3',redMark===result ? 'red' : '', result.deleted ? 'crossed' : '' ]"
+                            [ngClass]="['clickable','pr-3',redMark===result ? 'red' : '']"
                             (click)="editMark(student._id,result);$event.stopPropagation();">{{result.mark ? result.mark
                             : 'T'}}</span>
                         <!-- <span *ngFor="let result of ratedInMonth(month.value,student.results)"
