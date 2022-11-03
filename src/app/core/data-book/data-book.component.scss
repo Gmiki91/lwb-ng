@@ -21,4 +21,9 @@ h1 {
         flex-direction: row;
         justify-content: space-between;
     }
+    &__form{
+        display: flex;
+        flex-direction: column;
+        width:430px;
+    }
 }

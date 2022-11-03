@@ -1,46 +1,83 @@
 <div class="container">
-    <div class="content__data">
-        <ng-container *transloco="let t">
+    <ng-container *transloco="let t">
+        <div class="content__data">
             <span>
                 <label>{{t('name')}}: </label>
-                <p> {{student.fullNameC}} - {{student.fullNameL}}</p> 
+                <p> {{student.fullNameC}} - {{student.fullNameL}}</p>
             </span>
             <span>
                 <label>{{t('dob')}}:</label>
-                <p> {{formattedDate}}</p> 
+                <p> {{formattedDate}}</p>
             </span>
-            <span>
-                <label>{{t('class')}}:</label>
-                <p> {{student.currentGrade}}</p> 
-            </span>
-            <span *ngIf="student.pgName">
-                <label>{{t('pg_name')}}:</label>
-                <p> {{student.pgName}}</p> 
-            </span>
-            <span *ngIf="student.address">
-                <label>{{t('address')}}:</label>
-                <p> {{student.address}}</p> 
-            </span>
-            <span *ngIf="student.phone">
-                <label>{{t('phone')}}:</label>
-                <p> {{student.phone}}</p> 
-            </span>
-            <span *ngIf="student.email">
-                <label>{{t('email')}}:</label>
-                <p> {{student.email}}</p> 
-            </span>
-            <span *ngIf="student.ukraineSchool">
-                <label>{{t('uk_school')}}:</label>
-                <p> {{student.ukraineSchool}}</p> 
-            </span>
-            <span *ngIf="student.healthIssues.length>0">
-                <label>{{t('health')}}:</label>
-                <p> {{student.healthIssues}}</p> 
-            </span>
-            <span *ngIf="student.homeGoing">
-                <label>{{t('home_alone')}}:</label>
-                <p> {{student.homeGoing ? t('yes') : t('no')}}</p> 
-            </span>
-        </ng-container>
-    </div>
+            <ng-container *ngIf="!edit">
+                <span>
+                    <label>{{t('class')}}:</label>
+                    <p> {{student.currentGrade}}</p>
+                </span>
+                <span *ngIf="student.pgName">
+                    <label>{{t('pg_name')}}:</label>
+                    <p> {{student.pgName}}</p>
+                </span>
+                <span *ngIf="student.address">
+                    <label>{{t('address')}}:</label>
+                    <p> {{student.address}}</p>
+                </span>
+                <span *ngIf="student.phone">
+                    <label>{{t('phone')}}:</label>
+                    <p> {{student.phone}}</p>
+                </span>
+                <span *ngIf="student.email">
+                    <label>{{t('email')}}:</label>
+                    <p> {{student.email}}</p>
+                </span>
+                <span *ngIf="student.ukraineSchool">
+                    <label>{{t('uk_school')}}:</label>
+                    <p> {{student.ukraineSchool}}</p>
+                </span>
+                <span *ngIf="student.healthIssues.length>0">
+                    <label>{{t('health')}}:</label>
+                    <p> {{student.healthIssues}}</p>
+                </span>
+                <span>
+                    <label>{{t('vegan')}}:</label>
+                    <p> {{student.vegetarian ? t('yes') : t('no')}}</p>
+                </span>
+            </ng-container>
+
+            <form class="content__form" *ngIf="edit" #form="ngForm" >
+                <mat-form-field>
+                    <mat-label>{{t('class')}}:</mat-label>
+                    <input matInput type="number" name="currentGrade" [(ngModel)]="student.currentGrade" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{t('pg_name')}}:</mat-label>
+                    <input matInput ngModel type="text" name="pgName" [(ngModel)]="student.pgName">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{t('address')}}:</mat-label>
+                    <input matInput ngModel type="text" name="address" [(ngModel)]="student.address">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{t('phone')}}:</mat-label>
+                    <input matInput ngModel type="text" name="phone" [(ngModel)]="student.phone">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{t('email')}}:</mat-label>
+                    <input matInput ngModel type="text" name="email" [(ngModel)]="student.email">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{t('uk_school')}}:</mat-label>
+                    <input matInput ngModel type="text" name="ukraineSchool" [(ngModel)]="student.ukraineSchool">
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>{{t('health')}}:</mat-label>
+                    <input matInput ngModel type="text" name="healthIssues" [(ngModel)]="student.healthIssues">
+                </mat-form-field>
+                <mat-checkbox matInput  name="vegetarian" [(ngModel)]="student.vegetarian">{{t('vegan')}}
+                </mat-checkbox>
+            </form>
+        </div>
+        <button *ngIf="data.parentMode" mat-button class="primary-btn" (click)="onEdit()">{{edit ? t('save'):t('update')}}</button>
+    </ng-container>
+    <app-spinner *ngIf="loading"></app-spinner>
 </div>

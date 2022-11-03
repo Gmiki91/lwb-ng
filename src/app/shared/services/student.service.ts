@@ -25,17 +25,26 @@ export class StudentService {
     }
     getStudentsOfClass(classes: number) {
         this.http.get<{ status: string, students: Student[] }>(`${environment.url}/students/many/${classes}`).subscribe(result => {
-            if (result.status === 'success')this._splitStudents(result.students);
+            if (result.status === 'success') this._splitStudents(result.students);
         })
     }
 
     getChildren() {
         return this.http.get<{ status: string, user: Student }>(`${environment.url}/students`).subscribe(result => {
             if (result.status === 'success') {
-                result.user.archived ?  this.studentsInActive.next([result.user]) : this.studentsActive.next([result.user]);
+                result.user.archived ? this.studentsInActive.next([result.user]) : this.studentsActive.next([result.user]);
             }
-            
+
         })
+    }
+
+    updateStudent(student: Student):Observable<boolean> {
+       return this.http.patch<{ status: string }>(`${environment.url}/students`, { student }).pipe(map(result => {
+            if (result.status === 'success')
+                return true;
+            else
+                return false
+        }))
     }
 
     updateStudents(students: Student[]): Observable<boolean> {
@@ -85,7 +94,7 @@ export class StudentService {
     }
 
     deleteStudentResult(studentId: string, result: Result, grade: number, subject: string) {
-        this.http.request<{ status: string }>('delete',`${environment.url}/students/results`, {body:{ studentId, result, grade, subject }}).subscribe(result => {
+        this.http.request<{ status: string }>('delete', `${environment.url}/students/results`, { body: { studentId, result, grade, subject } }).subscribe(result => {
             if (result.status === 'success')
                 this.requestStudentResults(grade, subject)
             else
@@ -93,18 +102,18 @@ export class StudentService {
         })
     }
 
-    getActiveStudents(){
+    getActiveStudents() {
         return this.studentsActive.asObservable();
     }
-    getArchivedStudents(){
+    getArchivedStudents() {
         return this.studentsInActive.asObservable();
     }
     getStudentResults() {
         return this.studentResult.asObservable();
     }
 
-    toggleArchive(student:Student, parentDidIt: boolean) {
-        this.http.patch<{ status: string }>(`${environment.url}/students/`,  {student}).subscribe(result => {
+    toggleArchive(student: Student, parentDidIt: boolean) {
+        this.http.patch<{ status: string }>(`${environment.url}/students/archive`, { student }).subscribe(result => {
             if (result.status === 'success') {
                 parentDidIt ? this.getChildren() : this.getStudentsOfClass(student.currentGrade);
             } else

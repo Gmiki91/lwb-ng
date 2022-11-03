@@ -37,7 +37,7 @@ export class DataBookComponent implements OnInit{
   }
 
   openData(student: Student): void {
-    this.dialog.open(StudentComponent, { data: student });
+    this.dialog.open(StudentComponent, { data: {student:student,parentMode:this.parentMode }});
   }
   openAttendance(student: Student): void {
     this.dialog.open(AttendanceComponent, { data: student });
