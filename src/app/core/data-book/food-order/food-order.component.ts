@@ -33,7 +33,6 @@ export class FoodOrderComponent implements OnInit {
 
     this.months = this.dates.map(date => MonthNames[date.getMonth()])
     this.days = this.dates.map(date => date.getDate());
-    console.log(today);
   }
 
   onChange(i: number, checked: boolean) {
